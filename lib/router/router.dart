@@ -1,24 +1,39 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:foodie_app/feature/auth/notifier/state/user_state.dart';
+import 'package:foodie_app/feature/auth/notifier/user_notifier.dart';
 import 'package:foodie_app/router/routes.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'router.g.dart';
+part 'generated/router.g.dart';
 
 @riverpod
-GoRouter router(RouterRef ref) {
+class Router extends _$Router{
   final routerKey = GlobalKey<NavigatorState>();
   final isAuth = ValueNotifier<AsyncValue<bool>>(const AsyncLoading());
+  ValueListenable? listenable;
 
-  final router = GoRouter(
-    navigatorKey: routerKey,
-    refreshListenable: isAuth,
-    initialLocation: const SignInRoute().location,
-    debugLogDiagnostics: true,
-    routes: $appRoutes,
-    redirect: (context, state) => null,
-  );
-  ref.onDispose(router.dispose); // always clean up after yourselves (:
+  @override
+  GoRouter build(){
+    final userState = ref.watch(userNotifierProvider);
+    listenable = ValueNotifier(userState);
 
-  return router;
+    final router = GoRouter(
+      navigatorKey: routerKey,
+      refreshListenable: listenable,
+      initialLocation: const SignInRoute().location,
+      debugLogDiagnostics: true,
+      routes: $appRoutes,
+      redirect: (context, state) {
+        if(userState is UserNotLoggedIn){
+          return const SignInRoute().location;
+        }
+        return HomePageRoute().location;
+      },
+    );
+    ref.onDispose((router.dispose));
+
+    return router;
+  }
 }

@@ -1,0 +1,1 @@
+class SignInInterruptedException implements Exception{}
