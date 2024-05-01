@@ -1,12 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:foodie_app/core/auth/domain/repository/auth_repository_interface.dart';
 import 'package:foodie_app/core/auth/domain/use_case/get_auth_state_stream_use_case.dart';
 import 'package:foodie_app/core/auth/domain/use_case/sign_in_google_use_case.dart';
 import 'package:foodie_app/core/auth/domain/use_case/sign_in_use_case.dart';
 import 'package:foodie_app/core/auth/domain/use_case/sign_out_use_case.dart';
+import 'package:foodie_app/core/auth/domain/use_case/sign_up_email_use_case.dart';
+import 'package:foodie_app/core/user/providers.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'data/infrastructure/auth_repository.dart';
+import 'infrastructure/auth_repository.dart';
 
 part 'generated/providers.g.dart';
 
@@ -25,7 +28,7 @@ GoogleSignIn googleSignIn(
 }
 
 @Riverpod(keepAlive: true)
-AuthRepository authRepository(
+AuthRepositoryInterface authRepository(
   AuthRepositoryRef ref,
 ) {
   return AuthRepository(
@@ -58,6 +61,7 @@ SignInUseCase signInUseCase(
 ) {
   return SignInUseCase(
     authRepository: ref.watch(authRepositoryProvider),
+    userRepositoryInterface: ref.watch(userRepositoryProvider),
   );
 }
 
@@ -67,5 +71,16 @@ SignInGoogleUseCase signInGoogleUseCase(
     ) {
   return SignInGoogleUseCase(
     authRepository: ref.watch(authRepositoryProvider),
+    userRepositoryInterface: ref.watch(userRepositoryProvider),
+  );
+}
+
+@riverpod
+SignUpEmailUseCase signUpEmailUseCase(
+    SignUpEmailUseCaseRef ref,
+    ) {
+  return SignUpEmailUseCase(
+    authRepository: ref.watch(authRepositoryProvider),
+    userRepositoryInterface: ref.watch(userRepositoryProvider),
   );
 }

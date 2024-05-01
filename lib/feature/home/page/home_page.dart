@@ -9,16 +9,25 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      backgroundColor: Colors.blue,
-      body: ElevatedButton(
-        onPressed: () => _onSignOutTap(ref),
-        child: const Text("Sign out"),
-      ),
-    );
+        backgroundColor: Colors.blue,
+        body: Column(children: [
+          ElevatedButton(
+            onPressed: () => _onSignOutTap(ref),
+            child: const Text("Sign out"),
+          ),
+          ElevatedButton(
+            onPressed: () => _onCreateRoomTap(ref),
+            child: const Text("Create room"),
+          ),
+        ]));
   }
 
   void _onSignOutTap(WidgetRef ref) {
     GoogleSignIn().signOut();
     ref.read(userNotifierProvider.notifier).signOut();
+  }
+
+  void _onCreateRoomTap(WidgetRef ref) {
+    ///TODO
   }
 }

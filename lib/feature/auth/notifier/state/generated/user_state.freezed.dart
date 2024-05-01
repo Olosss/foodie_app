@@ -19,38 +19,38 @@ mixin _$UserState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notLoggedIn,
-    required TResult Function() logged,
+    required TResult Function(User user) logged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? notLoggedIn,
-    TResult? Function()? logged,
+    TResult? Function(User user)? logged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notLoggedIn,
-    TResult Function()? logged,
+    TResult Function(User user)? logged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(UserNotLoggedIn value) notLoggedIn,
-    required TResult Function(UserNotLogged value) logged,
+    required TResult Function(UserLogged value) logged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserNotLoggedIn value)? notLoggedIn,
-    TResult? Function(UserNotLogged value)? logged,
+    TResult? Function(UserLogged value)? logged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserNotLoggedIn value)? notLoggedIn,
-    TResult Function(UserNotLogged value)? logged,
+    TResult Function(UserLogged value)? logged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -112,7 +112,7 @@ class _$UserNotLoggedInImpl implements UserNotLoggedIn {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notLoggedIn,
-    required TResult Function() logged,
+    required TResult Function(User user) logged,
   }) {
     return notLoggedIn();
   }
@@ -121,7 +121,7 @@ class _$UserNotLoggedInImpl implements UserNotLoggedIn {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? notLoggedIn,
-    TResult? Function()? logged,
+    TResult? Function(User user)? logged,
   }) {
     return notLoggedIn?.call();
   }
@@ -130,7 +130,7 @@ class _$UserNotLoggedInImpl implements UserNotLoggedIn {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notLoggedIn,
-    TResult Function()? logged,
+    TResult Function(User user)? logged,
     required TResult orElse(),
   }) {
     if (notLoggedIn != null) {
@@ -143,7 +143,7 @@ class _$UserNotLoggedInImpl implements UserNotLoggedIn {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(UserNotLoggedIn value) notLoggedIn,
-    required TResult Function(UserNotLogged value) logged,
+    required TResult Function(UserLogged value) logged,
   }) {
     return notLoggedIn(this);
   }
@@ -152,7 +152,7 @@ class _$UserNotLoggedInImpl implements UserNotLoggedIn {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserNotLoggedIn value)? notLoggedIn,
-    TResult? Function(UserNotLogged value)? logged,
+    TResult? Function(UserLogged value)? logged,
   }) {
     return notLoggedIn?.call(this);
   }
@@ -161,7 +161,7 @@ class _$UserNotLoggedInImpl implements UserNotLoggedIn {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserNotLoggedIn value)? notLoggedIn,
-    TResult Function(UserNotLogged value)? logged,
+    TResult Function(UserLogged value)? logged,
     required TResult orElse(),
   }) {
     if (notLoggedIn != null) {
@@ -176,67 +176,93 @@ abstract class UserNotLoggedIn implements UserState {
 }
 
 /// @nodoc
-abstract class _$$UserNotLoggedImplCopyWith<$Res> {
-  factory _$$UserNotLoggedImplCopyWith(
-          _$UserNotLoggedImpl value, $Res Function(_$UserNotLoggedImpl) then) =
-      __$$UserNotLoggedImplCopyWithImpl<$Res>;
+abstract class _$$UserLoggedImplCopyWith<$Res> {
+  factory _$$UserLoggedImplCopyWith(
+          _$UserLoggedImpl value, $Res Function(_$UserLoggedImpl) then) =
+      __$$UserLoggedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({User user});
 }
 
 /// @nodoc
-class __$$UserNotLoggedImplCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$UserNotLoggedImpl>
-    implements _$$UserNotLoggedImplCopyWith<$Res> {
-  __$$UserNotLoggedImplCopyWithImpl(
-      _$UserNotLoggedImpl _value, $Res Function(_$UserNotLoggedImpl) _then)
+class __$$UserLoggedImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$UserLoggedImpl>
+    implements _$$UserLoggedImplCopyWith<$Res> {
+  __$$UserLoggedImplCopyWithImpl(
+      _$UserLoggedImpl _value, $Res Function(_$UserLoggedImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(_$UserLoggedImpl(
+      null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$UserNotLoggedImpl implements UserNotLogged {
-  const _$UserNotLoggedImpl();
+class _$UserLoggedImpl implements UserLogged {
+  const _$UserLoggedImpl(this.user);
+
+  @override
+  final User user;
 
   @override
   String toString() {
-    return 'UserState.logged()';
+    return 'UserState.logged(user: $user)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UserNotLoggedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$UserLoggedImpl &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, user);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserLoggedImplCopyWith<_$UserLoggedImpl> get copyWith =>
+      __$$UserLoggedImplCopyWithImpl<_$UserLoggedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notLoggedIn,
-    required TResult Function() logged,
+    required TResult Function(User user) logged,
   }) {
-    return logged();
+    return logged(user);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? notLoggedIn,
-    TResult? Function()? logged,
+    TResult? Function(User user)? logged,
   }) {
-    return logged?.call();
+    return logged?.call(user);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notLoggedIn,
-    TResult Function()? logged,
+    TResult Function(User user)? logged,
     required TResult orElse(),
   }) {
     if (logged != null) {
-      return logged();
+      return logged(user);
     }
     return orElse();
   }
@@ -245,7 +271,7 @@ class _$UserNotLoggedImpl implements UserNotLogged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(UserNotLoggedIn value) notLoggedIn,
-    required TResult Function(UserNotLogged value) logged,
+    required TResult Function(UserLogged value) logged,
   }) {
     return logged(this);
   }
@@ -254,7 +280,7 @@ class _$UserNotLoggedImpl implements UserNotLogged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserNotLoggedIn value)? notLoggedIn,
-    TResult? Function(UserNotLogged value)? logged,
+    TResult? Function(UserLogged value)? logged,
   }) {
     return logged?.call(this);
   }
@@ -263,7 +289,7 @@ class _$UserNotLoggedImpl implements UserNotLogged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserNotLoggedIn value)? notLoggedIn,
-    TResult Function(UserNotLogged value)? logged,
+    TResult Function(UserLogged value)? logged,
     required TResult orElse(),
   }) {
     if (logged != null) {
@@ -273,6 +299,11 @@ class _$UserNotLoggedImpl implements UserNotLogged {
   }
 }
 
-abstract class UserNotLogged implements UserState {
-  const factory UserNotLogged() = _$UserNotLoggedImpl;
+abstract class UserLogged implements UserState {
+  const factory UserLogged(final User user) = _$UserLoggedImpl;
+
+  User get user;
+  @JsonKey(ignore: true)
+  _$$UserLoggedImplCopyWith<_$UserLoggedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

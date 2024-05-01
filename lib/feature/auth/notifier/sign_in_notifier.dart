@@ -41,7 +41,7 @@ class SignInNotifier extends _$SignInNotifier {
     try {
       await _signInGoogleUseCase();
       state = const SignInState.done();
-    } on SignInInterruptedException catch (error) {
+    } on SignInInterruptedException catch (_) {
       state = const SignInState.init();
     } on Exception catch (error) {
       state = SignInState.error(error);

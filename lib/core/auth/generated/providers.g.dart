@@ -34,11 +34,11 @@ final googleSignInProvider = Provider<GoogleSignIn>.internal(
 );
 
 typedef GoogleSignInRef = ProviderRef<GoogleSignIn>;
-String _$authRepositoryHash() => r'c58a232d58b36914ec9aa14336fb3fe6a3b7a59f';
+String _$authRepositoryHash() => r'781257f1cbeff9f08958ab8c8d4d85d26078884a';
 
 /// See also [authRepository].
 @ProviderFor(authRepository)
-final authRepositoryProvider = Provider<AuthRepository>.internal(
+final authRepositoryProvider = Provider<AuthRepositoryInterface>.internal(
   authRepository,
   name: r'authRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -48,7 +48,7 @@ final authRepositoryProvider = Provider<AuthRepository>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef AuthRepositoryRef = ProviderRef<AuthRepository>;
+typedef AuthRepositoryRef = ProviderRef<AuthRepositoryInterface>;
 String _$getAuthStateStreamUseCaseHash() =>
     r'ce8a70a3deb69397f182c8c6be18122de5ba1efb';
 
@@ -81,7 +81,7 @@ final signOutUseCaseProvider = Provider<SignOutUseCase>.internal(
 );
 
 typedef SignOutUseCaseRef = ProviderRef<SignOutUseCase>;
-String _$signInUseCaseHash() => r'9385d78a5c97d62591a5a59d182ff1631f78dcd6';
+String _$signInUseCaseHash() => r'7f757c6c38f2281925cafaea10d3521f995c86f2';
 
 /// See also [signInUseCase].
 @ProviderFor(signInUseCase)
@@ -97,7 +97,7 @@ final signInUseCaseProvider = AutoDisposeProvider<SignInUseCase>.internal(
 
 typedef SignInUseCaseRef = AutoDisposeProviderRef<SignInUseCase>;
 String _$signInGoogleUseCaseHash() =>
-    r'49089d42a54ee5cf7927c7a6ab71aac2b5fdbf36';
+    r'72bb016e41250ec6ed177aa96059622b53acef87';
 
 /// See also [signInGoogleUseCase].
 @ProviderFor(signInGoogleUseCase)
@@ -113,5 +113,22 @@ final signInGoogleUseCaseProvider =
 );
 
 typedef SignInGoogleUseCaseRef = AutoDisposeProviderRef<SignInGoogleUseCase>;
+String _$signUpEmailUseCaseHash() =>
+    r'a702843ae484aeeef507a9b40155fb440ec71b1e';
+
+/// See also [signUpEmailUseCase].
+@ProviderFor(signUpEmailUseCase)
+final signUpEmailUseCaseProvider =
+    AutoDisposeProvider<SignUpEmailUseCase>.internal(
+  signUpEmailUseCase,
+  name: r'signUpEmailUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$signUpEmailUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef SignUpEmailUseCaseRef = AutoDisposeProviderRef<SignUpEmailUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
