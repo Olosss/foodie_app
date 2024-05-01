@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foodie_app/feature/auth/notifier/sign_in_notifier.dart';
+import 'package:foodie_app/feature/auth/notifier/sign_up_notifier.dart';
 
 class SignInPage extends ConsumerStatefulWidget {
   const SignInPage({super.key});
@@ -48,7 +49,6 @@ class _SignInPageState extends ConsumerState<SignInPage> {
     );
   }
 
-
   @override
   void dispose() {
     emailController.dispose();
@@ -57,8 +57,9 @@ class _SignInPageState extends ConsumerState<SignInPage> {
   }
 
   void _onSignInTap(WidgetRef ref) {
+
     ref
-        .read(signInNotifierProvider.notifier)
+        .read(signUpNotifierProvider.notifier)
         .signIn(email: emailController.text, password: passwordController.text);
   }
 

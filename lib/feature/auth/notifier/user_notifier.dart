@@ -20,8 +20,8 @@ class UserNotifier extends _$UserNotifier{
     _getAuthStateStreamUseCase = ref.watch(getAuthStateStreamUseCaseProvider);
     _signOutUseCase = ref.watch(signOutUseCaseProvider);
 
-    userStream = _getAuthStateStreamUseCase().listen((User? event) {
-      if(event == null){
+    userStream = _getAuthStateStreamUseCase().listen((User? user) {
+      if(user == null){
         state = const UserState.notLoggedIn();
         return;
       }
@@ -30,7 +30,7 @@ class UserNotifier extends _$UserNotifier{
         userStream?.cancel();
       });
 
-      state = const UserState.logged();
+      state = UserState.logged(user);
     });
 
     return const UserState.notLoggedIn();
