@@ -5,4 +5,8 @@ abstract class ExpenditureRepositoryInterface {
     required Expenditure expenditure,
     required String roomId,
   });
+
+  Future<List<Expenditure>> getRoomExpenditures({
+    required String roomId,
+  });
 }

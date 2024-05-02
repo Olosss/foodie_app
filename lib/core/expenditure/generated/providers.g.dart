@@ -41,5 +41,23 @@ final addExpenditureUseCaseProvider =
 
 typedef AddExpenditureUseCaseRef
     = AutoDisposeProviderRef<AddExpenditureUseCase>;
+String _$getRoomExpendituresUseCaseHash() =>
+    r'dbe5be72dafe7cb7d1ad29414bc28341fa8c3d4b';
+
+/// See also [getRoomExpendituresUseCase].
+@ProviderFor(getRoomExpendituresUseCase)
+final getRoomExpendituresUseCaseProvider =
+    AutoDisposeProvider<GetRoomExpendituresUseCase>.internal(
+  getRoomExpendituresUseCase,
+  name: r'getRoomExpendituresUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getRoomExpendituresUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef GetRoomExpendituresUseCaseRef
+    = AutoDisposeProviderRef<GetRoomExpendituresUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

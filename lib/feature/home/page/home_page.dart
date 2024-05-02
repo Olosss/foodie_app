@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:foodie_app/core/room/providers.dart';
 import 'package:foodie_app/feature/auth/notifier/user_notifier.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -27,7 +28,7 @@ class HomePage extends ConsumerWidget {
     ref.read(userNotifierProvider.notifier).signOut();
   }
 
-  void _onCreateRoomTap(WidgetRef ref) {
+  Future<void> _onCreateRoomTap(WidgetRef ref) async {
     ///TODO
   }
 }

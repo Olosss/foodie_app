@@ -1,0 +1,1 @@
+class UsersInRoomCountLimitExceededException implements Exception {}

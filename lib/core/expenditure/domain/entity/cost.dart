@@ -9,4 +9,6 @@ class Cost with _$Cost {
     required String userUid,
     required double value,
   }) = _Cost;
+
+  factory Cost.fromJson(Map<String, dynamic> json) => _$CostFromJson(json);
 }

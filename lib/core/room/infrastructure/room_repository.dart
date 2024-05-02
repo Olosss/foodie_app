@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:foodie_app/core/room/domain/entity/room.dart';
+import 'package:foodie_app/core/room/domain/entity/room_member.dart';
 import 'package:foodie_app/core/room/domain/repository/room_repository_interface.dart';
 
 class RoomRepository implements RoomRepositoryInterface {
@@ -7,46 +9,65 @@ class RoomRepository implements RoomRepositoryInterface {
   RoomRepository({required this.firestore});
 
   @override
-  Future<void> createRoom({
-    required String roomName,
-    required String uid,
-    required String userName,
-  }) async {
+  Future<void> createRoom({required Room room}) async {
     final CollectionReference rooms = firestore.collection('rooms');
-    await rooms.add({
-      'name': roomName,
-      'joinKey': "testKey",
-      'users': [
-        {
-          'uid': uid,
-          'userName': userName,
-        }
-      ],
-    });
+    await rooms.add(
+      room.toJson(),
+    );
   }
 
   @override
-  Future<void> joinRoom({
-    required String roomKey,
+  Future<Room> joinRoom({
+    required Room room,
+    required String roomId,
     required String uid,
     required String userName,
   }) async {
-    CollectionReference rooms = firestore.collection('rooms');
+    CollectionReference<Map<String, dynamic>> rooms =
+        firestore.collection('rooms');
 
+    room.users.add(
+      RoomMember(
+        uid: uid,
+        userName: userName,
+      ),
+    );
+
+    room.userIds.add(uid);
+
+    await rooms.doc(roomId).set(
+          room.toJson(),
+        );
+    return room;
+  }
+
+  @override
+  Future<(Room, String)> getRoomByJoinKey({
+    required String roomKey,
+  }) async {
+    final CollectionReference<Map<String, dynamic>> rooms =
+        firestore.collection('rooms');
     final query = rooms.where("joinKey", isEqualTo: roomKey);
+    final snapshot = await query.get();
+    return (Room.fromJson(snapshot.docs.first.data()), snapshot.docs.first.id);
+  }
 
-    query.get().then((value) {
-      final data = value.docs.first;
+  @override
+  Future<List<Room>> getUserRooms({
+    required String uid,
+  }) async {
+    final CollectionReference<Map<String, dynamic>> rooms =
+        firestore.collection('rooms');
 
-      final userList = data['users'] as List<dynamic>;
+    final data = await rooms.where('userIds', arrayContains: uid).get();
 
-      userList.add({"uid": uid, "userName": userName});
-
-      rooms.doc(value.docs.first.id).set(({
-            'name': value.docs.first["name"],
-            'joinKey': "testKey",
-            'users': userList,
-          }));
-    });
+    return data.docs
+        .map(
+          (QueryDocumentSnapshot<Map<String, dynamic>> snapshot) =>
+              Room.fromJson(
+            snapshot.data(),
+          ),
+        )
+        .toList();
   }
 }

@@ -1,4 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:foodie_app/core/room/domain/entity/room.dart';
+import 'package:foodie_app/core/room/domain/entity/room_member.dart';
 import 'package:foodie_app/core/room/domain/repository/room_repository_interface.dart';
+import 'package:uuid/uuid.dart';
 
 class CreateRoomUseCase {
   final RoomRepositoryInterface roomRepository;
@@ -13,9 +17,17 @@ class CreateRoomUseCase {
     required String userName,
   }) async {
     return roomRepository.createRoom(
-      roomName: roomName,
-      uid: uid,
-      userName: userName,
+      room: Room(
+        name: roomName,
+        joinKey: const Uuid().v6(),
+        users: [
+          RoomMember(
+            uid: uid,
+            userName: userName,
+          )
+        ],
+        userIds: [uid],
+      ),
     );
   }
 }
