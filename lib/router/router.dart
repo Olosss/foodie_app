@@ -9,13 +9,12 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'generated/router.g.dart';
 
 @riverpod
-class Router extends _$Router{
+class Router extends _$Router {
   final routerKey = GlobalKey<NavigatorState>();
-  final isAuth = ValueNotifier<AsyncValue<bool>>(const AsyncLoading());
   ValueListenable? listenable;
 
   @override
-  GoRouter build(){
+  GoRouter build() {
     final userState = ref.watch(userNotifierProvider);
     listenable = ValueNotifier(userState);
 
@@ -26,14 +25,22 @@ class Router extends _$Router{
       debugLogDiagnostics: true,
       routes: $appRoutes,
       redirect: (context, state) {
-        if(userState is UserNotLoggedIn){
+        if (userState is UserNotLoggedIn) {
+          if(allowedNotLoggedPages.contains(state.matchedLocation)){
+            return null;
+          }
           return const SignInRoute().location;
         }
-        return HomePageRoute().location;
+        return null;
       },
     );
     ref.onDispose((router.dispose));
 
     return router;
   }
+
+  List<String> get allowedNotLoggedPages => [
+        const SignInRoute().location,
+        const SignUpRoute().location,
+      ];
 }

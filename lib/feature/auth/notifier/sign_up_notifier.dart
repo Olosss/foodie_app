@@ -16,7 +16,7 @@ class SignUpNotifier extends _$SignUpNotifier {
     return const SignInState.init();
   }
 
-  Future<void> signIn({
+  Future<void> signUp({
     required String email,
     required String password,
   }) async {

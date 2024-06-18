@@ -18,9 +18,12 @@ class SignUpEmailUseCase {
       email: email,
       password: password,
     );
-    return userRepositoryInterface.createUserDocument(
-      email: email,
-      uid: userCredential.user!.uid,
-    );
+
+    if(userCredential.user != null){
+      return userRepositoryInterface.createUserDocument(
+        email: email,
+        uid: userCredential.user!.uid,
+      );
+    }
   }
 }

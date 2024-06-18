@@ -31,7 +31,7 @@ class SignInNotifier extends _$SignInNotifier {
         password: password,
       );
       state = const SignInState.done();
-    } on Exception catch (error) {
+    } catch (error) {
       state = SignInState.error(error);
     }
   }
@@ -43,8 +43,8 @@ class SignInNotifier extends _$SignInNotifier {
       state = const SignInState.done();
     } on SignInInterruptedException catch (_) {
       state = const SignInState.init();
-    } on Exception catch (error) {
+    } (error) {
       state = SignInState.error(error);
-    }
+    };
   }
 }

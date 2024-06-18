@@ -13,9 +13,10 @@ class SignInGoogleUseCase {
   Future<void> call() async {
     final userCredential = await authRepository.signInWithGoogle();
 
-    if(userCredential.additionalUserInfo?.isNewUser != true ||  userCredential.user?.email == null){
+    if(userCredential.additionalUserInfo?.isNewUser != true || userCredential.user?.email == null){
       return;
     }
+
     return userRepositoryInterface.createUserDocument(
       email: userCredential.user!.email!,
       uid: userCredential.user!.uid,
