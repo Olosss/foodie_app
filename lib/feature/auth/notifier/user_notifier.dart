@@ -33,7 +33,7 @@ class UserNotifier extends _$UserNotifier{
       state = UserState.logged(user);
     });
 
-    return const UserState.notLoggedIn();
+    return const UserState.initial();
   }
 
   Future<void> signOut(){

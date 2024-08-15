@@ -15,16 +15,13 @@ class LaunchPage extends ConsumerStatefulWidget {
 }
 
 class _LaunchPageState extends ConsumerState<LaunchPage> {
-  late OneShotAnimation _controller;
 
   @override
   void initState(){
     super.initState();
-    _controller = OneShotAnimation(Assets.launch, onStop: () {
-      context.push(SignInRoute().location);
-    });
+
     ref.listenManual(userNotifierProvider,(prev, next){
-      ///TODO Autologin
+      _tryToRedirectUser();
     });
   }
 
@@ -32,10 +29,9 @@ class _LaunchPageState extends ConsumerState<LaunchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: SizedBox(
-          width: 300,
+        child: FractionallySizedBox(
+          widthFactor: 0.7,
           child: RiveAnimation.asset(
-            controllers: [_controller],
             useArtboardSize: true,
             Assets.launch,
             fit: BoxFit.fitWidth,
@@ -43,6 +39,13 @@ class _LaunchPageState extends ConsumerState<LaunchPage> {
         ),
       ),
     );
+  }
+
+  Future<void> _tryToRedirectUser() async {
+    ///TODO Redirect on the end of Rive animation
+    await Future.delayed(Duration(seconds: 2));
+    await precacheImages();
+    context.push(SignInRoute().location);
   }
 
   Future<void> precacheImages() async {

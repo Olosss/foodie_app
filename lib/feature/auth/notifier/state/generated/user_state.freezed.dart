@@ -18,18 +18,21 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$UserState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() notLoggedIn,
     required TResult Function(User user) logged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? notLoggedIn,
     TResult? Function(User user)? logged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? notLoggedIn,
     TResult Function(User user)? logged,
     required TResult orElse(),
@@ -37,18 +40,21 @@ mixin _$UserState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(UserInitial value) initial,
     required TResult Function(UserNotLoggedIn value) notLoggedIn,
     required TResult Function(UserLogged value) logged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserInitial value)? initial,
     TResult? Function(UserNotLoggedIn value)? notLoggedIn,
     TResult? Function(UserLogged value)? logged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserInitial value)? initial,
     TResult Function(UserNotLoggedIn value)? notLoggedIn,
     TResult Function(UserLogged value)? logged,
     required TResult orElse(),
@@ -71,6 +77,114 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$UserInitialImplCopyWith<$Res> {
+  factory _$$UserInitialImplCopyWith(
+          _$UserInitialImpl value, $Res Function(_$UserInitialImpl) then) =
+      __$$UserInitialImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UserInitialImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$UserInitialImpl>
+    implements _$$UserInitialImplCopyWith<$Res> {
+  __$$UserInitialImplCopyWithImpl(
+      _$UserInitialImpl _value, $Res Function(_$UserInitialImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$UserInitialImpl implements UserInitial {
+  const _$UserInitialImpl();
+
+  @override
+  String toString() {
+    return 'UserState.initial()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$UserInitialImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() notLoggedIn,
+    required TResult Function(User user) logged,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? notLoggedIn,
+    TResult? Function(User user)? logged,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? notLoggedIn,
+    TResult Function(User user)? logged,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserInitial value) initial,
+    required TResult Function(UserNotLoggedIn value) notLoggedIn,
+    required TResult Function(UserLogged value) logged,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserInitial value)? initial,
+    TResult? Function(UserNotLoggedIn value)? notLoggedIn,
+    TResult? Function(UserLogged value)? logged,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserInitial value)? initial,
+    TResult Function(UserNotLoggedIn value)? notLoggedIn,
+    TResult Function(UserLogged value)? logged,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserInitial implements UserState {
+  const factory UserInitial() = _$UserInitialImpl;
 }
 
 /// @nodoc
@@ -111,6 +225,7 @@ class _$UserNotLoggedInImpl implements UserNotLoggedIn {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() notLoggedIn,
     required TResult Function(User user) logged,
   }) {
@@ -120,6 +235,7 @@ class _$UserNotLoggedInImpl implements UserNotLoggedIn {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? notLoggedIn,
     TResult? Function(User user)? logged,
   }) {
@@ -129,6 +245,7 @@ class _$UserNotLoggedInImpl implements UserNotLoggedIn {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? notLoggedIn,
     TResult Function(User user)? logged,
     required TResult orElse(),
@@ -142,6 +259,7 @@ class _$UserNotLoggedInImpl implements UserNotLoggedIn {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(UserInitial value) initial,
     required TResult Function(UserNotLoggedIn value) notLoggedIn,
     required TResult Function(UserLogged value) logged,
   }) {
@@ -151,6 +269,7 @@ class _$UserNotLoggedInImpl implements UserNotLoggedIn {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserInitial value)? initial,
     TResult? Function(UserNotLoggedIn value)? notLoggedIn,
     TResult? Function(UserLogged value)? logged,
   }) {
@@ -160,6 +279,7 @@ class _$UserNotLoggedInImpl implements UserNotLoggedIn {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserInitial value)? initial,
     TResult Function(UserNotLoggedIn value)? notLoggedIn,
     TResult Function(UserLogged value)? logged,
     required TResult orElse(),
@@ -239,6 +359,7 @@ class _$UserLoggedImpl implements UserLogged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() notLoggedIn,
     required TResult Function(User user) logged,
   }) {
@@ -248,6 +369,7 @@ class _$UserLoggedImpl implements UserLogged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? notLoggedIn,
     TResult? Function(User user)? logged,
   }) {
@@ -257,6 +379,7 @@ class _$UserLoggedImpl implements UserLogged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? notLoggedIn,
     TResult Function(User user)? logged,
     required TResult orElse(),
@@ -270,6 +393,7 @@ class _$UserLoggedImpl implements UserLogged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(UserInitial value) initial,
     required TResult Function(UserNotLoggedIn value) notLoggedIn,
     required TResult Function(UserLogged value) logged,
   }) {
@@ -279,6 +403,7 @@ class _$UserLoggedImpl implements UserLogged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserInitial value)? initial,
     TResult? Function(UserNotLoggedIn value)? notLoggedIn,
     TResult? Function(UserLogged value)? logged,
   }) {
@@ -288,6 +413,7 @@ class _$UserLoggedImpl implements UserLogged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserInitial value)? initial,
     TResult Function(UserNotLoggedIn value)? notLoggedIn,
     TResult Function(UserLogged value)? logged,
     required TResult orElse(),
