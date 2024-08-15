@@ -21,7 +21,7 @@ class Router extends _$Router {
     final router = GoRouter(
       navigatorKey: routerKey,
       refreshListenable: listenable,
-      initialLocation: const SignInRoute().location,
+      initialLocation: const LaunchRoute().location,
       debugLogDiagnostics: true,
       routes: $appRoutes,
       redirect: (context, state) {
@@ -42,5 +42,6 @@ class Router extends _$Router {
   List<String> get allowedNotLoggedPages => [
         const SignInRoute().location,
         const SignUpRoute().location,
+        const LaunchRoute().location,
       ];
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodie_app/feature/auth/page/sign_in_page.dart';
 import 'package:foodie_app/feature/auth/page/sign_up_page.dart';
 import 'package:foodie_app/feature/home/page/home_page.dart';
+import 'package:foodie_app/feature/launch/page/launch_page.dart';
 import 'package:foodie_app/feature/room/page/rooms_page.dart';
 import 'package:go_router/go_router.dart';
 
@@ -45,5 +46,15 @@ class RoomsRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const RoomsPage();
+  }
+}
+
+@TypedGoRoute<LaunchRoute>(path: '/launch')
+class LaunchRoute extends GoRouteData {
+  const LaunchRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const LaunchPage();
   }
 }
