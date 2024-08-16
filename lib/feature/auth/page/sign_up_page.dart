@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:foodie_app/core/auth/domain/exception/email_already_in_use_exception.dart';
 import 'package:foodie_app/feature/auth/notifier/sign_up_notifier.dart';
+import 'package:foodie_app/feature/auth/notifier/state/sign_up_state.dart';
+import 'package:foodie_app/feature/common/widget/button/gradient_button.dart';
+import 'package:foodie_app/feature/common/widget/input/email_input.dart';
+import 'package:foodie_app/feature/common/widget/input/password_input.dart';
+import 'package:foodie_app/feature/common/widget/text_divider_row.dart';
+import 'package:foodie_app/router/routes.dart';
+import 'package:foodie_app/styles/styles.dart';
+import 'package:go_router/go_router.dart';
 
 class SignUpPage extends ConsumerStatefulWidget {
   const SignUpPage({super.key});
@@ -10,50 +19,115 @@ class SignUpPage extends ConsumerStatefulWidget {
 }
 
 class _SignUpPageState extends ConsumerState<SignUpPage> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  String? _errorMessage;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final state = ref.watch(signUpNotifierProvider);
+
     return Scaffold(
-      backgroundColor: Colors.red,
-      body: Column(
-        children: [
-          const SizedBox(height: 48,),
-          TextFormField(
-            controller: emailController,
-            decoration: const InputDecoration(
-              labelText: "Email",
+      body: Padding(
+        padding: Paddings.paddingMedium(),
+        child: Column(
+          children: [
+            Spacers.verticalDoubleExtraLarge(),
+            Image.asset(
+              Assets.logo,
             ),
-          ),
-          TextFormField(
-            controller: passwordController,
-            decoration: const InputDecoration(
-              labelText: "Password",
+            Spacers.verticalDoubleExtraLarge(),
+            const TextDividerRow(
+              text: "Sign Up",
             ),
-          ),
-          const SizedBox(height: 48,),
-          ElevatedButton(
-            onPressed: () => _onSignUpTap(ref),
-            child: const Text(
-              "Sign Up",
+            Spacers.verticalExtraLarge(),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  EmailInput(
+                    controller: _emailController,
+                  ),
+                  Spacers.verticalLarge(),
+                  PasswordInput(
+                    controller: _passwordController,
+                    lengthPasswordRequirementConditions: true,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+            Spacers.verticalLarge(),
+            _errorMessage != null
+                ? Text(
+                    _errorMessage!,
+                    style: theme.inputDecorationTheme.errorStyle,
+                  )
+                : const SizedBox.shrink(),
+            Spacers.verticalLarge(),
+            GradientButton(
+              label: 'Sign Up',
+              onTap: () => _onSignUpTap(ref),
+              isLoading: state is SignUpStateLoading,
+            ),
+          ],
+        ),
       ),
     );
   }
 
   @override
+  void initState(){
+    super.initState();
+    ref.listenManual(signUpNotifierProvider, (previous, next){
+      if (previous is SignUpStateLoading && next is SignUpStateDone) {
+        context.go(const RoomsRoute().location);
+      }else if (previous is SignUpStateLoading && next is SignUpStateError) {
+        _wrapAndShowErrorMessage(next.error);
+      }
+    });
+  }
+
+  @override
   void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
   void _onSignUpTap(WidgetRef ref) {
-    ref
-        .read(signUpNotifierProvider.notifier)
-        .signUp(email: emailController.text, password: passwordController.text);
+    _removeErrorMessage();
+
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
+    ref.read(signUpNotifierProvider.notifier).signUp(
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
+  }
+
+  void _wrapAndShowErrorMessage(Object error){
+    if(error is EmailAlreadyInUseException){
+      _errorMessage = "There was a problem with the registration.";
+    }else{
+      _errorMessage = "Unknown Error";
+    }
+
+    if(!mounted){
+      return;
+    }
+    setState(() {});
+  }
+
+  void _removeErrorMessage(){
+    if(!mounted){
+      return;
+    }
+    setState(() {
+      _errorMessage = null;
+    });
   }
 }

@@ -90,7 +90,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                           : const SizedBox.shrink(),
                       Spacers.verticalLarge(),
                       GradientButton(
-                        label: 'Sign in',
+                        label: 'Sign In',
                         onTap: () => _onSignInTap(ref),
                         isLoading: state is SignInStateLoading,
                       ),
@@ -101,7 +101,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                       ),
                       Spacers.verticalExtraLarge(),
                       OutlinedCustomButton(
-                        label: 'Sign in with Google',
+                        label: 'Sign In with Google',
                         onTap: () => _onSignInWithGoogleTap(ref),
                         image: Image.asset(Assets.google),
                       ),

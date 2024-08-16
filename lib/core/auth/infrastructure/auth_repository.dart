@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:foodie_app/core/auth/domain/exception/email_already_in_use_exception.dart';
 import 'package:foodie_app/core/auth/domain/exception/invalid_creadential_exception.dart';
 import 'package:foodie_app/core/auth/domain/exception/login_attempt_limit_exceeded.dart';
 import 'package:foodie_app/core/auth/domain/repository/auth_repository_interface.dart';
@@ -67,10 +68,18 @@ class AuthRepository implements AuthRepositoryInterface {
   Future<UserCredential> signUp({
     required String email,
     required String password,
-  }) {
-    return firebaseAuth.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+  }) async {
+    try {
+      final UserCredential userCredential = await firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return userCredential;
+    } on FirebaseAuthException catch (error) {
+      if(error.code == "email-already-in-use"){
+        throw EmailAlreadyInUseException();
+      }
+      rethrow;
+    }
   }
 }

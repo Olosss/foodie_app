@@ -14,14 +14,16 @@ class PasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomInput(
-      label: 'Email',
+      label: 'Password',
       iconData: Icons.email_outlined,
-      hintText: 'Enter your email',
+      hintText: 'Enter your password',
       controller: controller,
       validator: _validatePassword,
       keyboardType: TextInputType.visiblePassword,
       obscureText: true,
-      helperText: "Password must contain at least 8 characters.",
+      helperText: lengthPasswordRequirementConditions
+          ? "Password must contain at least 8 characters."
+          : null,
       helperIcon: Icons.info,
     );
   }
@@ -30,8 +32,8 @@ class PasswordInput extends StatelessWidget {
     if (password == null || password.isEmpty) {
       return "The password cannot be empty.";
     }
-    if (lengthPasswordRequirementConditions && password.length < 3) {
-      return "The password must contain at least 3 characters.";
+    if (lengthPasswordRequirementConditions && password.length < 5) {
+      return "The password must contain at least 6 characters.";
     }
     if (lengthPasswordRequirementConditions && password.length > 16) {
       return "The password cannot exceed 16 characters.";

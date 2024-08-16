@@ -18,7 +18,7 @@ class EmailInput extends StatelessWidget {
       controller: controller,
       label: 'Email',
       iconData: Icons.lock_clock_outlined,
-      hintText: 'Enter your password',
+      hintText: 'Enter your email',
       validator: _validateEmail,
       keyboardType: TextInputType.emailAddress,
     );
