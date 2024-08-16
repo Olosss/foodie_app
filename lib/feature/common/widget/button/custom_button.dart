@@ -8,6 +8,7 @@ class CustomButton extends StatelessWidget {
   final BoxBorder? border;
   final VoidCallback onTap;
   final Widget? image;
+  final bool isLoading;
 
   const CustomButton({
     super.key,
@@ -16,6 +17,7 @@ class CustomButton extends StatelessWidget {
     this.border,
     required this.onTap,
     this.image,
+    this.isLoading = false,
   });
 
   @override
@@ -39,16 +41,22 @@ class CustomButton extends StatelessWidget {
               children: [
                 image != null
                     ? Padding(
-                        padding: EdgeInsets.only(
-                          right: Spacers.medium,
+                        padding: const EdgeInsets.only(
+                          right: Paddings.medium,
                         ),
-                        child: image!)
-                    : SizedBox.shrink(),
-                Text(
-                  label,
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.titleSmall,
-                ),
+                        child: image!,
+                      )
+                    : const SizedBox.shrink(),
+                isLoading
+                    ? const SizedBox.square(
+                        dimension: 20,
+                        child: CircularProgressIndicator(),
+                      )
+                    : Text(
+                        label,
+                        textAlign: TextAlign.center,
+                        style: theme.textTheme.titleSmall,
+                      ),
               ],
             ),
           ),

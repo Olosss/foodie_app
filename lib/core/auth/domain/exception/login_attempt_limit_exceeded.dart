@@ -1,0 +1,1 @@
+class LoginAttemptLimitExceeded implements Exception {}

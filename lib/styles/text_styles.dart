@@ -37,4 +37,16 @@ class TextStyles {
     fontWeight: FontWeight.bold,
     color: AppColors.primaryColor,
   );
+
+  static const TextStyle errorStyle = TextStyle(
+    fontSize: 12.0,
+    fontWeight: FontWeight.normal,
+    color: AppColors.errorColor,
+  );
+
+  static const TextStyle helperStyle = TextStyle(
+    fontSize: 12.0,
+    fontWeight: FontWeight.normal,
+    color: AppColors.primaryVariant,
+  );
 }

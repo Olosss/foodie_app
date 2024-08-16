@@ -11,8 +11,4 @@ class ForgotPassword extends StatelessWidget {
       style: theme.textTheme.titleSmall,
     );
   }
-
-  void _navigateToForgotPasswordPage(BuildContext context) {
-    ///TODO
-  }
 }

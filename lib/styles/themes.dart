@@ -3,13 +3,13 @@ import 'package:foodie_app/styles/styles.dart';
 
 class Themes {
   static final ThemeData lightTheme = ThemeData(
-    colorScheme: ColorScheme(
+    colorScheme: const ColorScheme(
       brightness: Brightness.dark,
       primary: AppColors.primaryColor,
       onPrimary: AppColors.primaryVariant,
       secondary: AppColors.secondaryColor,
       onSecondary: AppColors.secondaryVariant,
-      error: AppColors.surfaceGradientColor,
+      error: AppColors.errorColor,
       onError: AppColors.surfaceGradientColor,
       surface: AppColors.surfaceGradientColor,
       onSurface: AppColors.surfaceGradientSecondColor,
@@ -19,20 +19,22 @@ class Themes {
     focusColor: AppColors.secondaryColor,
     scaffoldBackgroundColor: AppColors.backgroundColor,
     fontFamily: "Montserrat",
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
       headlineMedium: TextStyles.headlineMedium,
       headlineSmall: TextStyles.headlineSmall,
       titleSmall: TextStyles.titleSmall,
     ),
-    iconTheme: IconThemeData(
+    iconTheme: const IconThemeData(
       color: AppColors.primaryColor,
     ),
-    inputDecorationTheme: InputDecorationTheme(
+    inputDecorationTheme: const InputDecorationTheme(
       prefixIconColor: AppColors.primaryVariant,
       labelStyle: TextStyles.labelStyle,
       floatingLabelStyle: TextStyles.headlineMedium,
       fillColor: AppColors.secondaryColor,
       hintStyle: TextStyles.inputStyle,
+      errorStyle: TextStyles.errorStyle,
+      helperStyle: TextStyles.helperStyle,
     ),
   );
 }

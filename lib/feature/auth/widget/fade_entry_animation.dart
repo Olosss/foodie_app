@@ -17,7 +17,7 @@ class _FadeEntryAnimationState extends State<FadeEntryAnimation>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
     );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -46,5 +46,11 @@ class _FadeEntryAnimationState extends State<FadeEntryAnimation>
       },
       animation: _controller,
     );
+  }
+
+  @override
+  dispose() {
+    _controller.dispose(); // you need this
+    super.dispose();
   }
 }

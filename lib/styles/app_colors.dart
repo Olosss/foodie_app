@@ -11,6 +11,8 @@ class AppColors {
 
   static const Color backgroundColor = Color(0xFF111111);
 
+  static const Color errorColor = Colors.red;
+
   static const Color surfaceGradientColor = Color(0xFFCE4D43);
   static const Color surfaceGradientSecondColor = Color(0xFF7D3F88);
 }

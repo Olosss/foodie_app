@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:foodie_app/feature/auth/notifier/state/user_state.dart';
 import 'package:foodie_app/feature/auth/notifier/user_notifier.dart';
@@ -11,25 +10,24 @@ part 'generated/router.g.dart';
 @riverpod
 class Router extends _$Router {
   final routerKey = GlobalKey<NavigatorState>();
-  ValueListenable? listenable;
+  _UserDataNotifier? _userDataListenable;
 
   @override
   GoRouter build() {
-    final userState = ref.watch(userNotifierProvider);
-    listenable = ValueNotifier(userState);
+    _userDataListenable = _UserDataNotifier(null);
+    ref.listen(userNotifierProvider, (_, next) {
+      _userDataListenable?.updateDataList(next);
+    });
 
     final router = GoRouter(
       navigatorKey: routerKey,
-      refreshListenable: listenable,
+      refreshListenable: _userDataListenable,
       initialLocation: const LaunchRoute().location,
       debugLogDiagnostics: true,
       routes: $appRoutes,
       redirect: (context, state) {
-        if (userState is UserNotLoggedIn) {
-          if(allowedNotLoggedPages.contains(state.matchedLocation)){
-            return null;
-          }
-          return const SignInRoute().location;
+        if (_userDataListenable?.data is UserNotLoggedIn && authenticatedRoutes.contains(state.matchedLocation)) {
+            return const SignInRoute().location;
         }
         return null;
       },
@@ -39,9 +37,20 @@ class Router extends _$Router {
     return router;
   }
 
-  List<String> get allowedNotLoggedPages => [
-        const SignInRoute().location,
-        const SignUpRoute().location,
-        const LaunchRoute().location,
+  List<String> get authenticatedRoutes => [
+        const RoomsRoute().location,
       ];
+}
+
+class _UserDataNotifier extends ChangeNotifier {
+  UserState? user;
+
+  _UserDataNotifier(this.user);
+
+  UserState? get data => user;
+
+  void updateDataList(UserState newUserState) {
+    user = newUserState;
+    notifyListeners();
+  }
 }

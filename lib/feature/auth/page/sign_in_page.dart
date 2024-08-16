@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:foodie_app/core/auth/domain/exception/invalid_creadential_exception.dart';
+import 'package:foodie_app/core/auth/domain/exception/login_attempt_limit_exceeded.dart';
 import 'package:foodie_app/feature/auth/notifier/sign_in_notifier.dart';
 import 'package:foodie_app/feature/auth/notifier/state/sign_in_state.dart';
 import 'package:foodie_app/feature/auth/widget/do_not_have_an_account.dart';
 import 'package:foodie_app/feature/auth/widget/fade_entry_animation.dart';
-import 'package:foodie_app/feature/auth/widget/forgot_password.dart';
 import 'package:foodie_app/feature/common/widget/button/gradient_button.dart';
 import 'package:foodie_app/feature/common/widget/button/outlined_custom_button.dart';
+import 'package:foodie_app/feature/common/widget/input/email_input.dart';
 import 'package:foodie_app/feature/common/widget/input/password_input.dart';
 import 'package:foodie_app/feature/common/widget/input/text_input.dart';
 import 'package:foodie_app/feature/common/widget/text_divider_row.dart';
@@ -22,12 +24,15 @@ class SignInPage extends ConsumerStatefulWidget {
 }
 
 class _SignInPageState extends ConsumerState<SignInPage> {
-  final emailController = TextEditingController(text: "olosss96+3@tlen.pl");
-  final passwordController = TextEditingController(text: "Test1234");
+  final _emailController = TextEditingController(text: "olosss96+3@tlen.pl");
+  final _passwordController = TextEditingController(text: "Test1234");
+  final _formKey = GlobalKey<FormState>();
+  String? _errorMessage;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final state = ref.watch(signInNotifierProvider);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -39,7 +44,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
             Expanded(
               child: Stack(
                 children: [
-                  Positioned(
+                  const Positioned(
                     top: -80,
                     left: 0,
                     right: 0,
@@ -53,7 +58,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                         Assets.logo,
                       ),
                       Spacers.verticalDoubleExtraLarge(),
-                      TextDividerRow(
+                      const TextDividerRow(
                         text: "Sign In",
                       ),
                       Spacers.verticalUltraSmall(),
@@ -62,29 +67,39 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                         style: theme.textTheme.headlineSmall,
                       ),
                       Spacers.verticalExtraLarge(),
-                      TextInput(
-                        label: 'Email',
-                        iconData: Icons.email_outlined,
-                        hintText: 'Enter your email',
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            EmailInput(
+                              controller: _emailController,
+                            ),
+                            Spacers.verticalLarge(),
+                            PasswordInput(
+                              controller: _passwordController,
+                            ),
+                          ],
+                        ),
                       ),
                       Spacers.verticalLarge(),
-                      PasswordInput(),
-                      Spacers.verticalMedium(),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: ForgotPassword(),
-                      ),
-                      Spacers.verticalExtraLarge(),
+                      _errorMessage != null
+                          ? Text(
+                              _errorMessage!,
+                              style: theme.inputDecorationTheme.errorStyle,
+                            )
+                          : const SizedBox.shrink(),
+                      Spacers.verticalLarge(),
                       GradientButton(
                         label: 'Sign in',
                         onTap: () => _onSignInTap(ref),
+                        isLoading: state is SignInStateLoading,
                       ),
                       Spacers.verticalExtraLarge(),
                       TextDividerRow(
                         text: "or",
                         style: theme.inputDecorationTheme.labelStyle,
                       ),
-                      Spacers.verticalLarge(),
+                      Spacers.verticalExtraLarge(),
                       OutlinedCustomButton(
                         label: 'Sign in with Google',
                         onTap: () => _onSignInWithGoogleTap(ref),
@@ -119,29 +134,68 @@ class _SignInPageState extends ConsumerState<SignInPage> {
       SignInState next,
     ) {
       if (previous is SignInStateLoading && next is SignInStateDone) {
-        context.push(const RoomsRoute().location);
+        context.go(const RoomsRoute().location);
+      }else if (previous is SignInStateLoading && next is SignInStateError) {
+        _wrapAndShowErrorMessage(next.error);
       }
     });
   }
 
   @override
   void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
   void _onSignInTap(WidgetRef ref) {
-    ref
-        .read(signInNotifierProvider.notifier)
-        .signIn(email: emailController.text, password: passwordController.text);
+    _removeErrorMessage();
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
+    ref.read(signInNotifierProvider.notifier).signIn(
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
   }
 
   void _onSignInWithGoogleTap(WidgetRef ref) {
-    ref.read(signInNotifierProvider.notifier).signInWithGoogle();
+    _removeErrorMessage();
+    ref
+        .read(
+          signInNotifierProvider.notifier,
+        )
+        .signInWithGoogle();
   }
 
   void _onSignUpTap(BuildContext context) {
-    context.push(const SignUpRoute().location);
+    context.push(
+      const SignUpRoute().location,
+    );
+  }
+
+  void _wrapAndShowErrorMessage(Object error){
+    if(error is InvalidCredentialException){
+      _errorMessage = "Incorrect email or password.";
+    }else if(error is LoginAttemptLimitExceeded){
+      _errorMessage = "Login attempt limit exceeded, please try again later.";
+    }else{
+      _errorMessage = "Unknown Error";
+    }
+
+    if(!mounted){
+      return;
+    }
+    setState(() {});
+  }
+
+  void _removeErrorMessage(){
+    if(!mounted){
+      return;
+    }
+    setState(() {
+      _errorMessage = null;
+    });
   }
 }

@@ -9,7 +9,9 @@ class RoomRepository implements RoomRepositoryInterface {
   RoomRepository({required this.firestore});
 
   @override
-  Future<void> createRoom({required Room room}) async {
+  Future<void> createRoom({
+    required Room room,
+  }) async {
     final CollectionReference rooms = firestore.collection('rooms');
     await rooms.add(
       room.toJson(),
