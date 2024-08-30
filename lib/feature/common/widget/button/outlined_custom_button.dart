@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodie_app/styles/app_border.dart';
 
 import 'custom_button.dart';
 
@@ -20,7 +21,7 @@ class OutlinedCustomButton extends StatelessWidget {
 
     return CustomButton(
       label: label,
-      border: Border.all(color: theme.colorScheme.primary),
+      border: AppBorders.borderAll(theme.colorScheme.primary),
       onTap: onTap,
       image: image,
     );

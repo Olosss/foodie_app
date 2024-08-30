@@ -15,6 +15,7 @@ class Themes {
       onSurface: AppColors.surfaceGradientSecondColor,
     ),
     scaffoldBackgroundColor: AppColors.backgroundColor,
+    dividerColor: AppColors.secondaryVariant,
     fontFamily: "Montserrat",
     textTheme: const TextTheme(
       headlineLarge: TextStyles.headlineLarge,
@@ -36,13 +37,18 @@ class Themes {
     ),
     extensions: <ThemeExtension>[
       AppGradients(
-        primaryGradient: LinearGradient(
-          colors: [
-            AppColors.surfaceGradientColor.withOpacity(0.1),
-            AppColors.surfaceGradientSecondColor.withOpacity(0.1),
-          ],
-        ),
-      ),
+          primaryGradient: LinearGradient(
+            colors: [
+              AppColors.surfaceGradientColor.withOpacity(0.1),
+              AppColors.surfaceGradientSecondColor.withOpacity(0.1),
+            ],
+          ),
+          buttonGradient: LinearGradient(
+            colors: [
+              AppColors.surfaceGradientColor,
+              AppColors.surfaceGradientSecondColor,
+            ],
+          )),
     ],
   );
 }

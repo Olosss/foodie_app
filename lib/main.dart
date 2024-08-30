@@ -26,7 +26,7 @@ class MyApp extends ConsumerWidget {
     return MaterialApp.router(
       theme: Themes.lightTheme,
       routerConfig: router,
-      title: "Foodie App",
+      title: "Foodie",
     );
   }
 }

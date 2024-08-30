@@ -39,6 +39,7 @@ class CustomInput extends StatelessWidget {
         Spacers.verticalSmall(),
         TextFormField(
           obscureText: obscureText,
+          obscuringCharacter: "●",
           keyboardType: keyboardType,
           controller: controller,
           style: theme.inputDecorationTheme.labelStyle,

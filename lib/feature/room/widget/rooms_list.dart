@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:foodie_app/feature/common/widget/pot_loading_animation.dart';
-import 'package:foodie_app/feature/common/widget/pot_loading_animation_wrapper.dart';
+import 'package:foodie_app/feature/common/widget/loading/pot_loading_animation.dart';
+import 'package:foodie_app/feature/common/widget/loading/pot_loading_animation_wrapper.dart';
 import 'package:foodie_app/feature/room/notifier/rooms_notifier.dart';
 import 'package:foodie_app/feature/room/widget/room_tile.dart';
 import 'package:foodie_app/styles/styles.dart';

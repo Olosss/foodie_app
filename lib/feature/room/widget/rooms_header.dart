@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:foodie_app/feature/auth/notifier/user_notifier.dart';
 import 'package:foodie_app/styles/app_border.dart';
 import 'package:foodie_app/styles/styles.dart';
 
-class RoomsHeader extends StatelessWidget implements PreferredSizeWidget {
+class RoomsHeader extends ConsumerWidget implements PreferredSizeWidget {
   const RoomsHeader({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
 
     return SafeArea(
@@ -39,9 +41,12 @@ class RoomsHeader extends StatelessWidget implements PreferredSizeWidget {
                         size: 28,
                       ),
                       Spacers.horizontalLarge(),
-                      const Icon(
-                        Icons.manage_accounts_outlined,
-                        size: 28,
+                      GestureDetector(
+                        onTap: () => _onProfilePageTap(ref),
+                        child: const Icon(
+                          Icons.manage_accounts_outlined,
+                          size: 28,
+                        ),
                       )
                     ],
                   ),
@@ -52,6 +57,11 @@ class RoomsHeader extends StatelessWidget implements PreferredSizeWidget {
         ],
       ),
     );
+  }
+
+  void _onProfilePageTap(WidgetRef ref) {
+    ///TODO Add redirection to profile page
+    ref.read(userNotifierProvider.notifier).signOut();
   }
 
   @override

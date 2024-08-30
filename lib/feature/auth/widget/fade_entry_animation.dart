@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:foodie_app/styles/app_colors.dart';
 
 class FadeEntryAnimation extends StatefulWidget {
   const FadeEntryAnimation({super.key});
@@ -13,6 +12,31 @@ class _FadeEntryAnimationState extends State<FadeEntryAnimation>
   late AnimationController _controller;
 
   @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return AnimatedBuilder(
+      builder: (BuildContext context, Widget? child) {
+        return DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: RadialGradient(
+              colors: [
+                theme.colorScheme.primary.withOpacity(
+                  0.1 * _controller.value,
+                ),
+                theme.scaffoldBackgroundColor.withOpacity(
+                  0.1 * _controller.value,
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+      animation: _controller,
+    );
+  }
+
+  @override
   void initState() {
     super.initState();
     _controller = AnimationController(
@@ -23,29 +47,6 @@ class _FadeEntryAnimationState extends State<FadeEntryAnimation>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _controller.forward();
     });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      builder: (BuildContext context, Widget? child) {
-        return DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: RadialGradient(
-              colors: [
-                AppColors.primaryColor.withOpacity(
-                  0.1 * _controller.value,
-                ),
-                AppColors.backgroundColor.withOpacity(
-                  0.1 * _controller.value,
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-      animation: _controller,
-    );
   }
 
   @override

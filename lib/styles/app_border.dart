@@ -8,4 +8,10 @@ class AppBorders {
       ),
     );
   }
+
+  static Border borderAll(Color color) {
+    return Border.all(
+      color: color,
+    );
+  }
 }

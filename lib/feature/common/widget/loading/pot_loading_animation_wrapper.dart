@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodie_app/feature/common/widget/pot_loading_animation.dart';
+import 'package:foodie_app/feature/common/widget/loading/pot_loading_animation.dart';
 
 /// A widget that wraps a child and enforces a minimum loading effect
 /// duration of at least [_minAnimationDelay] to improve user experience.

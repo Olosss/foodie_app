@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'custom_button.dart';
+import 'package:foodie_app/styles/styles.dart';
+import 'package:foodie_app/feature/common/widget/button/custom_button.dart';
 
 class GradientButton extends StatelessWidget {
   final String label;
@@ -20,10 +20,7 @@ class GradientButton extends StatelessWidget {
 
     return CustomButton(
       label: label,
-      gradient: LinearGradient(colors: [
-        theme.colorScheme.surface,
-        theme.colorScheme.onSurface,
-      ]),
+      gradient: theme.extension<AppGradients>()?.buttonGradient,
       onTap: onTap,
       isLoading: isLoading,
     );

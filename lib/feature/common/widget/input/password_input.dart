@@ -15,7 +15,7 @@ class PasswordInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomInput(
       label: 'Password',
-      iconData: Icons.email_outlined,
+      iconData: Icons.lock_clock_outlined,
       hintText: 'Enter your password',
       controller: controller,
       validator: _validatePassword,

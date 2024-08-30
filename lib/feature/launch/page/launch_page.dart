@@ -41,6 +41,12 @@ class _LaunchPageState extends ConsumerState<LaunchPage> {
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -53,12 +59,6 @@ class _LaunchPageState extends ConsumerState<LaunchPage> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 
   Future<void> onEndRiveAnimation() async {
