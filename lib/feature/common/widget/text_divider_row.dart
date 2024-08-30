@@ -24,7 +24,7 @@ class TextDividerRow extends StatelessWidget {
         Spacers.horizontalLarge(),
         Text(
           text,
-          style: style ?? theme.textTheme.headlineMedium,
+          style: style ?? theme.textTheme.headlineLarge,
         ),
         Spacers.horizontalLarge(),
         const Expanded(

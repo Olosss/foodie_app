@@ -10,7 +10,6 @@ import 'package:foodie_app/feature/common/widget/button/gradient_button.dart';
 import 'package:foodie_app/feature/common/widget/button/outlined_custom_button.dart';
 import 'package:foodie_app/feature/common/widget/input/email_input.dart';
 import 'package:foodie_app/feature/common/widget/input/password_input.dart';
-import 'package:foodie_app/feature/common/widget/input/text_input.dart';
 import 'package:foodie_app/feature/common/widget/text_divider_row.dart';
 import 'package:foodie_app/router/routes.dart';
 import 'package:foodie_app/styles/styles.dart';

@@ -8,9 +8,14 @@ class Paddings {
   static const double doubleExtraLarge = 64.0;
 
   static EdgeInsets all(double value) => EdgeInsets.all(value);
+  static EdgeInsets vertical(double value) => EdgeInsets.symmetric(vertical: value);
+  static EdgeInsets horizontal(double value) => EdgeInsets.symmetric(horizontal: value);
 
   static EdgeInsets paddingSmall() => all(small);
   static EdgeInsets paddingMedium() => all(medium);
   static EdgeInsets paddingLarge() => all(large);
   static EdgeInsets paddingExtraLarge() => all(extraLarge);
+
+  static EdgeInsets paddingVerticalMedium() => vertical(medium);
+  static EdgeInsets paddingHorizontalMedium() => horizontal(medium);
 }

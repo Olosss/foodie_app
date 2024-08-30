@@ -5,4 +5,5 @@ class Assets {
 
   static const String _rive = 'assets/rive/';
   static const String launch = '${_rive}launch.riv';
+  static const String pot = '${_rive}pot.riv';
 }

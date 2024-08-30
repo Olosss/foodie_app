@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
 class TextStyles {
-  static const TextStyle headlineMedium = TextStyle(
+  static const TextStyle headlineLarge = TextStyle(
     fontSize: 20.0,
     fontWeight: FontWeight.w600,
+    color: AppColors.primaryColor,
+  );
+
+  static const TextStyle headlineMedium = TextStyle(
+    fontSize: 14.0,
+    fontWeight: FontWeight.normal,
     color: AppColors.primaryColor,
   );
 
@@ -26,8 +32,8 @@ class TextStyles {
     color: AppColors.secondaryLighter,
   );
 
-  static const TextStyle displayMedium = TextStyle(
-    fontSize: 18.0,
+  static const TextStyle bodyMedium = TextStyle(
+    fontSize: 16.0,
     fontWeight: FontWeight.normal,
     color: AppColors.primaryColor,
   );

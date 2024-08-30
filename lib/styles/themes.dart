@@ -10,19 +10,18 @@ class Themes {
       secondary: AppColors.secondaryColor,
       onSecondary: AppColors.secondaryVariant,
       error: AppColors.errorColor,
-      onError: AppColors.surfaceGradientColor,
+      onError: AppColors.errorColor,
       surface: AppColors.surfaceGradientColor,
       onSurface: AppColors.surfaceGradientSecondColor,
     ),
-    primaryColor: AppColors.primaryColor,
-    dividerColor: AppColors.secondaryVariant,
-    focusColor: AppColors.secondaryColor,
     scaffoldBackgroundColor: AppColors.backgroundColor,
     fontFamily: "Montserrat",
     textTheme: const TextTheme(
+      headlineLarge: TextStyles.headlineLarge,
       headlineMedium: TextStyles.headlineMedium,
       headlineSmall: TextStyles.headlineSmall,
       titleSmall: TextStyles.titleSmall,
+      bodyMedium: TextStyles.bodyMedium,
     ),
     iconTheme: const IconThemeData(
       color: AppColors.primaryColor,
@@ -30,11 +29,20 @@ class Themes {
     inputDecorationTheme: const InputDecorationTheme(
       prefixIconColor: AppColors.primaryVariant,
       labelStyle: TextStyles.labelStyle,
-      floatingLabelStyle: TextStyles.headlineMedium,
       fillColor: AppColors.secondaryColor,
       hintStyle: TextStyles.inputStyle,
       errorStyle: TextStyles.errorStyle,
       helperStyle: TextStyles.helperStyle,
     ),
+    extensions: <ThemeExtension>[
+      AppGradients(
+        primaryGradient: LinearGradient(
+          colors: [
+            AppColors.surfaceGradientColor.withOpacity(0.1),
+            AppColors.surfaceGradientSecondColor.withOpacity(0.1),
+          ],
+        ),
+      ),
+    ],
   );
 }
