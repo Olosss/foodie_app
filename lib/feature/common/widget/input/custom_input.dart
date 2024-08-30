@@ -3,7 +3,6 @@ import 'package:foodie_app/styles/app_border_radius.dart';
 import 'package:foodie_app/styles/spacers.dart';
 
 class CustomInput extends StatelessWidget {
-
   const CustomInput({
     super.key,
     required this.label,

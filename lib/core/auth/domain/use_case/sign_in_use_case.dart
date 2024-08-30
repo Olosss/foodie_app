@@ -19,12 +19,13 @@ class SignInUseCase {
       email: email,
       password: password,
     );
-    if(userCredential.additionalUserInfo?.isNewUser != true ||  userCredential.user == null){
+    if (userCredential.additionalUserInfo?.isNewUser != true ||
+        userCredential.user == null) {
       return;
     }
-      return userRepositoryInterface.createUserDocument(
-        email: email,
-        uid: userCredential.user!.uid,
-      );
+    return userRepositoryInterface.createUserDocument(
+      email: email,
+      uid: userCredential.user!.uid,
+    );
   }
 }

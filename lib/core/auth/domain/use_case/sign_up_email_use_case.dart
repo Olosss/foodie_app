@@ -20,7 +20,7 @@ class SignUpEmailUseCase {
       password: password,
     );
 
-    if(userCredential.user != null){
+    if (userCredential.user != null) {
       return userRepositoryInterface.createUserDocument(
         email: email,
         uid: userCredential.user!.uid,

@@ -10,5 +10,6 @@ class RoomMember with _$RoomMember {
     required String userName,
   }) = _RoomMember;
 
-  factory RoomMember.fromJson(Map<String, dynamic> json) => _$RoomMemberFromJson(json);
+  factory RoomMember.fromJson(Map<String, dynamic> json) =>
+      _$RoomMemberFromJson(json);
 }

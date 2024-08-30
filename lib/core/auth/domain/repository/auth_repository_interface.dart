@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-abstract class AuthRepositoryInterface{
+abstract class AuthRepositoryInterface {
   Stream<User?> authStateChanges();
 
   Future<void> signOut();

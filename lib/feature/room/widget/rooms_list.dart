@@ -20,27 +20,31 @@ class _RoomsListState extends ConsumerState<RoomsList> {
     final AsyncValue<List<Room>> roomsState = ref.watch(roomsNotifierProvider);
 
     return PotLoadingAnimationWrapper(
-      child: roomsState.map(data: (AsyncData<List<Room>> data) {
-        return ListView.separated(
-          itemBuilder: (BuildContext context, int index) {
-            return SizedBox(
-              height: 24,
-              child: RoomTile(
-                room: data.value[index],
-              ),
-            );
-          },
-          separatorBuilder: (BuildContext context, int index) {
-            return Spacers.verticalExtraSmall();
-          },
-          itemCount: data.value.length,
-        );
-      }, error: (AsyncError<List<Room>> error) {
-        //TODO Add error state
-        return const SizedBox.shrink();
-      }, loading: (_) {
-        return const PotLoadingAnimation();
-      },),
+      child: roomsState.map(
+        data: (AsyncData<List<Room>> data) {
+          return ListView.separated(
+            itemBuilder: (BuildContext context, int index) {
+              return SizedBox(
+                height: 24,
+                child: RoomTile(
+                  room: data.value[index],
+                ),
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return Spacers.verticalExtraSmall();
+            },
+            itemCount: data.value.length,
+          );
+        },
+        error: (AsyncError<List<Room>> error) {
+          //TODO Add error state
+          return const SizedBox.shrink();
+        },
+        loading: (_) {
+          return const PotLoadingAnimation();
+        },
+      ),
     );
   }
 }

@@ -13,5 +13,6 @@ class Expenditure with _$Expenditure {
     required DateTime time,
   }) = _Expenditure;
 
-  factory Expenditure.fromJson(Map<String, dynamic> json) => _$ExpenditureFromJson(json);
+  factory Expenditure.fromJson(Map<String, dynamic> json) =>
+      _$ExpenditureFromJson(json);
 }

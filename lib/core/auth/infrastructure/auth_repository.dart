@@ -32,15 +32,16 @@ class AuthRepository implements AuthRepositoryInterface {
     required String password,
   }) async {
     try {
-      final UserCredential userCredential = await firebaseAuth.signInWithEmailAndPassword(
+      final UserCredential userCredential =
+          await firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
       return userCredential;
     } on FirebaseAuthException catch (error) {
-      if(error.code == 'invalid-credential'){
+      if (error.code == 'invalid-credential') {
         throw InvalidCredentialException();
-      } else if(error.code == 'too-many-requests'){
+      } else if (error.code == 'too-many-requests') {
         throw LoginAttemptLimitExceeded();
       }
       rethrow;
@@ -49,10 +50,11 @@ class AuthRepository implements AuthRepositoryInterface {
 
   @override
   Future<UserCredential> signInWithGoogle() async {
-    final GoogleSignInAccount? googleUser =  await googleSignIn.signIn();
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+    final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
 
-    if(googleAuth?.accessToken == null || googleAuth?.idToken == null){
+    if (googleAuth?.accessToken == null || googleAuth?.idToken == null) {
       throw SignInInterruptedException();
     }
 
@@ -70,13 +72,14 @@ class AuthRepository implements AuthRepositoryInterface {
     required String password,
   }) async {
     try {
-      final UserCredential userCredential = await firebaseAuth.createUserWithEmailAndPassword(
+      final UserCredential userCredential =
+          await firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
       return userCredential;
     } on FirebaseAuthException catch (error) {
-      if(error.code == 'email-already-in-use'){
+      if (error.code == 'email-already-in-use') {
         throw EmailAlreadyInUseException();
       }
       rethrow;

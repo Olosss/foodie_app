@@ -10,18 +10,18 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'generated/user_notifier.g.dart';
 
 @Riverpod(keepAlive: true)
-class UserNotifier extends _$UserNotifier{
+class UserNotifier extends _$UserNotifier {
   late GetAuthStateStreamUseCase _getAuthStateStreamUseCase;
   late SignOutUseCase _signOutUseCase;
   StreamSubscription<dynamic>? userStream;
 
   @override
-  UserState build(){
+  UserState build() {
     _getAuthStateStreamUseCase = ref.watch(getAuthStateStreamUseCaseProvider);
     _signOutUseCase = ref.watch(signOutUseCaseProvider);
 
     userStream = _getAuthStateStreamUseCase().listen((User? user) {
-      if(user == null){
+      if (user == null) {
         state = const UserState.notLoggedIn();
         return;
       }
@@ -36,7 +36,7 @@ class UserNotifier extends _$UserNotifier{
     return const UserState.initial();
   }
 
-  Future<void> signOut(){
+  Future<void> signOut() {
     return _signOutUseCase();
   }
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:foodie_app/feature/common/widget/input/custom_input.dart';
 
 class TextInput extends StatelessWidget {
-
   const TextInput({
     super.key,
     required this.label,

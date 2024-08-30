@@ -67,8 +67,8 @@ SignInUseCase signInUseCase(
 
 @riverpod
 SignInGoogleUseCase signInGoogleUseCase(
-    SignInGoogleUseCaseRef ref,
-    ) {
+  SignInGoogleUseCaseRef ref,
+) {
   return SignInGoogleUseCase(
     authRepository: ref.watch(authRepositoryProvider),
     userRepositoryInterface: ref.watch(userRepositoryProvider),
@@ -77,8 +77,8 @@ SignInGoogleUseCase signInGoogleUseCase(
 
 @riverpod
 SignUpEmailUseCase signUpEmailUseCase(
-    SignUpEmailUseCaseRef ref,
-    ) {
+  SignUpEmailUseCaseRef ref,
+) {
   return SignUpEmailUseCase(
     authRepository: ref.watch(authRepositoryProvider),
     userRepositoryInterface: ref.watch(userRepositoryProvider),

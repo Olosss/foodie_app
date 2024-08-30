@@ -23,8 +23,10 @@ class SignInPage extends ConsumerStatefulWidget {
 }
 
 class _SignInPageState extends ConsumerState<SignInPage> {
-  final TextEditingController _emailController = TextEditingController(text: 'olosss96+3@tlen.pl');
-  final TextEditingController _passwordController = TextEditingController(text: 'Test1234');
+  final TextEditingController _emailController =
+      TextEditingController(text: 'olosss96+3@tlen.pl');
+  final TextEditingController _passwordController =
+      TextEditingController(text: 'Test1234');
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? _errorMessage;
 
@@ -133,7 +135,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
     ) {
       if (previous is SignInStateLoading && next is SignInStateDone) {
         context.go(const RoomsRoute().location);
-      }else if (previous is SignInStateLoading && next is SignInStateError) {
+      } else if (previous is SignInStateLoading && next is SignInStateError) {
         _wrapAndShowErrorMessage(next.error);
       }
     });
@@ -173,23 +175,23 @@ class _SignInPageState extends ConsumerState<SignInPage> {
     );
   }
 
-  void _wrapAndShowErrorMessage(Object error){
-    if(error is InvalidCredentialException){
+  void _wrapAndShowErrorMessage(Object error) {
+    if (error is InvalidCredentialException) {
       _errorMessage = 'Incorrect email or password.';
-    }else if(error is LoginAttemptLimitExceeded){
+    } else if (error is LoginAttemptLimitExceeded) {
       _errorMessage = 'Login attempt limit exceeded, please try again later.';
-    }else{
+    } else {
       _errorMessage = 'Unknown Error';
     }
 
-    if(!mounted){
+    if (!mounted) {
       return;
     }
     setState(() {});
   }
 
-  void _removeErrorMessage(){
-    if(!mounted){
+  void _removeErrorMessage() {
+    if (!mounted) {
       return;
     }
     setState(() {

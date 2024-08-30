@@ -31,5 +31,6 @@ class Spacers {
   static Widget horizontalExtraLarge() => horizontal(extraLarge);
   static Widget horizontalDoubleExtraLarge() => horizontal(doubleExtraLarge);
   static Widget horizontalTripleExtraLarge() => horizontal(tripleExtraLarge);
-  static Widget horizontalQuadrupleExtraLarge() => horizontal(quadrupleExtraLarge);
+  static Widget horizontalQuadrupleExtraLarge() =>
+      horizontal(quadrupleExtraLarge);
 }

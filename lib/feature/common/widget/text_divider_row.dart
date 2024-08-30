@@ -3,7 +3,6 @@ import 'package:foodie_app/feature/common/widget/app_divider.dart';
 import 'package:foodie_app/styles/styles.dart';
 
 class TextDividerRow extends StatelessWidget {
-
   const TextDividerRow({
     super.key,
     required this.text,

@@ -9,8 +9,9 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-        backgroundColor: Colors.blue,
-        body: Column(children: <Widget>[
+      backgroundColor: Colors.blue,
+      body: Column(
+        children: <Widget>[
           ElevatedButton(
             onPressed: () => _onSignOutTap(ref),
             child: const Text('Sign out'),
@@ -19,7 +20,9 @@ class HomePage extends ConsumerWidget {
             onPressed: () => _onCreateRoomTap(ref),
             child: const Text('Create room'),
           ),
-        ],),);
+        ],
+      ),
+    );
   }
 
   void _onSignOutTap(WidgetRef ref) {

@@ -12,7 +12,7 @@ class RoomsNotifier extends _$RoomsNotifier {
   late GetUserRoomsUseCase _getUserRoomsUseCase;
 
   @override
-  Future<List<Room>> build() async{
+  Future<List<Room>> build() async {
     _getUserRoomsUseCase = ref.watch(getUserRoomsUseCaseProvider);
 
     final String? userUID = ref.watch(
@@ -22,7 +22,7 @@ class RoomsNotifier extends _$RoomsNotifier {
       ),
     );
 
-    if(userUID == null){
+    if (userUID == null) {
       return <Room>[];
     }
 

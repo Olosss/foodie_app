@@ -21,7 +21,7 @@ class CreateRoomNotifier extends _$CreateRoomNotifier {
   Future<void> createRoom() async {
     state = const SignInState.loading();
     try {
-      final UserLogged xd =ref.read(userNotifierProvider) as UserLogged;
+      final UserLogged xd = ref.read(userNotifierProvider) as UserLogged;
 
       await _createRoomUseCase(
         roomName: 'Pokoj 1',

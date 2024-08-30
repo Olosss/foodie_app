@@ -49,7 +49,8 @@ class RoomRepository implements RoomRepositoryInterface {
   }) async {
     final CollectionReference<Map<String, dynamic>> rooms =
         firestore.collection('rooms');
-    final Query<Map<String, dynamic>> query = rooms.where('joinKey', isEqualTo: roomKey);
+    final Query<Map<String, dynamic>> query =
+        rooms.where('joinKey', isEqualTo: roomKey);
     final QuerySnapshot<Map<String, dynamic>> snapshot = await query.get();
     return (Room.fromJson(snapshot.docs.first.data()), snapshot.docs.first.id);
   }
@@ -61,7 +62,8 @@ class RoomRepository implements RoomRepositoryInterface {
     final CollectionReference<Map<String, dynamic>> rooms =
         firestore.collection('rooms');
 
-    final QuerySnapshot<Map<String, dynamic>> data = await rooms.where('userIds', arrayContains: uid).get();
+    final QuerySnapshot<Map<String, dynamic>> data =
+        await rooms.where('userIds', arrayContains: uid).get();
 
     return data.docs
         .map(

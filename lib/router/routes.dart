@@ -9,7 +9,7 @@ import 'package:go_router/go_router.dart';
 part 'generated/routes.g.dart';
 
 @TypedGoRoute<HomePageRoute>(
-    path: '/home_page',
+  path: '/home_page',
 )
 @immutable
 class HomePageRoute extends GoRouteData {

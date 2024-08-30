@@ -9,8 +9,8 @@ part 'generated/providers.g.dart';
 
 @Riverpod(keepAlive: true)
 RoomRepositoryInterface roomRepository(
-    RoomRepositoryRef ref,
-    ) {
+  RoomRepositoryRef ref,
+) {
   return RoomRepository(
     firestore: ref.watch(firebaseFirestoreProvider),
   );
@@ -18,8 +18,8 @@ RoomRepositoryInterface roomRepository(
 
 @riverpod
 CreateRoomUseCase createRoomUseCase(
-    CreateRoomUseCaseRef ref,
-    ) {
+  CreateRoomUseCaseRef ref,
+) {
   return CreateRoomUseCase(
     roomRepository: ref.watch(roomRepositoryProvider),
   );
@@ -27,8 +27,8 @@ CreateRoomUseCase createRoomUseCase(
 
 @riverpod
 GetUserRoomsUseCase getUserRoomsUseCase(
-    GetUserRoomsUseCaseRef ref,
-    ) {
+  GetUserRoomsUseCaseRef ref,
+) {
   return GetUserRoomsUseCase(
     roomRepository: ref.watch(roomRepositoryProvider),
   );

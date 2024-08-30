@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AppGradients extends ThemeExtension<AppGradients> {
-
   AppGradients({
     this.primaryGradient,
     this.buttonGradient,

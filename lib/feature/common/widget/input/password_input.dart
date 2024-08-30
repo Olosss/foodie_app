@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:foodie_app/feature/common/widget/input/custom_input.dart';
 
 class PasswordInput extends StatelessWidget {
-
   const PasswordInput({
     super.key,
     this.lengthPasswordRequirementConditions = false,

@@ -1,1 +1,1 @@
-class SignInInterruptedException implements Exception{}
+class SignInInterruptedException implements Exception {}

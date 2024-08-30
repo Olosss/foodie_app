@@ -3,11 +3,11 @@ import 'package:rive/rive.dart';
 
 class CustomOneShotAnimation extends OneShotAnimation {
   CustomOneShotAnimation(
-      super.animationName,
-      VoidCallback? onStop,
-      ) : super(
-    onStop: onStop,
-  );
+    super.animationName,
+    VoidCallback? onStop,
+  ) : super(
+          onStop: onStop,
+        );
 
   @override
   void onActiveChanged() {

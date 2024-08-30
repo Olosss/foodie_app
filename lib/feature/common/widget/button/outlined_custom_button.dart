@@ -4,7 +4,6 @@ import 'package:foodie_app/styles/app_border.dart';
 import 'custom_button.dart';
 
 class OutlinedCustomButton extends StatelessWidget {
-
   const OutlinedCustomButton({
     super.key,
     required this.label,

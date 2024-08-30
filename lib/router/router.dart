@@ -26,8 +26,9 @@ class Router extends _$Router {
       debugLogDiagnostics: true,
       routes: $appRoutes,
       redirect: (BuildContext context, GoRouterState state) {
-        if (_userDataListenable?.data is UserNotLoggedIn && authenticatedRoutes.contains(state.matchedLocation)) {
-            return const SignInRoute().location;
+        if (_userDataListenable?.data is UserNotLoggedIn &&
+            authenticatedRoutes.contains(state.matchedLocation)) {
+          return const SignInRoute().location;
         }
         return null;
       },

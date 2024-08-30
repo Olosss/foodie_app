@@ -43,7 +43,8 @@ class SignInNotifier extends _$SignInNotifier {
       state = const SignInState.done();
     } on SignInInterruptedException catch (_) {
       state = const SignInState.init();
-    } (dynamic error) {
+    }
+    (dynamic error) {
       state = SignInState.error(error);
     };
   }

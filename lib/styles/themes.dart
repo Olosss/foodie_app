@@ -37,18 +37,19 @@ class Themes {
     ),
     extensions: <ThemeExtension<AppGradients>>[
       AppGradients(
-          primaryGradient: LinearGradient(
-            colors: <Color>[
-              AppColors.surfaceGradientColor.withOpacity(0.1),
-              AppColors.surfaceGradientSecondColor.withOpacity(0.1),
-            ],
-          ),
-          buttonGradient: const LinearGradient(
-            colors: <Color>[
-              AppColors.surfaceGradientColor,
-              AppColors.surfaceGradientSecondColor,
-            ],
-          ),),
+        primaryGradient: LinearGradient(
+          colors: <Color>[
+            AppColors.surfaceGradientColor.withOpacity(0.1),
+            AppColors.surfaceGradientSecondColor.withOpacity(0.1),
+          ],
+        ),
+        buttonGradient: const LinearGradient(
+          colors: <Color>[
+            AppColors.surfaceGradientColor,
+            AppColors.surfaceGradientSecondColor,
+          ],
+        ),
+      ),
     ],
   );
 }

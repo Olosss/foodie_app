@@ -78,12 +78,13 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
   }
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    ref.listenManual(signUpNotifierProvider, (SignUpState? previous, SignUpState next){
+    ref.listenManual(signUpNotifierProvider,
+        (SignUpState? previous, SignUpState next) {
       if (previous is SignUpStateLoading && next is SignUpStateDone) {
         context.go(const RoomsRoute().location);
-      }else if (previous is SignUpStateLoading && next is SignUpStateError) {
+      } else if (previous is SignUpStateLoading && next is SignUpStateError) {
         _wrapAndShowErrorMessage(next.error);
       }
     });
@@ -109,21 +110,21 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
         );
   }
 
-  void _wrapAndShowErrorMessage(Object error){
-    if(error is EmailAlreadyInUseException){
+  void _wrapAndShowErrorMessage(Object error) {
+    if (error is EmailAlreadyInUseException) {
       _errorMessage = 'There was a problem with the registration.';
-    }else{
+    } else {
       _errorMessage = 'Unknown Error';
     }
 
-    if(!mounted){
+    if (!mounted) {
       return;
     }
     setState(() {});
   }
 
-  void _removeErrorMessage(){
-    if(!mounted){
+  void _removeErrorMessage() {
+    if (!mounted) {
       return;
     }
     setState(() {

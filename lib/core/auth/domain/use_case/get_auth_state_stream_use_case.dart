@@ -8,7 +8,7 @@ class GetAuthStateStreamUseCase {
 
   final AuthRepositoryInterface authRepository;
 
-  Stream<User?> call(){
+  Stream<User?> call() {
     return authRepository.authStateChanges();
   }
 }

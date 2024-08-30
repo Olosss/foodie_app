@@ -7,7 +7,7 @@ class SignOutUseCase {
 
   final AuthRepositoryInterface authRepository;
 
-  Future<void> call(){
+  Future<void> call() {
     return authRepository.signOut();
   }
 }
