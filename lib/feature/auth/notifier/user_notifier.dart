@@ -13,7 +13,7 @@ part 'generated/user_notifier.g.dart';
 class UserNotifier extends _$UserNotifier{
   late GetAuthStateStreamUseCase _getAuthStateStreamUseCase;
   late SignOutUseCase _signOutUseCase;
-  StreamSubscription? userStream;
+  StreamSubscription<dynamic>? userStream;
 
   @override
   UserState build(){

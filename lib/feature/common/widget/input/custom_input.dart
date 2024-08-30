@@ -3,15 +3,6 @@ import 'package:foodie_app/styles/app_border_radius.dart';
 import 'package:foodie_app/styles/spacers.dart';
 
 class CustomInput extends StatelessWidget {
-  final String label;
-  final IconData iconData;
-  final String hintText;
-  final String? Function(String? value)? validator;
-  final TextEditingController? controller;
-  final TextInputType? keyboardType;
-  final bool obscureText;
-  final String? helperText;
-  final IconData? helperIcon;
 
   const CustomInput({
     super.key,
@@ -25,13 +16,22 @@ class CustomInput extends StatelessWidget {
     this.helperText,
     this.helperIcon,
   });
+  final String label;
+  final IconData iconData;
+  final String hintText;
+  final String? Function(String? value)? validator;
+  final TextEditingController? controller;
+  final TextInputType? keyboardType;
+  final bool obscureText;
+  final String? helperText;
+  final IconData? helperIcon;
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final ThemeData theme = Theme.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: <Widget>[
         Text(
           label,
           style: theme.inputDecorationTheme.labelStyle,
@@ -39,7 +39,7 @@ class CustomInput extends StatelessWidget {
         Spacers.verticalSmall(),
         TextFormField(
           obscureText: obscureText,
-          obscuringCharacter: "●",
+          obscuringCharacter: '●',
           keyboardType: keyboardType,
           controller: controller,
           style: theme.inputDecorationTheme.labelStyle,
@@ -47,7 +47,7 @@ class CustomInput extends StatelessWidget {
           decoration: InputDecoration(
             helper: helperText != null && helperIcon != null
                 ? Row(
-                    children: [
+                    children: <Widget>[
                       Icon(
                         helperIcon,
                         size: Spacers.medium,
@@ -56,7 +56,7 @@ class CustomInput extends StatelessWidget {
                       Text(
                         helperText!,
                         style: theme.inputDecorationTheme.helperStyle,
-                      )
+                      ),
                     ],
                   )
                 : null,

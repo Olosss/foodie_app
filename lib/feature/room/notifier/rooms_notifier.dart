@@ -15,7 +15,7 @@ class RoomsNotifier extends _$RoomsNotifier {
   Future<List<Room>> build() async{
     _getUserRoomsUseCase = ref.watch(getUserRoomsUseCaseProvider);
 
-    final userUID = ref.watch(
+    final String? userUID = ref.watch(
       userNotifierProvider.select(
         (UserState userState) =>
             (userState is UserLogged) ? userState.user.uid : null,
@@ -23,7 +23,7 @@ class RoomsNotifier extends _$RoomsNotifier {
     );
 
     if(userUID == null){
-      return [];
+      return <Room>[];
     }
 
     return _getUserRoomsUseCase(uid: userUID);

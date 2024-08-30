@@ -3,21 +3,21 @@ import 'package:foodie_app/feature/common/widget/app_divider.dart';
 import 'package:foodie_app/styles/styles.dart';
 
 class TextDividerRow extends StatelessWidget {
-  final String text;
-  final TextStyle? style;
 
   const TextDividerRow({
     super.key,
     required this.text,
     this.style,
   });
+  final String text;
+  final TextStyle? style;
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final ThemeData theme = Theme.of(context);
 
     return Row(
-      children: [
+      children: <Widget>[
         const Expanded(
           child: AppDivider(),
         ),

@@ -3,13 +3,6 @@ import 'package:foodie_app/styles/app_border_radius.dart';
 import 'package:foodie_app/styles/styles.dart';
 
 class CustomButton extends StatelessWidget {
-  final String label;
-  final Gradient? gradient;
-  final BoxBorder? border;
-  final VoidCallback onTap;
-  final Widget? image;
-  final bool isLoading;
-
   const CustomButton({
     super.key,
     required this.label,
@@ -20,9 +13,16 @@ class CustomButton extends StatelessWidget {
     this.isLoading = false,
   });
 
+  final String label;
+  final Gradient? gradient;
+  final BoxBorder? border;
+  final VoidCallback onTap;
+  final Widget? image;
+  final bool isLoading;
+
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final ThemeData theme = Theme.of(context);
     return GestureDetector(
       onTap: onTap,
       child: DecoratedBox(
@@ -37,8 +37,7 @@ class CustomButton extends StatelessWidget {
             padding: Paddings.paddingMedium(),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
+              children: <Widget>[
                 image != null
                     ? Padding(
                         padding: const EdgeInsets.only(

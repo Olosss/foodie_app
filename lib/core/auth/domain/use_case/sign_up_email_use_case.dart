@@ -1,20 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:foodie_app/core/auth/domain/repository/auth_repository_interface.dart';
 import 'package:foodie_app/core/user/data/repository/user_repository_interface.dart';
 
 class SignUpEmailUseCase {
-  final AuthRepositoryInterface authRepository;
-  final UserRepositoryInterface userRepositoryInterface;
-
-  SignUpEmailUseCase({
+  const SignUpEmailUseCase({
     required this.authRepository,
     required this.userRepositoryInterface,
   });
+
+  final AuthRepositoryInterface authRepository;
+  final UserRepositoryInterface userRepositoryInterface;
 
   Future<void> call({
     required String email,
     required String password,
   }) async {
-    final userCredential = await authRepository.signUp(
+    final UserCredential userCredential = await authRepository.signUp(
       email: email,
       password: password,
     );

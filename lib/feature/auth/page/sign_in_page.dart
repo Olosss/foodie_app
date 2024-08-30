@@ -23,26 +23,25 @@ class SignInPage extends ConsumerStatefulWidget {
 }
 
 class _SignInPageState extends ConsumerState<SignInPage> {
-  final _emailController = TextEditingController(text: "olosss96+3@tlen.pl");
-  final _passwordController = TextEditingController(text: "Test1234");
-  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController(text: 'olosss96+3@tlen.pl');
+  final TextEditingController _passwordController = TextEditingController(text: 'Test1234');
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? _errorMessage;
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final state = ref.watch(signInNotifierProvider);
+    final ThemeData theme = Theme.of(context);
+    final SignInState state = ref.watch(signInNotifierProvider);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
         padding: Paddings.paddingMedium(),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+          children: <Widget>[
             Expanded(
               child: Stack(
-                children: [
+                children: <Widget>[
                   const Positioned(
                     top: -80,
                     left: 0,
@@ -51,25 +50,25 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                     child: FadeEntryAnimation(),
                   ),
                   Column(
-                    children: [
+                    children: <Widget>[
                       Spacers.verticalDoubleExtraLarge(),
                       Image.asset(
                         Assets.logo,
                       ),
                       Spacers.verticalDoubleExtraLarge(),
                       const TextDividerRow(
-                        text: "Sign In",
+                        text: 'Sign In',
                       ),
                       Spacers.verticalUltraSmall(),
                       Text(
-                        "Welcome to Foodie!",
+                        'Welcome to Foodie!',
                         style: theme.textTheme.headlineSmall,
                       ),
                       Spacers.verticalExtraLarge(),
                       Form(
                         key: _formKey,
                         child: Column(
-                          children: [
+                          children: <Widget>[
                             EmailInput(
                               controller: _emailController,
                             ),
@@ -95,7 +94,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                       ),
                       Spacers.verticalExtraLarge(),
                       TextDividerRow(
-                        text: "or",
+                        text: 'or',
                         style: theme.inputDecorationTheme.labelStyle,
                       ),
                       Spacers.verticalExtraLarge(),
@@ -176,11 +175,11 @@ class _SignInPageState extends ConsumerState<SignInPage> {
 
   void _wrapAndShowErrorMessage(Object error){
     if(error is InvalidCredentialException){
-      _errorMessage = "Incorrect email or password.";
+      _errorMessage = 'Incorrect email or password.';
     }else if(error is LoginAttemptLimitExceeded){
-      _errorMessage = "Login attempt limit exceeded, please try again later.";
+      _errorMessage = 'Login attempt limit exceeded, please try again later.';
     }else{
-      _errorMessage = "Unknown Error";
+      _errorMessage = 'Unknown Error';
     }
 
     if(!mounted){

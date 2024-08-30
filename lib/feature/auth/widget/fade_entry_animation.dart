@@ -13,14 +13,14 @@ class _FadeEntryAnimationState extends State<FadeEntryAnimation>
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final ThemeData theme = Theme.of(context);
 
     return AnimatedBuilder(
       builder: (BuildContext context, Widget? child) {
         return DecoratedBox(
           decoration: BoxDecoration(
             gradient: RadialGradient(
-              colors: [
+              colors: <Color>[
                 theme.colorScheme.primary.withOpacity(
                   0.1 * _controller.value,
                 ),
@@ -50,7 +50,7 @@ class _FadeEntryAnimationState extends State<FadeEntryAnimation>
   }
 
   @override
-  dispose() {
+  void dispose() {
     _controller.dispose(); // you need this
     super.dispose();
   }

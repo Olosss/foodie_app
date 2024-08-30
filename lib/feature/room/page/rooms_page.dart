@@ -12,7 +12,7 @@ class RoomsPage extends ConsumerWidget {
     return Scaffold(
       appBar: const RoomsHeader(),
       body: Column(
-        children: [
+        children: <Widget>[
           Spacers.verticalLarge(),
           Expanded(
             child: Padding(

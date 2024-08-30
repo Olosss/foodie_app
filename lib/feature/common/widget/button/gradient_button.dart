@@ -3,10 +3,6 @@ import 'package:foodie_app/styles/styles.dart';
 import 'package:foodie_app/feature/common/widget/button/custom_button.dart';
 
 class GradientButton extends StatelessWidget {
-  final String label;
-  final VoidCallback onTap;
-  final bool isLoading;
-
   const GradientButton({
     super.key,
     required this.label,
@@ -14,9 +10,13 @@ class GradientButton extends StatelessWidget {
     this.isLoading = false,
   });
 
+  final String label;
+  final VoidCallback onTap;
+  final bool isLoading;
+
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final ThemeData theme = Theme.of(context);
 
     return CustomButton(
       label: label,

@@ -21,12 +21,12 @@ class CreateRoomNotifier extends _$CreateRoomNotifier {
   Future<void> createRoom() async {
     state = const SignInState.loading();
     try {
-      final xd =ref.read(userNotifierProvider) as UserLogged;
+      final UserLogged xd =ref.read(userNotifierProvider) as UserLogged;
 
       await _createRoomUseCase(
-        roomName: "Pokoj 1",
+        roomName: 'Pokoj 1',
         uid: xd.user.uid,
-        userName: "olek"
+        userName: 'olek',
       );
       state = const SignInState.done();
     } on Exception catch (error) {

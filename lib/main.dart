@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foodie_app/router/router.dart';
 import 'package:foodie_app/styles/themes.dart';
+import 'package:go_router/go_router.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,12 +22,12 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = ref.watch(routerProvider);
+    final GoRouter router = ref.watch(routerProvider);
 
     return MaterialApp.router(
       theme: Themes.lightTheme,
       routerConfig: router,
-      title: "Foodie",
+      title: 'Foodie',
     );
   }
 }

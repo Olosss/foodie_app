@@ -4,11 +4,11 @@ import 'package:foodie_app/core/room/domain/repository/room_repository_interface
 import 'package:uuid/uuid.dart';
 
 class CreateRoomUseCase {
-  final RoomRepositoryInterface roomRepository;
-
   CreateRoomUseCase({
     required this.roomRepository,
   });
+
+  final RoomRepositoryInterface roomRepository;
 
   Future<void> call({
     required String roomName,
@@ -19,13 +19,13 @@ class CreateRoomUseCase {
       room: Room(
         name: roomName,
         joinKey: const Uuid().v6(),
-        users: [
+        users: <RoomMember>[
           RoomMember(
             uid: uid,
             userName: userName,
-          )
+          ),
         ],
-        userIds: [uid],
+        userIds: <String>[uid],
       ),
     );
   }

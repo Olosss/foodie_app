@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:foodie_app/core/room/domain/entity/room.dart';
 import 'package:foodie_app/feature/common/widget/loading/pot_loading_animation.dart';
 import 'package:foodie_app/feature/common/widget/loading/pot_loading_animation_wrapper.dart';
 import 'package:foodie_app/feature/room/notifier/rooms_notifier.dart';
@@ -16,10 +17,10 @@ class RoomsList extends ConsumerStatefulWidget {
 class _RoomsListState extends ConsumerState<RoomsList> {
   @override
   Widget build(BuildContext context) {
-    final roomsState = ref.watch(roomsNotifierProvider);
+    final AsyncValue<List<Room>> roomsState = ref.watch(roomsNotifierProvider);
 
     return PotLoadingAnimationWrapper(
-      child: roomsState.map(data: (data) {
+      child: roomsState.map(data: (AsyncData<List<Room>> data) {
         return ListView.separated(
           itemBuilder: (BuildContext context, int index) {
             return SizedBox(
@@ -34,12 +35,12 @@ class _RoomsListState extends ConsumerState<RoomsList> {
           },
           itemCount: data.value.length,
         );
-      }, error: (error) {
+      }, error: (AsyncError<List<Room>> error) {
         //TODO Add error state
         return const SizedBox.shrink();
-      }, loading: (loading) {
+      }, loading: (_) {
         return const PotLoadingAnimation();
-      }),
+      },),
     );
   }
 }

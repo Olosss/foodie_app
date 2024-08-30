@@ -12,7 +12,7 @@ RoomRepositoryInterface roomRepository(
     RoomRepositoryRef ref,
     ) {
   return RoomRepository(
-    firestore: ref.watch(firebaseFirestoreProvider)
+    firestore: ref.watch(firebaseFirestoreProvider),
   );
 }
 

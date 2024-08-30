@@ -7,13 +7,13 @@ import 'package:foodie_app/core/auth/domain/exception/sign_in_interrupted_except
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthRepository implements AuthRepositoryInterface {
-  final FirebaseAuth firebaseAuth;
-  final GoogleSignIn googleSignIn;
-
   AuthRepository({
     required this.firebaseAuth,
     required this.googleSignIn,
   });
+
+  final FirebaseAuth firebaseAuth;
+  final GoogleSignIn googleSignIn;
 
   @override
   Stream<User?> authStateChanges() {
@@ -38,9 +38,9 @@ class AuthRepository implements AuthRepositoryInterface {
       );
       return userCredential;
     } on FirebaseAuthException catch (error) {
-      if(error.code == "invalid-credential"){
+      if(error.code == 'invalid-credential'){
         throw InvalidCredentialException();
-      } else if(error.code == "too-many-requests"){
+      } else if(error.code == 'too-many-requests'){
         throw LoginAttemptLimitExceeded();
       }
       rethrow;
@@ -56,7 +56,7 @@ class AuthRepository implements AuthRepositoryInterface {
       throw SignInInterruptedException();
     }
 
-    final credential = GoogleAuthProvider.credential(
+    final OAuthCredential credential = GoogleAuthProvider.credential(
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
     );
@@ -76,7 +76,7 @@ class AuthRepository implements AuthRepositoryInterface {
       );
       return userCredential;
     } on FirebaseAuthException catch (error) {
-      if(error.code == "email-already-in-use"){
+      if(error.code == 'email-already-in-use'){
         throw EmailAlreadyInUseException();
       }
       rethrow;

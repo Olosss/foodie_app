@@ -16,7 +16,7 @@ class Themes {
     ),
     scaffoldBackgroundColor: AppColors.backgroundColor,
     dividerColor: AppColors.secondaryVariant,
-    fontFamily: "Montserrat",
+    fontFamily: 'Montserrat',
     textTheme: const TextTheme(
       headlineLarge: TextStyles.headlineLarge,
       headlineMedium: TextStyles.headlineMedium,
@@ -35,20 +35,20 @@ class Themes {
       errorStyle: TextStyles.errorStyle,
       helperStyle: TextStyles.helperStyle,
     ),
-    extensions: <ThemeExtension>[
+    extensions: <ThemeExtension<AppGradients>>[
       AppGradients(
           primaryGradient: LinearGradient(
-            colors: [
+            colors: <Color>[
               AppColors.surfaceGradientColor.withOpacity(0.1),
               AppColors.surfaceGradientSecondColor.withOpacity(0.1),
             ],
           ),
-          buttonGradient: LinearGradient(
-            colors: [
+          buttonGradient: const LinearGradient(
+            colors: <Color>[
               AppColors.surfaceGradientColor,
               AppColors.surfaceGradientSecondColor,
             ],
-          )),
+          ),),
     ],
   );
 }

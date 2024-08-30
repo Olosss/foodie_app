@@ -5,29 +5,50 @@
 # IDEs (https://dart.dev/tools#ides-and-editors). The analyzer can also be
 # invoked from the command line by running `flutter analyze`.
 
-# The following line activates a set of recommended lints for Flutter apps,
-# packages, and plugins designed to encourage good coding practices.
+# Include the recommended set of lints for Flutter apps, packages, and plugins.
 include: package:flutter_lints/flutter.yaml
 
+analyzer:
+  # Exclude specific files and directories from analysis.
+  exclude:
+    - "**/*.g.dart"  # Exclude generated files with .g.dart extension
+    - "**/*.freezed.dart"  # Exclude generated files with .freezed.dart extension
+    - lib/generated/**  # Exclude generated code in the lib/generated directory
+    - generated_plugin_registrant.dart  # Exclude specific generated file
+
+# Customize the level of severity for specific errors and warnings.
+errors:
+  missing_required_param: error  # Report missing required parameters as errors
+  missing_return: error  # Report missing return values as errors
+  unawaited_futures: warning  # Report unawaited futures as warnings
+  unused_import: warning  # Report unused imports as warnings
+  prefer_const_constructors: info  # Report non-const constructors as info
+  prefer_const_constructors_in_immutables: info  # Report non-const constructors in immutable classes as info
+
 linter:
-  # The lint rules applied to this project can be customized in the
-  # section below to disable rules from the `package:flutter_lints/flutter.yaml`
-  # included above or to enable additional rules. A list of all available lints
-  # and their documentation is published at
+  # Customize lint rules to apply to this project.
+  # Rules can be customized here to enable or disable specific lints.
+  # More information about available lint rules can be found at
   # https://dart-lang.github.io/linter/lints/index.html.
   #
-  # Instead of disabling a lint rule for the entire project in the
-  # section below, it can also be suppressed for a single line of code
-  # or a specific dart file by using the `// ignore: name_of_lint` and
-  # `// ignore_for_file: name_of_lint` syntax on the line or in the file
-  # producing the lint.
+  # To disable a lint rule for the entire project, list it here.
+  # Alternatively, use `// ignore: name_of_lint` or `// ignore_for_file: name_of_lint`
+  # to suppress the lint for specific lines or files.
   rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
-
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
-
-analyzer:
-  plugins:
-    - custom_lint
+    always_declare_return_types: true  # Require return types to be declared
+    always_specify_types: true  # Require types to be explicitly specified
+    prefer_final_fields: true  # Prefer final fields where possible
+    prefer_single_quotes: true  # Prefer single quotes for strings
+    sort_constructors_first: true  # Sort constructors before other methods
+    sort_unnamed_constructors_first: true  # Sort unnamed constructors before other methods
+    avoid_returning_null_for_void: true  # Avoid returning null from void functions
+    prefer_is_empty: true  # Prefer using `isEmpty` to check for empty collections
+    prefer_is_not_empty: true  # Prefer using `isNotEmpty` to check for non-empty collections
+    avoid_function_literals_in_foreach_calls: true  # Avoid using function literals in foreach calls
+    prefer_function_declarations_over_variables: true  # Prefer function declarations over function variables
+    type_init_formals: true  # Prefer initializing fields in constructors
+    unnecessary_lambdas: true  # Avoid unnecessary lambda functions
+    avoid_relative_lib_imports: true  # Avoid relative imports within the lib directory
+    prefer_asserts_in_initializer_lists: true  # Prefer asserts in initializer lists
+    avoid_redundant_argument_values: true  # Avoid redundant argument values
+    require_trailing_commas: true # Require trailing commas

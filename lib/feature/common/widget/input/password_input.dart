@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:foodie_app/feature/common/widget/input/custom_input.dart';
 
 class PasswordInput extends StatelessWidget {
-  final bool lengthPasswordRequirementConditions;
-  final TextEditingController? controller;
 
   const PasswordInput({
     super.key,
     this.lengthPasswordRequirementConditions = false,
     this.controller,
   });
+  final bool lengthPasswordRequirementConditions;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class PasswordInput extends StatelessWidget {
       keyboardType: TextInputType.visiblePassword,
       obscureText: true,
       helperText: lengthPasswordRequirementConditions
-          ? "Password must contain at least 8 characters."
+          ? 'Password must contain at least 8 characters.'
           : null,
       helperIcon: Icons.info,
     );
@@ -30,13 +30,13 @@ class PasswordInput extends StatelessWidget {
 
   String? _validatePassword(String? password) {
     if (password == null || password.isEmpty) {
-      return "The password cannot be empty.";
+      return 'The password cannot be empty.';
     }
     if (lengthPasswordRequirementConditions && password.length < 5) {
-      return "The password must contain at least 6 characters.";
+      return 'The password must contain at least 6 characters.';
     }
     if (lengthPasswordRequirementConditions && password.length > 16) {
-      return "The password cannot exceed 16 characters.";
+      return 'The password cannot exceed 16 characters.';
     }
     return null;
   }

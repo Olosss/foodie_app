@@ -9,12 +9,12 @@ class RoomsHeader extends ConsumerWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
+    final ThemeData theme = Theme.of(context);
 
     return SafeArea(
       bottom: false,
       child: Stack(
-        children: [
+        children: <Widget>[
           DecoratedBox(
             decoration: BoxDecoration(
               gradient: theme.extension<AppGradients>()?.primaryGradient,
@@ -24,15 +24,15 @@ class RoomsHeader extends ConsumerWidget implements PreferredSizeWidget {
               ),
             ),
             child: Column(
-              children: [
+              children: <Widget>[
                 Spacers.verticalLarge(),
                 Padding(
                   padding: Paddings.paddingHorizontalMedium(),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
+                    children: <Widget>[
                       Text(
-                        "Your rooms",
+                        'Your rooms',
                         style: theme.textTheme.bodyMedium,
                       ),
                       const Spacer(),
@@ -47,7 +47,7 @@ class RoomsHeader extends ConsumerWidget implements PreferredSizeWidget {
                           Icons.manage_accounts_outlined,
                           size: 28,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),

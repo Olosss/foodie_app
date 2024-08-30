@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 
 class AppGradients extends ThemeExtension<AppGradients> {
-  final LinearGradient? primaryGradient;
-  final LinearGradient? buttonGradient;
 
   AppGradients({
     this.primaryGradient,
     this.buttonGradient,
   });
+  final LinearGradient? primaryGradient;
+  final LinearGradient? buttonGradient;
 
   @override
-  AppGradients copyWith({LinearGradient? primaryGradient}) {
+  AppGradients copyWith({
+    LinearGradient? primaryGradient,
+    LinearGradient? buttonGradient,
+  }) {
     return AppGradients(
       primaryGradient: primaryGradient ?? this.primaryGradient,
       buttonGradient: buttonGradient ?? this.buttonGradient,
@@ -21,8 +24,10 @@ class AppGradients extends ThemeExtension<AppGradients> {
   AppGradients lerp(ThemeExtension<AppGradients>? other, double t) {
     if (other is! AppGradients) return this;
     return AppGradients(
-      primaryGradient: LinearGradient.lerp(primaryGradient, other.primaryGradient, t),
-      buttonGradient: LinearGradient.lerp(buttonGradient, other.buttonGradient, t),
+      primaryGradient:
+          LinearGradient.lerp(primaryGradient, other.primaryGradient, t),
+      buttonGradient:
+          LinearGradient.lerp(buttonGradient, other.buttonGradient, t),
     );
   }
 }

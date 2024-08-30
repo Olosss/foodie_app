@@ -16,7 +16,7 @@ class LaunchPage extends ConsumerStatefulWidget {
 }
 
 class _LaunchPageState extends ConsumerState<LaunchPage> {
-  late RiveAnimationController _controller;
+  late RiveAnimationController<dynamic> _controller;
   bool _animationFinished = false;
   bool _imagesPrecached = false;
   bool _userLoaded = false;
@@ -31,7 +31,7 @@ class _LaunchPageState extends ConsumerState<LaunchPage> {
       onEndRiveAnimation,
     );
 
-    ref.listenManual(userNotifierProvider, (prev, next) {
+    ref.listenManual(userNotifierProvider, (UserState? prev, UserState next) {
       _onUserLoaded(next);
     });
 
@@ -54,7 +54,7 @@ class _LaunchPageState extends ConsumerState<LaunchPage> {
           widthFactor: 0.8,
           child: RiveAnimation.asset(
             Assets.launch,
-            controllers: [_controller],
+            controllers: <RiveAnimationController<dynamic>>[_controller],
           ),
         ),
       ),
@@ -63,7 +63,7 @@ class _LaunchPageState extends ConsumerState<LaunchPage> {
 
   Future<void> onEndRiveAnimation() async {
     _animationFinished = true;
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<void>.delayed(const Duration(seconds: 1));
     _tryToRedirectUser();
   }
 
@@ -77,9 +77,9 @@ class _LaunchPageState extends ConsumerState<LaunchPage> {
   }
 
   void _tryToRedirectUser() {
-    final shouldGoToRooms =
+    final bool shouldGoToRooms =
         _userSignedIn && _animationFinished && _imagesPrecached;
-    final shouldGoToSignIn =
+    final bool shouldGoToSignIn =
         _userLoaded && _animationFinished && _imagesPrecached;
 
     if (shouldGoToRooms) {

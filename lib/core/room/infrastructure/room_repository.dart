@@ -4,15 +4,15 @@ import 'package:foodie_app/core/room/domain/entity/room_member.dart';
 import 'package:foodie_app/core/room/domain/repository/room_repository_interface.dart';
 
 class RoomRepository implements RoomRepositoryInterface {
-  final FirebaseFirestore firestore;
-
   RoomRepository({required this.firestore});
+
+  final FirebaseFirestore firestore;
 
   @override
   Future<void> createRoom({
     required Room room,
   }) async {
-    final CollectionReference rooms = firestore.collection('rooms');
+    final CollectionReference<Object?> rooms = firestore.collection('rooms');
     await rooms.add(
       room.toJson(),
     );
@@ -49,8 +49,8 @@ class RoomRepository implements RoomRepositoryInterface {
   }) async {
     final CollectionReference<Map<String, dynamic>> rooms =
         firestore.collection('rooms');
-    final query = rooms.where("joinKey", isEqualTo: roomKey);
-    final snapshot = await query.get();
+    final Query<Map<String, dynamic>> query = rooms.where('joinKey', isEqualTo: roomKey);
+    final QuerySnapshot<Map<String, dynamic>> snapshot = await query.get();
     return (Room.fromJson(snapshot.docs.first.data()), snapshot.docs.first.id);
   }
 
@@ -61,7 +61,7 @@ class RoomRepository implements RoomRepositoryInterface {
     final CollectionReference<Map<String, dynamic>> rooms =
         firestore.collection('rooms');
 
-    final data = await rooms.where('userIds', arrayContains: uid).get();
+    final QuerySnapshot<Map<String, dynamic>> data = await rooms.where('userIds', arrayContains: uid).get();
 
     return data.docs
         .map(

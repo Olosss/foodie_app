@@ -5,18 +5,18 @@ import 'package:foodie_app/core/room/domain/exception/users_in_room_count_limit_
 import 'package:foodie_app/core/room/domain/repository/room_repository_interface.dart';
 
 class JoinRoomUseCase {
-  final RoomRepositoryInterface roomRepository;
-
   JoinRoomUseCase({
     required this.roomRepository,
   });
+
+  final RoomRepositoryInterface roomRepository;
 
   Future<Room> call({
     required String roomKey,
     required String uid,
     required String userName,
   }) async {
-    final room = await roomRepository.getRoomByJoinKey(roomKey: roomKey);
+    final (Room, String) room = await roomRepository.getRoomByJoinKey(roomKey: roomKey);
     if (room.$1.users.any(
       (RoomMember roomMember) => roomMember.uid == uid,
     )) {

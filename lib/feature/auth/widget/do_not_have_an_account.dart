@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 
 class DoNotHaveAnAccount extends StatelessWidget {
-  final VoidCallback onTap;
-
   const DoNotHaveAnAccount({
     super.key,
     required this.onTap,
   });
 
+  final VoidCallback onTap;
+
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final ThemeData theme = Theme.of(context);
     return GestureDetector(
       onTap: onTap,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: <Widget>[
           Text(
             "Don't have an account?",
             style: theme.textTheme.headlineSmall,
           ),
           Text(
-            " Sign Up",
+            ' Sign Up',
             style: theme.textTheme.titleSmall,
-          )
+          ),
         ],
       ),
     );

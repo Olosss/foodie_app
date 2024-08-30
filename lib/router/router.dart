@@ -9,23 +9,23 @@ part 'generated/router.g.dart';
 
 @riverpod
 class Router extends _$Router {
-  final routerKey = GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> routerKey = GlobalKey<NavigatorState>();
   _UserDataNotifier? _userDataListenable;
 
   @override
   GoRouter build() {
     _userDataListenable = _UserDataNotifier(null);
-    ref.listen(userNotifierProvider, (_, next) {
+    ref.listen(userNotifierProvider, (_, UserState next) {
       _userDataListenable?.updateDataList(next);
     });
 
-    final router = GoRouter(
+    final GoRouter router = GoRouter(
       navigatorKey: routerKey,
       refreshListenable: _userDataListenable,
       initialLocation: const LaunchRoute().location,
       debugLogDiagnostics: true,
       routes: $appRoutes,
-      redirect: (context, state) {
+      redirect: (BuildContext context, GoRouterState state) {
         if (_userDataListenable?.data is UserNotLoggedIn && authenticatedRoutes.contains(state.matchedLocation)) {
             return const SignInRoute().location;
         }
@@ -37,15 +37,15 @@ class Router extends _$Router {
     return router;
   }
 
-  List<String> get authenticatedRoutes => [
+  List<String> get authenticatedRoutes => <String>[
         const RoomsRoute().location,
       ];
 }
 
 class _UserDataNotifier extends ChangeNotifier {
-  UserState? user;
-
   _UserDataNotifier(this.user);
+
+  UserState? user;
 
   UserState? get data => user;
 

@@ -10,16 +10,16 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
         backgroundColor: Colors.blue,
-        body: Column(children: [
+        body: Column(children: <Widget>[
           ElevatedButton(
             onPressed: () => _onSignOutTap(ref),
-            child: const Text("Sign out"),
+            child: const Text('Sign out'),
           ),
           ElevatedButton(
             onPressed: () => _onCreateRoomTap(ref),
-            child: const Text("Create room"),
+            child: const Text('Create room'),
           ),
-        ]));
+        ],),);
   }
 
   void _onSignOutTap(WidgetRef ref) {

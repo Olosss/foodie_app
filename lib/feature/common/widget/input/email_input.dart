@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:foodie_app/feature/common/widget/input/custom_input.dart';
 
 class EmailInput extends StatelessWidget {
-  final bool formatEmailRequirementConditions;
-  final TextEditingController? controller;
 
   const EmailInput({
     super.key,
     this.formatEmailRequirementConditions = false,
     this.controller,
   });
+  final bool formatEmailRequirementConditions;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +26,10 @@ class EmailInput extends StatelessWidget {
 
   String? _validateEmail(String? email) {
     if (email == null || email.isEmpty) {
-      return "The email cannot be empty.";
+      return 'The email cannot be empty.';
     }
     if(!EmailValidator.validate(email)){
-      return "Invalid email format.";
+      return 'Invalid email format.';
     }
 
     return null;

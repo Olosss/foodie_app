@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:foodie_app/feature/common/widget/input/custom_input.dart';
 
 class TextInput extends StatelessWidget {
-  final String label;
-  final IconData iconData;
-  final String hintText;
-  final TextEditingController? controller;
 
   const TextInput({
     super.key,
@@ -14,6 +10,10 @@ class TextInput extends StatelessWidget {
     required this.hintText,
     this.controller,
   });
+  final String label;
+  final IconData iconData;
+  final String hintText;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {

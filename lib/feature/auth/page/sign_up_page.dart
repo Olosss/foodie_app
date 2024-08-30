@@ -19,34 +19,34 @@ class SignUpPage extends ConsumerStatefulWidget {
 }
 
 class _SignUpPageState extends ConsumerState<SignUpPage> {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? _errorMessage;
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final state = ref.watch(signUpNotifierProvider);
+    final ThemeData theme = Theme.of(context);
+    final SignUpState state = ref.watch(signUpNotifierProvider);
 
     return Scaffold(
       body: Padding(
         padding: Paddings.paddingMedium(),
         child: Column(
-          children: [
+          children: <Widget>[
             Spacers.verticalDoubleExtraLarge(),
             Image.asset(
               Assets.logo,
             ),
             Spacers.verticalDoubleExtraLarge(),
             const TextDividerRow(
-              text: "Sign Up",
+              text: 'Sign Up',
             ),
             Spacers.verticalExtraLarge(),
             Form(
               key: _formKey,
               child: Column(
-                children: [
+                children: <Widget>[
                   EmailInput(
                     controller: _emailController,
                   ),
@@ -80,7 +80,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
   @override
   void initState(){
     super.initState();
-    ref.listenManual(signUpNotifierProvider, (previous, next){
+    ref.listenManual(signUpNotifierProvider, (SignUpState? previous, SignUpState next){
       if (previous is SignUpStateLoading && next is SignUpStateDone) {
         context.go(const RoomsRoute().location);
       }else if (previous is SignUpStateLoading && next is SignUpStateError) {
@@ -111,9 +111,9 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
 
   void _wrapAndShowErrorMessage(Object error){
     if(error is EmailAlreadyInUseException){
-      _errorMessage = "There was a problem with the registration.";
+      _errorMessage = 'There was a problem with the registration.';
     }else{
-      _errorMessage = "Unknown Error";
+      _errorMessage = 'Unknown Error';
     }
 
     if(!mounted){
