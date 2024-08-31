@@ -21,7 +21,9 @@ class OutlinedCustomButton extends StatelessWidget {
 
     return CustomButton(
       label: label,
-      border: AppBorders.borderAll(theme.colorScheme.primary),
+      border: AppBorders.borderAll(
+        theme.colorScheme.primary,
+      ),
       onTap: onTap,
       image: image,
     );

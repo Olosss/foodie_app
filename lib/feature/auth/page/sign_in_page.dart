@@ -31,6 +31,79 @@ class _SignInPageState extends ConsumerState<SignInPage> {
   String? _errorMessage;
 
   @override
+  void initState() {
+    super.initState();
+    ref.listenManual(signInNotifierProvider, (
+      SignInState? previous,
+      SignInState next,
+    ) {
+      if (previous is SignInStateLoading && next is SignInStateDone) {
+        context.go(const RoomsRoute().location);
+      } else if (previous is SignInStateLoading && next is SignInStateError) {
+        _wrapAndShowErrorMessage(next.error);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void _onSignInTap(WidgetRef ref) {
+    _removeErrorMessage();
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
+    ref.read(signInNotifierProvider.notifier).signIn(
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
+  }
+
+  void _onSignInWithGoogleTap(WidgetRef ref) {
+    _removeErrorMessage();
+    ref
+        .read(
+          signInNotifierProvider.notifier,
+        )
+        .signInWithGoogle();
+  }
+
+  void _onSignUpTap(BuildContext context) {
+    context.push(
+      const SignUpRoute().location,
+    );
+  }
+
+  void _wrapAndShowErrorMessage(Object error) {
+    if (error is InvalidCredentialException) {
+      _errorMessage = 'Incorrect email or password.';
+    } else if (error is LoginAttemptLimitExceeded) {
+      _errorMessage = 'Login attempt limit exceeded, please try again later.';
+    } else {
+      _errorMessage = 'Unknown Error';
+    }
+
+    if (!mounted) {
+      return;
+    }
+    setState(() {});
+  }
+
+  void _removeErrorMessage() {
+    if (!mounted) {
+      return;
+    }
+    setState(() {
+      _errorMessage = null;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final SignInState state = ref.watch(signInNotifierProvider);
@@ -124,78 +197,5 @@ class _SignInPageState extends ConsumerState<SignInPage> {
         ),
       ),
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    ref.listenManual(signInNotifierProvider, (
-      SignInState? previous,
-      SignInState next,
-    ) {
-      if (previous is SignInStateLoading && next is SignInStateDone) {
-        context.go(const RoomsRoute().location);
-      } else if (previous is SignInStateLoading && next is SignInStateError) {
-        _wrapAndShowErrorMessage(next.error);
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
-  void _onSignInTap(WidgetRef ref) {
-    _removeErrorMessage();
-    if (!_formKey.currentState!.validate()) {
-      return;
-    }
-
-    ref.read(signInNotifierProvider.notifier).signIn(
-          email: _emailController.text,
-          password: _passwordController.text,
-        );
-  }
-
-  void _onSignInWithGoogleTap(WidgetRef ref) {
-    _removeErrorMessage();
-    ref
-        .read(
-          signInNotifierProvider.notifier,
-        )
-        .signInWithGoogle();
-  }
-
-  void _onSignUpTap(BuildContext context) {
-    context.push(
-      const SignUpRoute().location,
-    );
-  }
-
-  void _wrapAndShowErrorMessage(Object error) {
-    if (error is InvalidCredentialException) {
-      _errorMessage = 'Incorrect email or password.';
-    } else if (error is LoginAttemptLimitExceeded) {
-      _errorMessage = 'Login attempt limit exceeded, please try again later.';
-    } else {
-      _errorMessage = 'Unknown Error';
-    }
-
-    if (!mounted) {
-      return;
-    }
-    setState(() {});
-  }
-
-  void _removeErrorMessage() {
-    if (!mounted) {
-      return;
-    }
-    setState(() {
-      _errorMessage = null;
-    });
   }
 }

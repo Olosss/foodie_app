@@ -46,21 +46,6 @@ class _LaunchPageState extends ConsumerState<LaunchPage> {
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: FractionallySizedBox(
-          widthFactor: 0.8,
-          child: RiveAnimation.asset(
-            Assets.launch,
-            controllers: <RiveAnimationController<dynamic>>[_controller],
-          ),
-        ),
-      ),
-    );
-  }
-
   Future<void> onEndRiveAnimation() async {
     _animationFinished = true;
     await Future<void>.delayed(const Duration(seconds: 1));
@@ -93,5 +78,20 @@ class _LaunchPageState extends ConsumerState<LaunchPage> {
     await precacheImage(const AssetImage(Assets.logo), context);
     _imagesPrecached = true;
     _tryToRedirectUser();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: FractionallySizedBox(
+          widthFactor: 0.8,
+          child: RiveAnimation.asset(
+            Assets.launch,
+            controllers: <RiveAnimationController<dynamic>>[_controller],
+          ),
+        ),
+      ),
+    );
   }
 }

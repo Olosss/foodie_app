@@ -52,3 +52,4 @@ linter:
     prefer_asserts_in_initializer_lists: true  # Prefer asserts in initializer lists
     avoid_redundant_argument_values: true  # Avoid redundant argument values
     require_trailing_commas: true # Require trailing commas
+    sort_child_properties_last: true #Sort child properties last

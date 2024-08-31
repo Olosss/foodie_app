@@ -25,59 +25,6 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
   String? _errorMessage;
 
   @override
-  Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final SignUpState state = ref.watch(signUpNotifierProvider);
-
-    return Scaffold(
-      body: Padding(
-        padding: Paddings.paddingMedium(),
-        child: Column(
-          children: <Widget>[
-            Spacers.verticalDoubleExtraLarge(),
-            Image.asset(
-              Assets.logo,
-            ),
-            Spacers.verticalDoubleExtraLarge(),
-            const TextDividerRow(
-              text: 'Sign Up',
-            ),
-            Spacers.verticalExtraLarge(),
-            Form(
-              key: _formKey,
-              child: Column(
-                children: <Widget>[
-                  EmailInput(
-                    controller: _emailController,
-                  ),
-                  Spacers.verticalLarge(),
-                  PasswordInput(
-                    controller: _passwordController,
-                    lengthPasswordRequirementConditions: true,
-                  ),
-                ],
-              ),
-            ),
-            Spacers.verticalLarge(),
-            _errorMessage != null
-                ? Text(
-                    _errorMessage!,
-                    style: theme.inputDecorationTheme.errorStyle,
-                  )
-                : const SizedBox.shrink(),
-            Spacers.verticalLarge(),
-            GradientButton(
-              label: 'Sign Up',
-              onTap: () => _onSignUpTap(ref),
-              isLoading: state is SignUpStateLoading,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  @override
   void initState() {
     super.initState();
     ref.listenManual(signUpNotifierProvider,
@@ -130,5 +77,58 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
     setState(() {
       _errorMessage = null;
     });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    final SignUpState state = ref.watch(signUpNotifierProvider);
+
+    return Scaffold(
+      body: Padding(
+        padding: Paddings.paddingMedium(),
+        child: Column(
+          children: <Widget>[
+            Spacers.verticalDoubleExtraLarge(),
+            Image.asset(
+              Assets.logo,
+            ),
+            Spacers.verticalDoubleExtraLarge(),
+            const TextDividerRow(
+              text: 'Sign Up',
+            ),
+            Spacers.verticalExtraLarge(),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: <Widget>[
+                  EmailInput(
+                    controller: _emailController,
+                  ),
+                  Spacers.verticalLarge(),
+                  PasswordInput(
+                    controller: _passwordController,
+                    lengthPasswordRequirementConditions: true,
+                  ),
+                ],
+              ),
+            ),
+            Spacers.verticalLarge(),
+            _errorMessage != null
+                ? Text(
+                    _errorMessage!,
+                    style: theme.inputDecorationTheme.errorStyle,
+                  )
+                : const SizedBox.shrink(),
+            Spacers.verticalLarge(),
+            GradientButton(
+              label: 'Sign Up',
+              onTap: () => _onSignUpTap(ref),
+              isLoading: state is SignUpStateLoading,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

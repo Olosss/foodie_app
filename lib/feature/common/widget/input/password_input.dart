@@ -10,6 +10,19 @@ class PasswordInput extends StatelessWidget {
   final bool lengthPasswordRequirementConditions;
   final TextEditingController? controller;
 
+  String? _validatePassword(String? password) {
+    if (password == null || password.isEmpty) {
+      return 'The password cannot be empty.';
+    }
+    if (lengthPasswordRequirementConditions && password.length < 5) {
+      return 'The password must contain at least 6 characters.';
+    }
+    if (lengthPasswordRequirementConditions && password.length > 16) {
+      return 'The password cannot exceed 16 characters.';
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomInput(
@@ -25,18 +38,5 @@ class PasswordInput extends StatelessWidget {
           : null,
       helperIcon: Icons.info,
     );
-  }
-
-  String? _validatePassword(String? password) {
-    if (password == null || password.isEmpty) {
-      return 'The password cannot be empty.';
-    }
-    if (lengthPasswordRequirementConditions && password.length < 5) {
-      return 'The password must contain at least 6 characters.';
-    }
-    if (lengthPasswordRequirementConditions && password.length > 16) {
-      return 'The password cannot exceed 16 characters.';
-    }
-    return null;
   }
 }
