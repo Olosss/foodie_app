@@ -32,7 +32,7 @@ class RoomsHeader extends ConsumerWidget implements PreferredSizeWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
                       Text(
-                        'Your rooms',
+                        'Welcome back!',
                         style: theme.textTheme.bodyMedium,
                       ),
                       const Spacer(),

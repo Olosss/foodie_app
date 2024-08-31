@@ -7,6 +7,7 @@ part of '../room.dart';
 // **************************************************************************
 
 _$RoomImpl _$$RoomImplFromJson(Map<String, dynamic> json) => _$RoomImpl(
+      id: json['id'] as String,
       name: json['name'] as String,
       joinKey: json['joinKey'] as String,
       users: (json['users'] as List<dynamic>)
@@ -18,6 +19,7 @@ _$RoomImpl _$$RoomImplFromJson(Map<String, dynamic> json) => _$RoomImpl(
 
 Map<String, dynamic> _$$RoomImplToJson(_$RoomImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'name': instance.name,
       'joinKey': instance.joinKey,
       'users': instance.users.map((e) => e.toJson()).toList(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'app_colors.dart';
 
 class TextStyles {
@@ -32,9 +33,21 @@ class TextStyles {
     color: AppColors.secondaryLighter,
   );
 
+  static const TextStyle bodyLarge = TextStyle(
+    fontSize: 16.0,
+    fontWeight: FontWeight.bold,
+    color: AppColors.primaryColor,
+  );
+
   static const TextStyle bodyMedium = TextStyle(
     fontSize: 16.0,
     fontWeight: FontWeight.normal,
+    color: AppColors.primaryColor,
+  );
+
+  static const TextStyle bodySmall = TextStyle(
+    fontSize: 10.0,
+    fontWeight: FontWeight.bold,
     color: AppColors.primaryColor,
   );
 
@@ -54,5 +67,11 @@ class TextStyles {
     fontSize: 12.0,
     fontWeight: FontWeight.normal,
     color: AppColors.primaryVariant,
+  );
+
+  static const TextStyle labelSmall = TextStyle(
+    fontSize: 12.0,
+    fontWeight: FontWeight.normal,
+    color: AppColors.secondaryFixed,
   );
 }

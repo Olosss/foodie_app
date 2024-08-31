@@ -16,21 +16,19 @@ class JoinRoomUseCase {
     required String uid,
     required String userName,
   }) async {
-    final (Room, String) room =
-        await roomRepository.getRoomByJoinKey(roomKey: roomKey);
-    if (room.$1.users.any(
+    final Room room = await roomRepository.getRoomByJoinKey(roomKey: roomKey);
+    if (room.users.any(
       (RoomMember roomMember) => roomMember.uid == uid,
     )) {
       throw UserHasAlreadyJoinedTheRoomException();
     }
 
     ///TODO Add this from env variable
-    if (room.$1.users.length >= 5) {
+    if (room.users.length >= 5) {
       throw UsersInRoomCountLimitExceededException();
     }
     return roomRepository.joinRoom(
-      room: room.$1,
-      roomId: room.$2,
+      room: room,
       uid: uid,
       userName: userName,
     );

@@ -7,7 +7,7 @@ part of '../create_room_notifier.dart';
 // **************************************************************************
 
 String _$createRoomNotifierHash() =>
-    r'ded568e93dbdb033ce9a757c9d5a632428637054';
+    r'b26bf76c1aa850cf2a5fab0bd9f10661fc39b333';
 
 /// See also [CreateRoomNotifier].
 @ProviderFor(CreateRoomNotifier)

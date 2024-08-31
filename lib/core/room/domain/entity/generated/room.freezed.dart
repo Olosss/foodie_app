@@ -20,6 +20,7 @@ Room _$RoomFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Room {
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get joinKey => throw _privateConstructorUsedError;
   List<RoomMember> get users => throw _privateConstructorUsedError;
@@ -36,7 +37,8 @@ abstract class $RoomCopyWith<$Res> {
       _$RoomCopyWithImpl<$Res, Room>;
   @useResult
   $Res call(
-      {String name,
+      {String id,
+      String name,
       String joinKey,
       List<RoomMember> users,
       List<String> userIds});
@@ -55,12 +57,17 @@ class _$RoomCopyWithImpl<$Res, $Val extends Room>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? joinKey = null,
     Object? users = null,
     Object? userIds = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -89,7 +96,8 @@ abstract class _$$RoomImplCopyWith<$Res> implements $RoomCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String name,
+      {String id,
+      String name,
       String joinKey,
       List<RoomMember> users,
       List<String> userIds});
@@ -105,12 +113,17 @@ class __$$RoomImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? joinKey = null,
     Object? users = null,
     Object? userIds = null,
   }) {
     return _then(_$RoomImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -135,7 +148,8 @@ class __$$RoomImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RoomImpl implements _Room {
   const _$RoomImpl(
-      {required this.name,
+      {required this.id,
+      required this.name,
       required this.joinKey,
       required final List<RoomMember> users,
       required final List<String> userIds})
@@ -145,6 +159,8 @@ class _$RoomImpl implements _Room {
   factory _$RoomImpl.fromJson(Map<String, dynamic> json) =>
       _$$RoomImplFromJson(json);
 
+  @override
+  final String id;
   @override
   final String name;
   @override
@@ -167,7 +183,7 @@ class _$RoomImpl implements _Room {
 
   @override
   String toString() {
-    return 'Room(name: $name, joinKey: $joinKey, users: $users, userIds: $userIds)';
+    return 'Room(id: $id, name: $name, joinKey: $joinKey, users: $users, userIds: $userIds)';
   }
 
   @override
@@ -175,6 +191,7 @@ class _$RoomImpl implements _Room {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RoomImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.joinKey, joinKey) || other.joinKey == joinKey) &&
             const DeepCollectionEquality().equals(other._users, _users) &&
@@ -185,6 +202,7 @@ class _$RoomImpl implements _Room {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       name,
       joinKey,
       const DeepCollectionEquality().hash(_users),
@@ -206,13 +224,16 @@ class _$RoomImpl implements _Room {
 
 abstract class _Room implements Room {
   const factory _Room(
-      {required final String name,
+      {required final String id,
+      required final String name,
       required final String joinKey,
       required final List<RoomMember> users,
       required final List<String> userIds}) = _$RoomImpl;
 
   factory _Room.fromJson(Map<String, dynamic> json) = _$RoomImpl.fromJson;
 
+  @override
+  String get id;
   @override
   String get name;
   @override

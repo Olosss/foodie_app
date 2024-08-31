@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:foodie_app/core/room/domain/entity/room.dart';
 import 'package:foodie_app/core/room/domain/entity/room_member.dart';
 import 'package:foodie_app/core/room/domain/repository/room_repository_interface.dart';
+import 'package:uuid/uuid.dart';
 
 class RoomRepository implements RoomRepositoryInterface {
   RoomRepository({required this.firestore});
@@ -10,18 +11,26 @@ class RoomRepository implements RoomRepositoryInterface {
 
   @override
   Future<void> createRoom({
-    required Room room,
+    required String roomName,
+    required String uid,
+    required String userName,
   }) async {
     final CollectionReference<Object?> rooms = firestore.collection('rooms');
     await rooms.add(
-      room.toJson(),
+      <String, Object>{
+        'roomName': roomName,
+        'joinKey': const Uuid().v6(),
+        'users': <String, String>{
+          'uid': uid,
+          'userName': userName,
+        },
+      },
     );
   }
 
   @override
   Future<Room> joinRoom({
     required Room room,
-    required String roomId,
     required String uid,
     required String userName,
   }) async {
@@ -37,14 +46,14 @@ class RoomRepository implements RoomRepositoryInterface {
 
     room.userIds.add(uid);
 
-    await rooms.doc(roomId).set(
+    await rooms.doc(room.id).set(
           room.toJson(),
         );
     return room;
   }
 
   @override
-  Future<(Room, String)> getRoomByJoinKey({
+  Future<Room> getRoomByJoinKey({
     required String roomKey,
   }) async {
     final CollectionReference<Map<String, dynamic>> rooms =
@@ -52,7 +61,7 @@ class RoomRepository implements RoomRepositoryInterface {
     final Query<Map<String, dynamic>> query =
         rooms.where('joinKey', isEqualTo: roomKey);
     final QuerySnapshot<Map<String, dynamic>> snapshot = await query.get();
-    return (Room.fromJson(snapshot.docs.first.data()), snapshot.docs.first.id);
+    return Room.fromSnapshot(snapshot.docs.first);
   }
 
   @override
@@ -65,13 +74,14 @@ class RoomRepository implements RoomRepositoryInterface {
     final QuerySnapshot<Map<String, dynamic>> data =
         await rooms.where('userIds', arrayContains: uid).get();
 
-    return data.docs
-        .map(
-          (QueryDocumentSnapshot<Map<String, dynamic>> snapshot) =>
-              Room.fromJson(
-            snapshot.data(),
-          ),
-        )
-        .toList();
+    return data.docs.map(
+      (
+        QueryDocumentSnapshot<Map<String, dynamic>> snapshot,
+      ) {
+        return Room.fromSnapshot(
+          snapshot,
+        );
+      },
+    ).toList();
   }
 }

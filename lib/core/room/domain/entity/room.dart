@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:foodie_app/core/room/domain/entity/room_member.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -7,6 +8,7 @@ part 'generated/room.g.dart';
 @Freezed(toJson: true)
 class Room with _$Room {
   const factory Room({
+    required String id,
     required String name,
     required String joinKey,
     required List<RoomMember> users,
@@ -14,4 +16,20 @@ class Room with _$Room {
   }) = _Room;
 
   factory Room.fromJson(Map<String, dynamic> json) => _$RoomFromJson(json);
+
+  factory Room.fromSnapshot(QueryDocumentSnapshot<Map<String, dynamic>> qds) {
+    final Map<String, dynamic> data = qds.data();
+    final List<Map<String, dynamic>> usersList =
+        data['users'].cast<Map<String, dynamic>>();
+    final List<RoomMember> users = usersList.map(RoomMember.fromJson).toList();
+    final List<String> userIds = data['userIds'].cast<String>();
+
+    return Room(
+      id: qds.id,
+      name: data['name'],
+      joinKey: data['joinKey'],
+      users: users,
+      userIds: userIds,
+    );
+  }
 }

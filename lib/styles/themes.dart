@@ -8,6 +8,7 @@ class Themes {
       primary: AppColors.primaryColor,
       onPrimary: AppColors.primaryVariant,
       secondary: AppColors.secondaryColor,
+      secondaryFixed: AppColors.secondaryNext,
       onSecondary: AppColors.secondaryVariant,
       error: AppColors.errorColor,
       onError: AppColors.errorColor,
@@ -22,7 +23,10 @@ class Themes {
       headlineMedium: TextStyles.headlineMedium,
       headlineSmall: TextStyles.headlineSmall,
       titleSmall: TextStyles.titleSmall,
+      bodyLarge: TextStyles.bodyLarge,
       bodyMedium: TextStyles.bodyMedium,
+      bodySmall: TextStyles.bodySmall,
+      labelSmall: TextStyles.labelSmall,
     ),
     iconTheme: const IconThemeData(
       color: AppColors.primaryColor,
@@ -47,6 +51,12 @@ class Themes {
           colors: <Color>[
             AppColors.surfaceGradientColor,
             AppColors.surfaceGradientSecondColor,
+          ],
+        ),
+        backgroundGradient: LinearGradient(
+          colors: <Color>[
+            AppColors.primaryColor.withOpacity(0.2),
+            AppColors.primaryColor.withOpacity(0.05),
           ],
         ),
       ),

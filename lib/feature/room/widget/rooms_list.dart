@@ -1,10 +1,13 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foodie_app/core/room/domain/entity/room.dart';
+import 'package:foodie_app/feature/common/widget/error_content.dart';
 import 'package:foodie_app/feature/common/widget/loading/pot_loading_animation.dart';
 import 'package:foodie_app/feature/common/widget/loading/pot_loading_animation_wrapper.dart';
+import 'package:foodie_app/feature/common/widget/text_divider_row.dart';
 import 'package:foodie_app/feature/room/notifier/rooms_notifier.dart';
-import 'package:foodie_app/feature/room/widget/room_tile.dart';
+import 'package:foodie_app/feature/room/widget/rooms_empty_state.dart';
+import 'package:foodie_app/feature/room/widget/rooms_list_content.dart';
 import 'package:foodie_app/styles/styles.dart';
 
 class RoomsList extends ConsumerStatefulWidget {
@@ -17,29 +20,44 @@ class RoomsList extends ConsumerStatefulWidget {
 class _RoomsListState extends ConsumerState<RoomsList> {
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
     final AsyncValue<List<Room>> roomsState = ref.watch(roomsNotifierProvider);
 
     return PotLoadingAnimationWrapper(
       child: roomsState.map(
         data: (AsyncData<List<Room>> data) {
-          return ListView.separated(
-            itemBuilder: (BuildContext context, int index) {
-              return SizedBox(
-                height: 24,
-                child: RoomTile(
-                  room: data.value[index],
+          if (data.value.isEmpty) {
+            return Center(
+              child: Text(
+                'You currently do not belong to any room.',
+                style: theme.textTheme.labelSmall,
+              ),
+            );
+          }
+
+          return CustomScrollView(
+            slivers: <Widget>[
+              SliverPadding(
+                padding: Paddings.paddingVerticalLarge(),
+                sliver: SliverToBoxAdapter(
+                  child: TextDividerRow(
+                    text: 'Your Rooms',
+                    style: theme.inputDecorationTheme.labelStyle,
+                  ),
                 ),
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return Spacers.verticalExtraSmall();
-            },
-            itemCount: data.value.length,
+              ),
+              data.value.isEmpty
+                  ? const RoomsEmptyState()
+                  : RoomsListContent(
+                      rooms: data.value,
+                    ),
+            ],
           );
         },
-        error: (AsyncError<List<Room>> error) {
-          //TODO Add error state
-          return const SizedBox.shrink();
+        error: (AsyncError<List<Room>> asyncError) {
+          return ErrorContent(
+            error: asyncError.error,
+          );
         },
         loading: (_) {
           return const PotLoadingAnimation();

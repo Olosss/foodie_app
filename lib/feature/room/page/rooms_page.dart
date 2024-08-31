@@ -11,16 +11,9 @@ class RoomsPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: const RoomsHeader(),
-      body: Column(
-        children: <Widget>[
-          Spacers.verticalLarge(),
-          Expanded(
-            child: Padding(
-              padding: Paddings.paddingHorizontalMedium(),
-              child: const RoomsList(),
-            ),
-          ),
-        ],
+      body: Padding(
+        padding: Paddings.paddingHorizontalMedium(),
+        child: const RoomsList(),
       ),
     );
   }
