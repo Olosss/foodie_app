@@ -51,6 +51,12 @@ class TextStyles {
     color: AppColors.primaryColor,
   );
 
+  static const TextStyle titleMedium = TextStyle(
+    fontSize: 16.0,
+    fontWeight: FontWeight.w600,
+    color: AppColors.primaryColor,
+  );
+
   static const TextStyle titleSmall = TextStyle(
     fontSize: 14.0,
     fontWeight: FontWeight.bold,
@@ -69,9 +75,21 @@ class TextStyles {
     color: AppColors.primaryVariant,
   );
 
+  static const TextStyle labelMedium = TextStyle(
+    fontSize: 12.0,
+    fontWeight: FontWeight.bold,
+    color: AppColors.secondaryFixed,
+  );
+
   static const TextStyle labelSmall = TextStyle(
     fontSize: 12.0,
     fontWeight: FontWeight.normal,
     color: AppColors.secondaryFixed,
+  );
+
+  static const TextStyle displayMedium = TextStyle(
+    fontSize: 14.0,
+    fontWeight: FontWeight.bold,
+    color: AppColors.secondaryNext,
   );
 }

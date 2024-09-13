@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Paddings {
+  static const double nanoSmall = 4.0;
+  static const double microSmall = 6.0;
   static const double extraSmall = 8.0;
   static const double small = 12.0;
   static const double medium = 16.0;
@@ -22,6 +24,10 @@ class Paddings {
         vertical: vertical,
       );
 
+  static EdgeInsets paddingNanoSmall() => all(nanoSmall);
+
+  static EdgeInsets paddingMicroSmall() => all(microSmall);
+
   static EdgeInsets paddingExtraSmall() => all(extraSmall);
 
   static EdgeInsets paddingSmall() => all(small);
@@ -31,6 +37,12 @@ class Paddings {
   static EdgeInsets paddingLarge() => all(large);
 
   static EdgeInsets paddingExtraLarge() => all(extraLarge);
+
+  static EdgeInsets paddingVerticalMicroSmall() => vertical(microSmall);
+
+  static EdgeInsets paddingVerticalExtraSmall() => vertical(extraSmall);
+
+  static EdgeInsets paddingVerticalSmall() => vertical(small);
 
   static EdgeInsets paddingVerticalMedium() => vertical(medium);
 

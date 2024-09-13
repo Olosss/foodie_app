@@ -26,6 +26,8 @@ class RoomsNotifier extends _$RoomsNotifier {
       return <Room>[];
     }
 
+    ref.keepAlive();
+
     return _getUserRoomsUseCase(uid: userUID);
   }
 }

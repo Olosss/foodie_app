@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:foodie_app/core/room/domain/entity/room.dart';
 import 'package:foodie_app/feature/room/widget/room_member_initials.dart';
-import 'package:foodie_app/styles/app_border.dart';
-import 'package:foodie_app/styles/app_border_radius.dart';
+import 'package:foodie_app/router/routes.dart';
 import 'package:foodie_app/styles/styles.dart';
+import 'package:go_router/go_router.dart';
 
 class RoomTile extends StatelessWidget {
   const RoomTile({
     super.key,
     required this.room,
-    required this.onTap,
   });
 
   final Room room;
-  final VoidCallback onTap;
+
+  void _onTileTap(
+    BuildContext context,
+  ) {
+    context.push(RoomRoute(id: room.id).location);
+  }
 
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
 
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => _onTileTap(context),
       child: DecoratedBox(
         decoration: BoxDecoration(
           border: AppBorders.borderAll(theme.secondaryHeaderColor),

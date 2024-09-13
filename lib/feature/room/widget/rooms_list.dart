@@ -24,9 +24,9 @@ class _RoomsListState extends ConsumerState<RoomsList> {
     final AsyncValue<List<Room>> roomsState = ref.watch(roomsNotifierProvider);
 
     return PotLoadingAnimationWrapper(
-      child: roomsState.map(
-        data: (AsyncData<List<Room>> data) {
-          if (data.value.isEmpty) {
+      child: roomsState.when(
+        data: (List<Room> rooms) {
+          if (rooms.isEmpty) {
             return Center(
               child: Text(
                 'You currently do not belong to any room.',
@@ -46,20 +46,20 @@ class _RoomsListState extends ConsumerState<RoomsList> {
                   ),
                 ),
               ),
-              data.value.isEmpty
+              rooms.isEmpty
                   ? const RoomsEmptyState()
                   : RoomsListContent(
-                      rooms: data.value,
+                      rooms: rooms,
                     ),
             ],
           );
         },
-        error: (AsyncError<List<Room>> asyncError) {
+        error: (Object error, _) {
           return ErrorContent(
-            error: asyncError.error,
+            error: error,
           );
         },
-        loading: (_) {
+        loading: () {
           return const PotLoadingAnimation();
         },
       ),

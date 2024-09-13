@@ -11,10 +11,6 @@ class RoomsListContent extends StatelessWidget {
 
   final List<Room> rooms;
 
-  void _onTileTap(
-    BuildContext context,
-  ) {}
-
   @override
   Widget build(BuildContext context) {
     return SliverList.separated(
@@ -22,7 +18,6 @@ class RoomsListContent extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return RoomTile(
           room: rooms[index],
-          onTap: () => _onTileTap(context),
         );
       },
       separatorBuilder: (BuildContext context, int index) {

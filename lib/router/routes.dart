@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodie_app/feature/auth/page/sign_in_page.dart';
 import 'package:foodie_app/feature/auth/page/sign_up_page.dart';
 import 'package:foodie_app/feature/launch/page/launch_page.dart';
+import 'package:foodie_app/feature/room/page/room_page.dart';
 import 'package:foodie_app/feature/room/page/rooms_page.dart';
 import 'package:go_router/go_router.dart';
 
@@ -34,6 +35,21 @@ class RoomsRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const RoomsPage();
+  }
+}
+
+@TypedGoRoute<RoomRoute>(path: '/rooms/:id')
+class RoomRoute extends GoRouteData {
+  const RoomRoute({
+    required this.id,
+  });
+  final String id;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return RoomPage(
+      roomId: id,
+    );
   }
 }
 

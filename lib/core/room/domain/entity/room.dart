@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:foodie_app/core/room/domain/entity/room_member.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -31,5 +32,21 @@ class Room with _$Room {
       users: users,
       userIds: userIds,
     );
+  }
+}
+
+extension RoomListExtensions on List<Room> {
+  String? findUserName(String userUid, String roomId) {
+    final Room? room = firstWhereOrNull(
+      (Room room) => room.id == roomId,
+    );
+
+    if (room != null) {
+      final RoomMember? roomMember = room.users.firstWhereOrNull(
+        (RoomMember roomMember) => roomMember.uid == userUid,
+      );
+      return roomMember?.userName;
+    }
+    return null;
   }
 }

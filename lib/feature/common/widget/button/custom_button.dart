@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:foodie_app/styles/app_border_radius.dart';
 import 'package:foodie_app/styles/styles.dart';
 
 class CustomButton extends StatelessWidget {
