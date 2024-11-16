@@ -26,15 +26,6 @@ class _RoomsListState extends ConsumerState<RoomsList> {
     return PotLoadingAnimationWrapper(
       child: roomsState.when(
         data: (List<Room> rooms) {
-          if (rooms.isEmpty) {
-            return Center(
-              child: Text(
-                'You currently do not belong to any room.',
-                style: theme.textTheme.labelSmall,
-              ),
-            );
-          }
-
           return CustomScrollView(
             slivers: <Widget>[
               SliverPadding(

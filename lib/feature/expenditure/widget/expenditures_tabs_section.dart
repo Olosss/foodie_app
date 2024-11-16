@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:foodie_app/core/expenditure/domain/entity/expenditure.dart';
-import 'package:foodie_app/feature/common/widget/app_divider.dart';
 import 'package:foodie_app/feature/expenditure/widget/expenditure_summary.dart';
 import 'package:foodie_app/feature/expenditure/widget/expenditures_context_switch.dart';
 import 'package:foodie_app/feature/expenditure/widget/expenditures_timeline.dart';
@@ -22,13 +21,16 @@ class ExpendituresTabsSection extends StatefulWidget {
 }
 
 class _ExpendituresTabsSectionState extends State<ExpendituresTabsSection>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late TabController _tabController;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(
+      length: 2,
+      vsync: this,
+    );
   }
 
   @override
@@ -43,11 +45,6 @@ class _ExpendituresTabsSectionState extends State<ExpendituresTabsSection>
       children: <Widget>[
         ExpendituresContextSwitch(
           controller: _tabController,
-        ),
-        Spacers.verticalMedium(),
-        Padding(
-          padding: Paddings.paddingHorizontalMedium(),
-          child: const AppDivider(),
         ),
         Expanded(
           child: TabBarView(

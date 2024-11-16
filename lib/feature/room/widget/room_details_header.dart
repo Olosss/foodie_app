@@ -9,7 +9,8 @@ import 'package:foodie_app/feature/expenditure/widget/paid_by_me_star.dart';
 import 'package:foodie_app/feature/room/notifier/rooms_notifier.dart';
 import 'package:foodie_app/styles/styles.dart';
 
-class RoomDetailsHeader extends ConsumerWidget implements PreferredSizeWidget {
+class RoomDetailsHeader extends ConsumerStatefulWidget
+    implements PreferredSizeWidget {
   const RoomDetailsHeader({
     super.key,
     required this.roomId,
@@ -18,7 +19,26 @@ class RoomDetailsHeader extends ConsumerWidget implements PreferredSizeWidget {
   final String roomId;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Size get preferredSize => const Size.fromHeight(76);
+
+  @override
+  ConsumerState<RoomDetailsHeader> createState() => _RoomDetailsHeaderState();
+}
+
+class _RoomDetailsHeaderState extends ConsumerState<RoomDetailsHeader> {
+  void _onControllerPlay(AnimationController controller) {
+    void _controllerListener() async {
+      if (controller.isCompleted) {
+        await Future.delayed(10.seconds);
+        controller.forward(from: 0);
+      }
+    }
+
+    controller.addListener(_controllerListener);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
 
     final String userUid = ref.watch(
@@ -30,7 +50,7 @@ class RoomDetailsHeader extends ConsumerWidget implements PreferredSizeWidget {
     final String? userName = ref.watch(
       roomsNotifierProvider.select(
         (AsyncValue<List<Room>> data) =>
-            data.asData?.value.findUserName(userUid, roomId),
+            data.asData?.value.findUserName(userUid, widget.roomId),
       ),
     );
 
@@ -59,6 +79,7 @@ class RoomDetailsHeader extends ConsumerWidget implements PreferredSizeWidget {
                     )
                         .animate(
                       delay: 100.ms,
+                      onPlay: _onControllerPlay,
                     )
                         .shimmer(
                       duration: 1000.ms,
@@ -87,7 +108,4 @@ class RoomDetailsHeader extends ConsumerWidget implements PreferredSizeWidget {
       ),
     );
   }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(76);
 }
