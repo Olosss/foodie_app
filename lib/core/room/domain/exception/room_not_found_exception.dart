@@ -1,0 +1,1 @@
+class RoomNotFoundException implements Exception {}

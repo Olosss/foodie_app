@@ -37,15 +37,14 @@ class SignInNotifier extends _$SignInNotifier {
   }
 
   Future<void> signInWithGoogle() async {
-    state = const SignInState.loading();
+    state = const SignInState.loadingGoogle();
     try {
       await _signInGoogleUseCase();
       state = const SignInState.done();
     } on SignInInterruptedException catch (_) {
       state = const SignInState.init();
-    }
-    (dynamic error) {
+    } catch (error) {
       state = SignInState.error(error);
-    };
+    }
   }
 }

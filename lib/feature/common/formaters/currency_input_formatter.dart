@@ -4,7 +4,9 @@ import 'package:foodie_app/utils/utils.dart';
 class CurrencyInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
     String newText = newValue.text;
 
     newText = newText.replaceAll(RegexUtils.maxTwoDecimalPlacesRegex, '');

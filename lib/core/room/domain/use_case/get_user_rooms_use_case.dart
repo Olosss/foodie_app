@@ -11,6 +11,13 @@ class GetUserRoomsUseCase {
   Future<List<Room>> call({
     required String uid,
   }) async {
-    return roomRepository.getUserRooms(uid: uid);
+    try {
+      final xd = await roomRepository.getUserRooms(uid: uid);
+      print(xd);
+      return xd;
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
   }
 }

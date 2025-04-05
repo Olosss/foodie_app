@@ -20,6 +20,7 @@ mixin _$SignInState {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() loading,
+    required TResult Function() loadingGoogle,
     required TResult Function(Object error) error,
     required TResult Function() done,
   }) =>
@@ -28,6 +29,7 @@ mixin _$SignInState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? loading,
+    TResult? Function()? loadingGoogle,
     TResult? Function(Object error)? error,
     TResult? Function()? done,
   }) =>
@@ -36,6 +38,7 @@ mixin _$SignInState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loading,
+    TResult Function()? loadingGoogle,
     TResult Function(Object error)? error,
     TResult Function()? done,
     required TResult orElse(),
@@ -45,6 +48,7 @@ mixin _$SignInState {
   TResult map<TResult extends Object?>({
     required TResult Function(SignInStateInit value) init,
     required TResult Function(SignInStateLoading value) loading,
+    required TResult Function(SignInStateLoadingGoogle value) loadingGoogle,
     required TResult Function(SignInStateError value) error,
     required TResult Function(SignInStateDone value) done,
   }) =>
@@ -53,6 +57,7 @@ mixin _$SignInState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SignInStateInit value)? init,
     TResult? Function(SignInStateLoading value)? loading,
+    TResult? Function(SignInStateLoadingGoogle value)? loadingGoogle,
     TResult? Function(SignInStateError value)? error,
     TResult? Function(SignInStateDone value)? done,
   }) =>
@@ -61,6 +66,7 @@ mixin _$SignInState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SignInStateInit value)? init,
     TResult Function(SignInStateLoading value)? loading,
+    TResult Function(SignInStateLoadingGoogle value)? loadingGoogle,
     TResult Function(SignInStateError value)? error,
     TResult Function(SignInStateDone value)? done,
     required TResult orElse(),
@@ -126,6 +132,7 @@ class _$SignInStateInitImpl implements SignInStateInit {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() loading,
+    required TResult Function() loadingGoogle,
     required TResult Function(Object error) error,
     required TResult Function() done,
   }) {
@@ -137,6 +144,7 @@ class _$SignInStateInitImpl implements SignInStateInit {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? loading,
+    TResult? Function()? loadingGoogle,
     TResult? Function(Object error)? error,
     TResult? Function()? done,
   }) {
@@ -148,6 +156,7 @@ class _$SignInStateInitImpl implements SignInStateInit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loading,
+    TResult Function()? loadingGoogle,
     TResult Function(Object error)? error,
     TResult Function()? done,
     required TResult orElse(),
@@ -163,6 +172,7 @@ class _$SignInStateInitImpl implements SignInStateInit {
   TResult map<TResult extends Object?>({
     required TResult Function(SignInStateInit value) init,
     required TResult Function(SignInStateLoading value) loading,
+    required TResult Function(SignInStateLoadingGoogle value) loadingGoogle,
     required TResult Function(SignInStateError value) error,
     required TResult Function(SignInStateDone value) done,
   }) {
@@ -174,6 +184,7 @@ class _$SignInStateInitImpl implements SignInStateInit {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SignInStateInit value)? init,
     TResult? Function(SignInStateLoading value)? loading,
+    TResult? Function(SignInStateLoadingGoogle value)? loadingGoogle,
     TResult? Function(SignInStateError value)? error,
     TResult? Function(SignInStateDone value)? done,
   }) {
@@ -185,6 +196,7 @@ class _$SignInStateInitImpl implements SignInStateInit {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SignInStateInit value)? init,
     TResult Function(SignInStateLoading value)? loading,
+    TResult Function(SignInStateLoadingGoogle value)? loadingGoogle,
     TResult Function(SignInStateError value)? error,
     TResult Function(SignInStateDone value)? done,
     required TResult orElse(),
@@ -240,6 +252,7 @@ class _$SignInStateLoadingImpl implements SignInStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() loading,
+    required TResult Function() loadingGoogle,
     required TResult Function(Object error) error,
     required TResult Function() done,
   }) {
@@ -251,6 +264,7 @@ class _$SignInStateLoadingImpl implements SignInStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? loading,
+    TResult? Function()? loadingGoogle,
     TResult? Function(Object error)? error,
     TResult? Function()? done,
   }) {
@@ -262,6 +276,7 @@ class _$SignInStateLoadingImpl implements SignInStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loading,
+    TResult Function()? loadingGoogle,
     TResult Function(Object error)? error,
     TResult Function()? done,
     required TResult orElse(),
@@ -277,6 +292,7 @@ class _$SignInStateLoadingImpl implements SignInStateLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(SignInStateInit value) init,
     required TResult Function(SignInStateLoading value) loading,
+    required TResult Function(SignInStateLoadingGoogle value) loadingGoogle,
     required TResult Function(SignInStateError value) error,
     required TResult Function(SignInStateDone value) done,
   }) {
@@ -288,6 +304,7 @@ class _$SignInStateLoadingImpl implements SignInStateLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SignInStateInit value)? init,
     TResult? Function(SignInStateLoading value)? loading,
+    TResult? Function(SignInStateLoadingGoogle value)? loadingGoogle,
     TResult? Function(SignInStateError value)? error,
     TResult? Function(SignInStateDone value)? done,
   }) {
@@ -299,6 +316,7 @@ class _$SignInStateLoadingImpl implements SignInStateLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SignInStateInit value)? init,
     TResult Function(SignInStateLoading value)? loading,
+    TResult Function(SignInStateLoadingGoogle value)? loadingGoogle,
     TResult Function(SignInStateError value)? error,
     TResult Function(SignInStateDone value)? done,
     required TResult orElse(),
@@ -312,6 +330,129 @@ class _$SignInStateLoadingImpl implements SignInStateLoading {
 
 abstract class SignInStateLoading implements SignInState {
   const factory SignInStateLoading() = _$SignInStateLoadingImpl;
+}
+
+/// @nodoc
+abstract class _$$SignInStateLoadingGoogleImplCopyWith<$Res> {
+  factory _$$SignInStateLoadingGoogleImplCopyWith(
+          _$SignInStateLoadingGoogleImpl value,
+          $Res Function(_$SignInStateLoadingGoogleImpl) then) =
+      __$$SignInStateLoadingGoogleImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SignInStateLoadingGoogleImplCopyWithImpl<$Res>
+    extends _$SignInStateCopyWithImpl<$Res, _$SignInStateLoadingGoogleImpl>
+    implements _$$SignInStateLoadingGoogleImplCopyWith<$Res> {
+  __$$SignInStateLoadingGoogleImplCopyWithImpl(
+      _$SignInStateLoadingGoogleImpl _value,
+      $Res Function(_$SignInStateLoadingGoogleImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SignInStateLoadingGoogleImpl implements SignInStateLoadingGoogle {
+  const _$SignInStateLoadingGoogleImpl();
+
+  @override
+  String toString() {
+    return 'SignInState.loadingGoogle()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SignInStateLoadingGoogleImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() loading,
+    required TResult Function() loadingGoogle,
+    required TResult Function(Object error) error,
+    required TResult Function() done,
+  }) {
+    return loadingGoogle();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? loading,
+    TResult? Function()? loadingGoogle,
+    TResult? Function(Object error)? error,
+    TResult? Function()? done,
+  }) {
+    return loadingGoogle?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? loading,
+    TResult Function()? loadingGoogle,
+    TResult Function(Object error)? error,
+    TResult Function()? done,
+    required TResult orElse(),
+  }) {
+    if (loadingGoogle != null) {
+      return loadingGoogle();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SignInStateInit value) init,
+    required TResult Function(SignInStateLoading value) loading,
+    required TResult Function(SignInStateLoadingGoogle value) loadingGoogle,
+    required TResult Function(SignInStateError value) error,
+    required TResult Function(SignInStateDone value) done,
+  }) {
+    return loadingGoogle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SignInStateInit value)? init,
+    TResult? Function(SignInStateLoading value)? loading,
+    TResult? Function(SignInStateLoadingGoogle value)? loadingGoogle,
+    TResult? Function(SignInStateError value)? error,
+    TResult? Function(SignInStateDone value)? done,
+  }) {
+    return loadingGoogle?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SignInStateInit value)? init,
+    TResult Function(SignInStateLoading value)? loading,
+    TResult Function(SignInStateLoadingGoogle value)? loadingGoogle,
+    TResult Function(SignInStateError value)? error,
+    TResult Function(SignInStateDone value)? done,
+    required TResult orElse(),
+  }) {
+    if (loadingGoogle != null) {
+      return loadingGoogle(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SignInStateLoadingGoogle implements SignInState {
+  const factory SignInStateLoadingGoogle() = _$SignInStateLoadingGoogleImpl;
 }
 
 /// @nodoc
@@ -379,6 +520,7 @@ class _$SignInStateErrorImpl implements SignInStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() loading,
+    required TResult Function() loadingGoogle,
     required TResult Function(Object error) error,
     required TResult Function() done,
   }) {
@@ -390,6 +532,7 @@ class _$SignInStateErrorImpl implements SignInStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? loading,
+    TResult? Function()? loadingGoogle,
     TResult? Function(Object error)? error,
     TResult? Function()? done,
   }) {
@@ -401,6 +544,7 @@ class _$SignInStateErrorImpl implements SignInStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loading,
+    TResult Function()? loadingGoogle,
     TResult Function(Object error)? error,
     TResult Function()? done,
     required TResult orElse(),
@@ -416,6 +560,7 @@ class _$SignInStateErrorImpl implements SignInStateError {
   TResult map<TResult extends Object?>({
     required TResult Function(SignInStateInit value) init,
     required TResult Function(SignInStateLoading value) loading,
+    required TResult Function(SignInStateLoadingGoogle value) loadingGoogle,
     required TResult Function(SignInStateError value) error,
     required TResult Function(SignInStateDone value) done,
   }) {
@@ -427,6 +572,7 @@ class _$SignInStateErrorImpl implements SignInStateError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SignInStateInit value)? init,
     TResult? Function(SignInStateLoading value)? loading,
+    TResult? Function(SignInStateLoadingGoogle value)? loadingGoogle,
     TResult? Function(SignInStateError value)? error,
     TResult? Function(SignInStateDone value)? done,
   }) {
@@ -438,6 +584,7 @@ class _$SignInStateErrorImpl implements SignInStateError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SignInStateInit value)? init,
     TResult Function(SignInStateLoading value)? loading,
+    TResult Function(SignInStateLoadingGoogle value)? loadingGoogle,
     TResult Function(SignInStateError value)? error,
     TResult Function(SignInStateDone value)? done,
     required TResult orElse(),
@@ -498,6 +645,7 @@ class _$SignInStateDoneImpl implements SignInStateDone {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() loading,
+    required TResult Function() loadingGoogle,
     required TResult Function(Object error) error,
     required TResult Function() done,
   }) {
@@ -509,6 +657,7 @@ class _$SignInStateDoneImpl implements SignInStateDone {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? loading,
+    TResult? Function()? loadingGoogle,
     TResult? Function(Object error)? error,
     TResult? Function()? done,
   }) {
@@ -520,6 +669,7 @@ class _$SignInStateDoneImpl implements SignInStateDone {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loading,
+    TResult Function()? loadingGoogle,
     TResult Function(Object error)? error,
     TResult Function()? done,
     required TResult orElse(),
@@ -535,6 +685,7 @@ class _$SignInStateDoneImpl implements SignInStateDone {
   TResult map<TResult extends Object?>({
     required TResult Function(SignInStateInit value) init,
     required TResult Function(SignInStateLoading value) loading,
+    required TResult Function(SignInStateLoadingGoogle value) loadingGoogle,
     required TResult Function(SignInStateError value) error,
     required TResult Function(SignInStateDone value) done,
   }) {
@@ -546,6 +697,7 @@ class _$SignInStateDoneImpl implements SignInStateDone {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SignInStateInit value)? init,
     TResult? Function(SignInStateLoading value)? loading,
+    TResult? Function(SignInStateLoadingGoogle value)? loadingGoogle,
     TResult? Function(SignInStateError value)? error,
     TResult? Function(SignInStateDone value)? done,
   }) {
@@ -557,6 +709,7 @@ class _$SignInStateDoneImpl implements SignInStateDone {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SignInStateInit value)? init,
     TResult Function(SignInStateLoading value)? loading,
+    TResult Function(SignInStateLoadingGoogle value)? loadingGoogle,
     TResult Function(SignInStateError value)? error,
     TResult Function(SignInStateDone value)? done,
     required TResult orElse(),

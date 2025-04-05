@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foodie_app/feature/auth/notifier/user_notifier.dart';
 import 'package:foodie_app/feature/common/widget/animated_app_header.dart';
+import 'package:foodie_app/router/routes.dart';
 import 'package:foodie_app/styles/styles.dart';
+import 'package:go_router/go_router.dart';
 
 class RoomsHeader extends ConsumerWidget implements PreferredSizeWidget {
   const RoomsHeader({super.key});
+
+  void _onJoinRoomTap(BuildContext context) {
+    context.push(const RoomEntranceRoute().location);
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,15 +28,18 @@ class RoomsHeader extends ConsumerWidget implements PreferredSizeWidget {
             style: theme.textTheme.bodyMedium,
           ),
           const Spacer(),
-          const Icon(
-            Icons.add_business_outlined,
-            size: 28,
+          GestureDetector(
+            onTap: () => _onJoinRoomTap(context),
+            child: const Icon(
+              Icons.add_business_outlined,
+              size: 28,
+            ),
           ),
           Spacers.horizontalLarge(),
           GestureDetector(
-            onTap: () => _onProfilePageTap(ref),
+            onTap: () => _onLogoutTap(ref),
             child: const Icon(
-              Icons.manage_accounts_outlined,
+              Icons.logout,
               size: 28,
             ),
           ),
@@ -39,8 +48,7 @@ class RoomsHeader extends ConsumerWidget implements PreferredSizeWidget {
     );
   }
 
-  void _onProfilePageTap(WidgetRef ref) {
-    ///TODO Add redirection to profile page
+  void _onLogoutTap(WidgetRef ref) {
     ref.read(userNotifierProvider.notifier).signOut();
   }
 

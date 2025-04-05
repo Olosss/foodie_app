@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:foodie_app/styles/app_border_radius.dart';
 import 'package:foodie_app/styles/spacers.dart';
 
@@ -15,6 +16,7 @@ class CustomInput extends StatelessWidget {
     this.helperIcon,
     this.iconData,
     this.focusNode,
+    this.inputFormatters,
   });
 
   final String label;
@@ -27,6 +29,7 @@ class CustomInput extends StatelessWidget {
   final String? helperText;
   final IconData? helperIcon;
   final FocusNode? focusNode;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +50,7 @@ class CustomInput extends StatelessWidget {
           controller: controller,
           style: theme.inputDecorationTheme.labelStyle,
           validator: validator,
+          inputFormatters: inputFormatters,
           decoration: InputDecoration(
             helper: helperText != null && helperIcon != null
                 ? Row(

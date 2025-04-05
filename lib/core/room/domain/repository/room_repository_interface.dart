@@ -7,13 +7,13 @@ abstract class RoomRepositoryInterface {
     required String userName,
   });
 
-  Future<Room> joinRoom({
+  Future<void> joinRoom({
     required Room room,
     required String uid,
     required String userName,
   });
 
-  Future<Room> getRoomByJoinKey({
+  Future<Room?> getRoomByJoinKey({
     required String roomKey,
   });
 

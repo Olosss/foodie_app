@@ -54,5 +54,20 @@ final getUserRoomsUseCaseProvider =
 );
 
 typedef GetUserRoomsUseCaseRef = AutoDisposeProviderRef<GetUserRoomsUseCase>;
+String _$joinRoomUseCaseHash() => r'9c07a1f337ba6a053e989153b6ace2125b72872b';
+
+/// See also [joinRoomUseCase].
+@ProviderFor(joinRoomUseCase)
+final joinRoomUseCaseProvider = AutoDisposeProvider<JoinRoomUseCase>.internal(
+  joinRoomUseCase,
+  name: r'joinRoomUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$joinRoomUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef JoinRoomUseCaseRef = AutoDisposeProviderRef<JoinRoomUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -21,7 +21,7 @@ class RoomsListContent extends StatelessWidget {
         );
       },
       separatorBuilder: (BuildContext context, int index) {
-        return Spacers.verticalExtraSmall();
+        return Spacers.verticalMedium();
       },
     );
   }

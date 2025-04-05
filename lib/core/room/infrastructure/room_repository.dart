@@ -16,20 +16,24 @@ class RoomRepository implements RoomRepositoryInterface {
     required String userName,
   }) async {
     final CollectionReference<Object?> rooms = firestore.collection('rooms');
+
     await rooms.add(
       <String, Object>{
-        'roomName': roomName,
+        'name': roomName,
         'joinKey': const Uuid().v6(),
-        'users': <String, String>{
-          'uid': uid,
-          'userName': userName,
-        },
+        'userIds': <String>[uid],
+        'users': <Map<String, String>>[
+          <String, String>{
+            'uid': uid,
+            'userName': userName,
+          }
+        ],
       },
     );
   }
 
   @override
-  Future<Room> joinRoom({
+  Future<void> joinRoom({
     required Room room,
     required String uid,
     required String userName,
@@ -37,31 +41,49 @@ class RoomRepository implements RoomRepositoryInterface {
     CollectionReference<Map<String, dynamic>> rooms =
         firestore.collection('rooms');
 
-    room.users.add(
+    final List<RoomMember> users = room.users.toList();
+
+    users.add(
       RoomMember(
         uid: uid,
         userName: userName,
       ),
     );
 
-    room.userIds.add(uid);
+    final List<String> usersIds = room.userIds.toList();
 
-    await rooms.doc(room.id).set(
-          room.toJson(),
+    usersIds.add(uid);
+
+    final Room dto = Room(
+      id: room.id,
+      name: room.name,
+      joinKey: room.joinKey,
+      users: users,
+      userIds: usersIds,
+    );
+
+    ///TODO Add toJson method
+
+    await rooms.doc(dto.id).set(
+          dto.toJson(),
         );
-
-    return room;
   }
 
   @override
-  Future<Room> getRoomByJoinKey({
+  Future<Room?> getRoomByJoinKey({
     required String roomKey,
   }) async {
     final CollectionReference<Map<String, dynamic>> rooms =
         firestore.collection('rooms');
+
     final Query<Map<String, dynamic>> query =
         rooms.where('joinKey', isEqualTo: roomKey);
     final QuerySnapshot<Map<String, dynamic>> snapshot = await query.get();
+
+    if (snapshot.docs.isEmpty) {
+      return null;
+    }
+
     return Room.fromSnapshot(snapshot.docs.first);
   }
 

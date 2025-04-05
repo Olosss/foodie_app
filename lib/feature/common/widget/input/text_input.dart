@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:foodie_app/feature/common/widget/input/custom_input.dart';
 
 class TextInput extends StatelessWidget {
@@ -10,6 +11,7 @@ class TextInput extends StatelessWidget {
     this.iconData,
     this.validator,
     this.focusNode,
+    this.inputFormatters,
   });
   final String label;
   final IconData? iconData;
@@ -17,6 +19,7 @@ class TextInput extends StatelessWidget {
   final TextEditingController? controller;
   final String? Function(String? value)? validator;
   final FocusNode? focusNode;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {

@@ -7,7 +7,7 @@ part of '../add_expenditure_notifier.dart';
 // **************************************************************************
 
 String _$addExpenditureNotifierHash() =>
-    r'60c7ea9662a8c8cb87d14452379d9fa792a86a23';
+    r'0a93a55a2bd11f5c2db41702488654ebdd676db8';
 
 /// Copied from Dart SDK
 class _SystemHash {

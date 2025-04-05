@@ -4,6 +4,7 @@ import 'package:foodie_app/feature/auth/page/sign_up_page.dart';
 import 'package:foodie_app/feature/common/custom_transitions/slide_up_transition_page.dart';
 import 'package:foodie_app/feature/expenditure/page/add_expenditure_page.dart';
 import 'package:foodie_app/feature/launch/page/launch_page.dart';
+import 'package:foodie_app/feature/room/page/room_entrance_page.dart';
 import 'package:foodie_app/feature/room/page/room_page.dart';
 import 'package:foodie_app/feature/room/page/rooms_page.dart';
 import 'package:go_router/go_router.dart';
@@ -27,6 +28,16 @@ class SignUpRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const SignUpPage();
+  }
+}
+
+@TypedGoRoute<RoomEntranceRoute>(path: '/rooms-entrance')
+class RoomEntranceRoute extends GoRouteData {
+  const RoomEntranceRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const RoomEntrancePage();
   }
 }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' hide TextInput;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foodie_app/core/expenditure/domain/entity/cost.dart';
 import 'package:foodie_app/core/room/domain/entity/room_member.dart';
@@ -323,6 +324,9 @@ class _AddExpendituresSectionState
                 child: TextInput(
                   label: 'Amount',
                   hintText: '00,00',
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegexUtils.maxTwoDecimalPlacesRegex),
+                  ],
                   controller: _totalAmountController,
                   validator: _validateTotalAmount,
                   focusNode: _totalAmountFocus,

@@ -37,7 +37,13 @@ class _SignInPageState extends ConsumerState<SignInPage> {
       SignInState? previous,
       SignInState next,
     ) {
-      if (previous is SignInStateLoading && next is SignInStateDone) {
+      print("DUPA");
+      print("XDDDDDD");
+      print(next);
+
+      if ((previous is SignInStateLoading ||
+              previous is SignInStateLoadingGoogle) &&
+          next is SignInStateDone) {
         context.go(const RoomsRoute().location);
       } else if (previous is SignInStateLoading && next is SignInStateError) {
         _wrapAndShowErrorMessage(next.error);
@@ -111,87 +117,82 @@ class _SignInPageState extends ConsumerState<SignInPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: Paddings.paddingMedium(),
-        child: Column(
+        padding: Paddings.paddingHorizontalMedium(),
+        child: Stack(
           children: <Widget>[
-            Expanded(
-              child: Stack(
-                children: <Widget>[
-                  const Positioned(
-                    top: -80,
-                    left: 0,
-                    right: 0,
-                    height: 350,
-                    child: FadeEntryAnimation(),
-                  ),
-                  Column(
+            const Positioned(
+              top: -80,
+              left: 0,
+              right: 0,
+              height: 350,
+              child: FadeEntryAnimation(),
+            ),
+            Column(
+              children: <Widget>[
+                Spacers.verticalDoubleExtraLarge(),
+                Image.asset(
+                  Assets.logo,
+                ),
+                Spacers.verticalDoubleExtraLarge(),
+                const TextDividerRow(
+                  text: 'Sign In',
+                ),
+                Spacers.verticalUltraSmall(),
+                Text(
+                  'Welcome to Foodie!',
+                  style: theme.textTheme.headlineSmall,
+                ),
+                Spacers.verticalExtraLarge(),
+                Form(
+                  key: _formKey,
+                  child: Column(
                     children: <Widget>[
-                      Spacers.verticalDoubleExtraLarge(),
-                      Image.asset(
-                        Assets.logo,
-                      ),
-                      Spacers.verticalDoubleExtraLarge(),
-                      const TextDividerRow(
-                        text: 'Sign In',
-                      ),
-                      Spacers.verticalUltraSmall(),
-                      Text(
-                        'Welcome to Foodie!',
-                        style: theme.textTheme.headlineSmall,
-                      ),
-                      Spacers.verticalExtraLarge(),
-                      Form(
-                        key: _formKey,
-                        child: Column(
-                          children: <Widget>[
-                            EmailInput(
-                              controller: _emailController,
-                            ),
-                            Spacers.verticalLarge(),
-                            PasswordInput(
-                              controller: _passwordController,
-                            ),
-                          ],
-                        ),
+                      EmailInput(
+                        controller: _emailController,
                       ),
                       Spacers.verticalLarge(),
-                      _errorMessage != null
-                          ? Text(
-                              _errorMessage!,
-                              style: theme.inputDecorationTheme.errorStyle,
-                            )
-                          : const SizedBox.shrink(),
-                      Spacers.verticalLarge(),
-                      GradientButton(
-                        label: 'Sign In',
-                        onTap: () => _onSignInTap(ref),
-                        isLoading: state is SignInStateLoading,
+                      PasswordInput(
+                        controller: _passwordController,
                       ),
-                      Spacers.verticalExtraLarge(),
-                      TextDividerRow(
-                        text: 'or',
-                        style: theme.inputDecorationTheme.labelStyle,
-                      ),
-                      Spacers.verticalExtraLarge(),
-                      OutlinedCustomButton(
-                        label: 'Sign In with Google',
-                        onTap: () => _onSignInWithGoogleTap(ref),
-                        image: Image.asset(Assets.google),
-                      ),
-                      Spacers.verticalSmall(),
-                      Expanded(
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: DoNotHaveAnAccount(
-                            onTap: () => _onSignUpTap(context),
-                          ),
-                        ),
-                      ),
-                      Spacers.verticalLarge(),
                     ],
                   ),
-                ],
-              ),
+                ),
+                Spacers.verticalLarge(),
+                _errorMessage != null
+                    ? Text(
+                        _errorMessage!,
+                        style: theme.inputDecorationTheme.errorStyle,
+                      )
+                    : const SizedBox.shrink(),
+                Spacers.verticalLarge(),
+                GradientButton(
+                  label: 'Sign In',
+                  onTap: () => _onSignInTap(ref),
+                  isLoading: state is SignInStateLoading,
+                ),
+                Spacers.verticalExtraLarge(),
+                TextDividerRow(
+                  text: 'or',
+                  style: theme.inputDecorationTheme.labelStyle,
+                ),
+                Spacers.verticalExtraLarge(),
+                OutlinedCustomButton(
+                  label: 'Sign In with Google',
+                  onTap: () => _onSignInWithGoogleTap(ref),
+                  image: Image.asset(Assets.google),
+                  isLoading: state is SignInStateLoadingGoogle,
+                ),
+                Spacers.verticalSmall(),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: DoNotHaveAnAccount(
+                      onTap: () => _onSignUpTap(context),
+                    ),
+                  ),
+                ),
+                Spacers.verticalExtraLarge(),
+              ],
             ),
           ],
         ),

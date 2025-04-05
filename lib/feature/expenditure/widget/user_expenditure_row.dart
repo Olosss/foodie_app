@@ -8,7 +8,7 @@ class UserExpenditureRow extends StatelessWidget {
     required this.userName,
     this.controller,
     this.focusNode,
-    this.validator
+    this.validator,
   });
 
   final String userName;
