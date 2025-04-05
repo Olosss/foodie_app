@@ -19,7 +19,7 @@ class RoomName extends ConsumerWidget {
     final String? roomName = ref.watch(
       roomsNotifierProvider.select(
         (AsyncValue<List<Room>> item) => item.asData?.value
-            .firstWhereOrNull((Room elemnt) => elemnt.id == roomId)
+            .firstWhereOrNull((Room element) => element.id == roomId)
             ?.name,
       ),
     );

@@ -11,6 +11,7 @@ List<RouteBase> get $appRoutes => [
       $signUpRoute,
       $roomEntranceRoute,
       $roomsRoute,
+      $roomSettingsRoute,
       $roomRoute,
       $launchRoute,
       $addExpenditureRoute,
@@ -93,6 +94,30 @@ extension $RoomsRouteExtension on RoomsRoute {
 
   String get location => GoRouteData.$location(
         '/rooms',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $roomSettingsRoute => GoRouteData.$route(
+      path: '/rooms/:id/settings',
+      factory: $RoomSettingsRouteExtension._fromState,
+    );
+
+extension $RoomSettingsRouteExtension on RoomSettingsRoute {
+  static RoomSettingsRoute _fromState(GoRouterState state) => RoomSettingsRoute(
+        id: state.pathParameters['id']!,
+      );
+
+  String get location => GoRouteData.$location(
+        '/rooms/${Uri.encodeComponent(id)}/settings',
       );
 
   void go(BuildContext context) => context.go(location);

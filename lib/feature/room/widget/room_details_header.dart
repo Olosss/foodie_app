@@ -7,7 +7,10 @@ import 'package:foodie_app/feature/auth/notifier/user_notifier.dart';
 import 'package:foodie_app/feature/common/widget/animated_app_header.dart';
 import 'package:foodie_app/feature/expenditure/widget/paid_by_me_star.dart';
 import 'package:foodie_app/feature/room/notifier/rooms_notifier.dart';
+import 'package:foodie_app/router/routes.dart';
 import 'package:foodie_app/styles/styles.dart';
+import 'package:foodie_app/utils/utils.dart';
+import 'package:go_router/go_router.dart';
 
 class RoomDetailsHeader extends ConsumerStatefulWidget
     implements PreferredSizeWidget {
@@ -30,13 +33,21 @@ class _RoomDetailsHeaderState extends ConsumerState<RoomDetailsHeader> {
     void controllerListener() async {
       if (controller.isCompleted) {
         await Future<void>.delayed(10.seconds);
-        if(mounted){
+        if (mounted) {
           controller.forward(from: 0);
         }
       }
     }
 
     controller.addListener(controllerListener);
+  }
+
+  void _onRoomSettingsTap({
+    required BuildContext context,
+  }) {
+    context.push(
+      RoomSettingsRoute(id: widget.roomId).location,
+    );
   }
 
   @override
@@ -71,7 +82,7 @@ class _RoomDetailsHeaderState extends ConsumerState<RoomDetailsHeader> {
                       style: theme.textTheme.titleMedium,
                     ),
                     Text(
-                      userName,
+                      userName.capitalizeFirstLetter(),
                       style: theme.textTheme.bodyLarge,
                     ),
                     Spacers.horizontalExtraSmall(),
@@ -102,9 +113,14 @@ class _RoomDetailsHeaderState extends ConsumerState<RoomDetailsHeader> {
                 )
               : const SizedBox.shrink(),
           const Spacer(),
-          const Icon(
-            Icons.room_preferences,
-            size: 28,
+          GestureDetector(
+            onTap: () => _onRoomSettingsTap(
+              context: context,
+            ),
+            child: const Icon(
+              Icons.room_preferences,
+              size: 28,
+            ),
           ),
         ],
       ),

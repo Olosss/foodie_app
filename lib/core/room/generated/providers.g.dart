@@ -69,5 +69,20 @@ final joinRoomUseCaseProvider = AutoDisposeProvider<JoinRoomUseCase>.internal(
 );
 
 typedef JoinRoomUseCaseRef = AutoDisposeProviderRef<JoinRoomUseCase>;
+String _$closeRoomUseCaseHash() => r'5476646655283ef67ce781ebf88d95970be6f793';
+
+/// See also [closeRoomUseCase].
+@ProviderFor(closeRoomUseCase)
+final closeRoomUseCaseProvider = AutoDisposeProvider<CloseRoomUseCase>.internal(
+  closeRoomUseCase,
+  name: r'closeRoomUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$closeRoomUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef CloseRoomUseCaseRef = AutoDisposeProviderRef<CloseRoomUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -8,7 +8,7 @@ class OutlinedCustomButton extends StatelessWidget {
     super.key,
     required this.label,
     required this.onTap,
-    required this.image,
+    this.image,
     this.isLoading = false,
   });
 

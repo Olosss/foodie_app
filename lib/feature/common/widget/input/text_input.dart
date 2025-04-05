@@ -24,6 +24,7 @@ class TextInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomInput(
+      inputFormatters: inputFormatters,
       controller: controller,
       label: label,
       iconData: iconData,

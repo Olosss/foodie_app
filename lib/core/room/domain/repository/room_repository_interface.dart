@@ -20,4 +20,8 @@ abstract class RoomRepositoryInterface {
   Future<List<Room>> getUserRooms({
     required String uid,
   });
+
+  Future<void> deleteRoom({
+    required String roomId,
+  });
 }

@@ -398,7 +398,7 @@ class _AddExpendituresSectionState
           Spacers.verticalMedium(),
           GradientButton(
             isLoading: addExpenditureState is AddExpenditureStateLoading,
-            label: 'Add Expenditure',
+            label: 'Add Expense',
             onTap: () => _onAddTap(ref),
             image: const Icon(
               Icons.add_box_outlined,

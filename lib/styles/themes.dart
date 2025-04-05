@@ -45,6 +45,9 @@ class Themes {
       errorStyle: TextStyles.errorStyle,
       helperStyle: TextStyles.helperStyle,
     ),
+    dialogTheme: const DialogTheme(
+      backgroundColor: AppColors.secondaryContainer,
+    ),
     extensions: <ThemeExtension<AppGradients>>[
       AppGradients(
         primaryGradient: LinearGradient(

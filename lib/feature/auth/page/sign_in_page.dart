@@ -37,10 +37,6 @@ class _SignInPageState extends ConsumerState<SignInPage> {
       SignInState? previous,
       SignInState next,
     ) {
-      print("DUPA");
-      print("XDDDDDD");
-      print(next);
-
       if ((previous is SignInStateLoading ||
               previous is SignInStateLoadingGoogle) &&
           next is SignInStateDone) {

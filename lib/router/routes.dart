@@ -6,6 +6,7 @@ import 'package:foodie_app/feature/expenditure/page/add_expenditure_page.dart';
 import 'package:foodie_app/feature/launch/page/launch_page.dart';
 import 'package:foodie_app/feature/room/page/room_entrance_page.dart';
 import 'package:foodie_app/feature/room/page/room_page.dart';
+import 'package:foodie_app/feature/room/page/room_settings_page.dart';
 import 'package:foodie_app/feature/room/page/rooms_page.dart';
 import 'package:go_router/go_router.dart';
 
@@ -48,6 +49,22 @@ class RoomsRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const RoomsPage();
+  }
+}
+
+@TypedGoRoute<RoomSettingsRoute>(path: '/rooms/:id/settings')
+class RoomSettingsRoute extends GoRouteData {
+  const RoomSettingsRoute({
+    required this.id,
+  });
+
+  final String id;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return RoomSettingsPage(
+      roomId: id,
+    );
   }
 }
 

@@ -33,6 +33,15 @@ class RoomRepository implements RoomRepositoryInterface {
   }
 
   @override
+  Future<void> deleteRoom({
+    required String roomId,
+  }) async {
+    final CollectionReference<Object?> rooms = firestore.collection('rooms');
+
+    await rooms.doc(roomId).delete();
+  }
+
+  @override
   Future<void> joinRoom({
     required Room room,
     required String uid,

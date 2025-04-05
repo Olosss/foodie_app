@@ -45,7 +45,7 @@ class _RoomPageState extends State<RoomPage>
       floatingActionButton: Padding(
         padding: Paddings.paddingMedium(),
         child: GradientButton(
-          label: 'Add Expenditure',
+          label: 'Add Expense',
           onTap: () => onAddExpenditureTap(
             context,
           ),

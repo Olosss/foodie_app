@@ -7,7 +7,7 @@ class AddExpenditureHeader extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return const AppHeader(
-      title: 'Add New Expenditure',
+      title: 'Add New Expense',
     );
   }
 }
