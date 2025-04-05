@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foodie_app/core/room/domain/entity/room.dart';
 import 'package:foodie_app/feature/auth/notifier/state/user_state.dart';
 import 'package:foodie_app/feature/auth/notifier/user_notifier.dart';
-import 'package:foodie_app/feature/common/widget/app_header.dart';
+import 'package:foodie_app/feature/common/widget/animated_app_header.dart';
 import 'package:foodie_app/feature/expenditure/widget/paid_by_me_star.dart';
 import 'package:foodie_app/feature/room/notifier/rooms_notifier.dart';
 import 'package:foodie_app/styles/styles.dart';
@@ -27,14 +27,16 @@ class RoomDetailsHeader extends ConsumerStatefulWidget
 
 class _RoomDetailsHeaderState extends ConsumerState<RoomDetailsHeader> {
   void _onControllerPlay(AnimationController controller) {
-    void _controllerListener() async {
+    void controllerListener() async {
       if (controller.isCompleted) {
-        await Future.delayed(10.seconds);
-        controller.forward(from: 0);
+        await Future<void>.delayed(10.seconds);
+        if(mounted){
+          controller.forward(from: 0);
+        }
       }
     }
 
-    controller.addListener(_controllerListener);
+    controller.addListener(controllerListener);
   }
 
   @override
@@ -54,7 +56,7 @@ class _RoomDetailsHeaderState extends ConsumerState<RoomDetailsHeader> {
       ),
     );
 
-    return AppHeader(
+    return AnimatedAppHeader(
       child: Row(
         children: <Widget>[
           userName != null

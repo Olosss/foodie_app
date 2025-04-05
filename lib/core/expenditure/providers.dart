@@ -1,5 +1,6 @@
 import 'package:foodie_app/core/expenditure/domain/repository/expenditure_repository_interface.dart';
 import 'package:foodie_app/core/expenditure/domain/use_case/add_expenditure_use_case.dart';
+import 'package:foodie_app/core/expenditure/domain/use_case/calculate_debt_map_use_case.dart';
 import 'package:foodie_app/core/expenditure/infrastructure/expenditure_repository.dart';
 import 'package:foodie_app/core/user/providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -31,4 +32,11 @@ GetRoomExpendituresUseCase getRoomExpendituresUseCase(
   return GetRoomExpendituresUseCase(
     expenditureRepository: ref.watch(expenditureRepositoryProvider),
   );
+}
+
+@riverpod
+CalculateDebtUseCase calculateDebtUseCase(
+    CalculateDebtUseCaseRef ref,
+    ) {
+  return CalculateDebtUseCase();
 }

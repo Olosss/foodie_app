@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:foodie_app/feature/common/animations/below_page_button_location.dart';
+import 'package:foodie_app/feature/common/animations/floating_button_animator.dart';
 import 'package:foodie_app/feature/common/widget/button/gradient_button.dart';
 import 'package:foodie_app/feature/expenditure/widget/expenditures_section.dart';
 import 'package:foodie_app/feature/room/widget/room_details_header.dart';
 import 'package:foodie_app/feature/room/widget/room_name.dart';
+import 'package:foodie_app/router/routes.dart';
 import 'package:foodie_app/styles/styles.dart';
+import 'package:go_router/go_router.dart';
 
 class RoomPage extends StatefulWidget {
   const RoomPage({
@@ -27,10 +30,8 @@ class _RoomPageState extends State<RoomPage>
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(Duration(milliseconds: 400)).then((_) {
-        setState(() {
-          _widgetInitialized = true;
-        });
+      setState(() {
+        _widgetInitialized = true;
       });
     });
   }
@@ -44,14 +45,19 @@ class _RoomPageState extends State<RoomPage>
       floatingActionButton: Padding(
         padding: Paddings.paddingMedium(),
         child: GradientButton(
-          label: 'Add new expenditure',
-          onTap: () {},
+          label: 'Add Expenditure',
+          onTap: () => onAddExpenditureTap(
+            context,
+          ),
+          image: const Icon(
+            Icons.add_box_outlined,
+          ),
         ),
       ),
-      floatingActionButtonAnimator: _AppFloatingButtonAnimator(),
+      floatingActionButtonAnimator: FloatingButtonAnimator(),
       floatingActionButtonLocation: _widgetInitialized
           ? FloatingActionButtonLocation.centerFloat
-          : BelowThePageButtonLocation(),
+          : BelowPageButtonLocation(),
       body: Column(
         children: <Widget>[
           Spacers.verticalLarge(),
@@ -68,43 +74,10 @@ class _RoomPageState extends State<RoomPage>
       ),
     );
   }
-}
 
-class _AppFloatingButtonAnimator extends FloatingActionButtonAnimator {
-  @override
-  Offset getOffset({
-    required Offset begin,
-    required Offset end,
-    required double progress,
-  }) {
-    double factor = 1;
-    if ((progress * 2) < 1) {
-      factor = (progress * 2);
-    }
-
-    return end.copyWith(
-      dx: end.dx,
-      dy: begin.dy + (end.dy - begin.dy) * factor,
-    );
-  }
-
-  @override
-  Animation<double> getRotationAnimation({required Animation<double> parent}) {
-    return Tween<double>(begin: 0.0, end: 0).animate(parent);
-  }
-
-  @override
-  Animation<double> getScaleAnimation({required Animation<double> parent}) {
-    return Tween<double>(begin: 1.0, end: 2.0).animate(parent);
-  }
-}
-
-class BelowThePageButtonLocation extends FloatingActionButtonLocation {
-  @override
-  Offset getOffset(ScaffoldPrelayoutGeometry scaffoldGeometry) {
-    return Offset(
-      0,
-      scaffoldGeometry.scaffoldSize.height,
+  void onAddExpenditureTap(BuildContext context) {
+    context.push(
+      AddExpenditureRoute(id: widget.roomId).location,
     );
   }
 }

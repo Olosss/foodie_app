@@ -10,6 +10,7 @@ class ExpendituresTimeline extends StatefulWidget {
     required this.expenditures,
     required this.roomId,
   });
+
   final List<Expenditure> expenditures;
   final String roomId;
 
@@ -29,7 +30,7 @@ class _ExpendituresTimelineState extends State<ExpendituresTimeline> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      children: <Widget>[
         Spacers.verticalMedium(),
         ListSeparator(
           scrollController: _scrollController,
@@ -53,8 +54,10 @@ class _ExpendituresTimelineState extends State<ExpendituresTimeline> {
                 ),
               ),
               SliverToBoxAdapter(
-                child: Spacers.verticalTripleExtraLarge(),
-              )
+                child: SafeArea(
+                  child: Spacers.verticalTripleExtraLarge(),
+                ),
+              ),
             ],
           ),
         ),

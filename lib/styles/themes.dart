@@ -10,6 +10,7 @@ class Themes {
       secondary: AppColors.secondaryColor,
       secondaryFixed: AppColors.secondaryNext,
       secondaryFixedDim: AppColors.secondaryFixedDim,
+      secondaryContainer: AppColors.secondaryContainer,
       onSecondary: AppColors.secondaryVariant,
       error: AppColors.errorColor,
       onError: AppColors.errorColor,

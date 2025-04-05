@@ -18,7 +18,7 @@ class ExpendituresContextSwitch extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           gradient: theme.extension<AppGradients>()?.backgroundGradient,
-          borderRadius: AppBorderRadius.borderRadiusUltraSmall,
+          borderRadius: AppBorderRadius.borderRadiusSmall,
         ),
         child: Padding(
           padding: Paddings.paddingNanoSmall(),

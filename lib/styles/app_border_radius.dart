@@ -21,7 +21,20 @@ class AppBorderRadius {
       16.0,
     ),
   );
+
+  static const BorderRadius borderRadiusTopMedium = BorderRadius.all(
+    Radius.circular(
+      16.0,
+    ),
+  );
+
   static const BorderRadius borderRadiusLarge = BorderRadius.all(
+    Radius.circular(
+      24.0,
+    ),
+  );
+
+  static const BorderRadius borderRadiusTopLarge = BorderRadius.all(
     Radius.circular(
       24.0,
     ),

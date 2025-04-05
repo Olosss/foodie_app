@@ -40,7 +40,7 @@ class CustomButton extends StatelessWidget {
                 image != null
                     ? Padding(
                         padding: const EdgeInsets.only(
-                          right: Paddings.medium,
+                          right: Paddings.extraSmall,
                         ),
                         child: image!,
                       )

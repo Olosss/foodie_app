@@ -12,6 +12,7 @@ List<RouteBase> get $appRoutes => [
       $roomsRoute,
       $roomRoute,
       $launchRoute,
+      $addExpenditureRoute,
     ];
 
 RouteBase get $signInRoute => GoRouteData.$route(
@@ -114,6 +115,34 @@ extension $LaunchRouteExtension on LaunchRoute {
 
   String get location => GoRouteData.$location(
         '/launch',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $addExpenditureRoute => GoRouteData.$route(
+      path: '/add-expenditure',
+      factory: $AddExpenditureRouteExtension._fromState,
+    );
+
+extension $AddExpenditureRouteExtension on AddExpenditureRoute {
+  static AddExpenditureRoute _fromState(GoRouterState state) =>
+      AddExpenditureRoute(
+        id: state.uri.queryParameters['id']!,
+      );
+
+  String get location => GoRouteData.$location(
+        '/add-expenditure',
+        queryParams: {
+          'id': id,
+        },
       );
 
   void go(BuildContext context) => context.go(location);

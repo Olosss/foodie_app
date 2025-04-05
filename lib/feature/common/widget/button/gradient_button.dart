@@ -8,17 +8,20 @@ class GradientButton extends StatelessWidget {
     required this.label,
     required this.onTap,
     this.isLoading = false,
+    this.image,
   });
 
   final String label;
   final VoidCallback onTap;
   final bool isLoading;
+  final Widget? image;
 
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
 
     return CustomButton(
+      image: image,
       label: label,
       gradient: theme.extension<AppGradients>()?.buttonGradient,
       onTap: onTap,

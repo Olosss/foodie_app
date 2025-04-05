@@ -10,9 +10,12 @@ class ExpendituresTabsSection extends StatefulWidget {
     super.key,
     required this.expenditures,
     required this.roomId,
+    required this.debtMap,
   });
 
   final List<Expenditure> expenditures;
+  final Map<String, double> debtMap;
+
   final String roomId;
 
   @override
@@ -61,7 +64,7 @@ class _ExpendituresTabsSectionState extends State<ExpendituresTabsSection>
                 padding: Paddings.paddingHorizontalMedium(),
                 child: ExpenditureSummary(
                   roomId: widget.roomId,
-                  expenditures: widget.expenditures,
+                  debtMap: widget.debtMap,
                 ),
               ),
             ],

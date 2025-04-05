@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foodie_app/feature/auth/notifier/user_notifier.dart';
-import 'package:foodie_app/feature/common/widget/app_header.dart';
+import 'package:foodie_app/feature/common/widget/animated_app_header.dart';
 import 'package:foodie_app/styles/styles.dart';
 
 class RoomsHeader extends ConsumerWidget implements PreferredSizeWidget {
@@ -11,7 +11,7 @@ class RoomsHeader extends ConsumerWidget implements PreferredSizeWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final ThemeData theme = Theme.of(context);
 
-    return AppHeader(
+    return AnimatedAppHeader(
       animate: true,
       pop: false,
       child: Row(

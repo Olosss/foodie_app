@@ -6,7 +6,6 @@ class CustomInput extends StatelessWidget {
   const CustomInput({
     super.key,
     required this.label,
-    required this.iconData,
     required this.hintText,
     this.validator,
     this.controller,
@@ -14,9 +13,12 @@ class CustomInput extends StatelessWidget {
     this.obscureText = false,
     this.helperText,
     this.helperIcon,
+    this.iconData,
+    this.focusNode,
   });
+
   final String label;
-  final IconData iconData;
+  final IconData? iconData;
   final String hintText;
   final String? Function(String? value)? validator;
   final TextEditingController? controller;
@@ -24,6 +26,7 @@ class CustomInput extends StatelessWidget {
   final bool obscureText;
   final String? helperText;
   final IconData? helperIcon;
+  final FocusNode? focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +40,7 @@ class CustomInput extends StatelessWidget {
         ),
         Spacers.verticalSmall(),
         TextFormField(
+          focusNode: focusNode,
           obscureText: obscureText,
           obscuringCharacter: '●',
           keyboardType: keyboardType,
@@ -59,9 +63,17 @@ class CustomInput extends StatelessWidget {
                     ],
                   )
                 : null,
-            prefixIcon: Icon(iconData),
+            prefixIcon: iconData == null ? null : Icon(iconData),
             hintText: hintText,
             filled: true,
+            errorBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: theme.colorScheme.error),
+              borderRadius: AppBorderRadius.borderRadiusSmall,
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: theme.colorScheme.error),
+              borderRadius: AppBorderRadius.borderRadiusSmall,
+            ),
             border: const OutlineInputBorder(
               borderSide: BorderSide.none,
               borderRadius: AppBorderRadius.borderRadiusSmall,

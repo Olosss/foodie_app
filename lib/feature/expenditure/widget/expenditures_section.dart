@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:foodie_app/core/expenditure/domain/entity/expenditure.dart';
 import 'package:foodie_app/feature/common/widget/error_content.dart';
 import 'package:foodie_app/feature/common/widget/loading/pot_loading_animation.dart';
 import 'package:foodie_app/feature/expenditure/notifier/room_expenditures_notifier.dart';
+import 'package:foodie_app/feature/expenditure/notifier/state/expenditures_state.dart';
 import 'package:foodie_app/feature/expenditure/widget/expenditures_tabs_section.dart';
 
 class ExpendituresSection extends ConsumerStatefulWidget {
@@ -19,29 +19,29 @@ class ExpendituresSection extends ConsumerStatefulWidget {
       _ExpendituresSectionState();
 }
 
-class _ExpendituresSectionState extends ConsumerState<ExpendituresSection>
-    with SingleTickerProviderStateMixin {
+class _ExpendituresSectionState extends ConsumerState<ExpendituresSection> {
   @override
   Widget build(BuildContext context) {
-    final AsyncValue<List<Expenditure>> expenditures = ref.watch(
+    ExpendituresState notifier = ref.watch(
       roomExpendituresNotifierProvider(
         roomId: widget.roomId,
       ),
     );
 
-    return expenditures.when(
-      data: (List<Expenditure> data) {
+    return notifier.map(
+      done: (ExpendituresStateDone data) {
         return ExpendituresTabsSection(
-          expenditures: data,
+          expenditures: data.expenditures,
           roomId: widget.roomId,
+          debtMap: data.debtMap,
         );
       },
-      error: (Object error, _) {
+      error: (ExpendituresStateError state) {
         return ErrorContent(
-          error: error,
+          error: state.error,
         );
       },
-      loading: () {
+      loading: (_) {
         return const PotLoadingAnimation();
       },
     );

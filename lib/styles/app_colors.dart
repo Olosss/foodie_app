@@ -10,6 +10,7 @@ class AppColors {
   static const Color secondaryLighter = Color(0xFF999999);
   static const Color secondaryFixed = Color(0xFFBBBBBB);
   static const Color secondaryFixedDim = Color(0xFF555555);
+  static const Color secondaryContainer = Color(0xFF1C1C1C);
 
   static const Color backgroundColor = Color(0xFF111111);
 

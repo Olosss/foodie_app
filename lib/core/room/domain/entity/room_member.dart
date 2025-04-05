@@ -8,7 +8,10 @@ class RoomMember with _$RoomMember {
   const factory RoomMember({
     required String uid,
     required String userName,
+    @Default(false) bool isCurrentUser,
   }) = _RoomMember;
+
+  const RoomMember._();
 
   factory RoomMember.fromJson(Map<String, dynamic> json) =>
       _$RoomMemberFromJson(json);

@@ -11,7 +11,7 @@ class TextStyles {
 
   static const TextStyle headlineMedium = TextStyle(
     fontSize: 14.0,
-    fontWeight: FontWeight.normal,
+    fontWeight: FontWeight.w600,
     color: AppColors.primaryColor,
   );
 

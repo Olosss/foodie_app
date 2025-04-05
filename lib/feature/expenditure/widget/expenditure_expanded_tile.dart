@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foodie_app/core/expenditure/domain/entity/cost.dart';
 import 'package:foodie_app/core/expenditure/domain/entity/expenditure.dart';
-import 'package:foodie_app/core/expenditure/domain/entity/extension/cost_extension.dart';
 import 'package:foodie_app/feature/expenditure/widget/date_row.dart';
 import 'package:foodie_app/feature/expenditure/widget/expenditure_user_row.dart';
 import 'package:foodie_app/feature/expenditure/widget/paid_by_row.dart';
@@ -43,7 +42,7 @@ class ExpenditureExpandedTile extends ConsumerWidget {
                 ),
                 const Spacer(),
                 Text(
-                  expenditure.cost.getTotalCost().toStringAsFixed(2),
+                  Cost.getTotalCost(expenditure.cost).toStringAsFixed(2),
                   style: theme.textTheme.titleMedium,
                 ),
               ],

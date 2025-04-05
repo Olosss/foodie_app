@@ -49,6 +49,7 @@ class RoomRepository implements RoomRepositoryInterface {
     await rooms.doc(room.id).set(
           room.toJson(),
         );
+
     return room;
   }
 

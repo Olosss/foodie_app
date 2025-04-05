@@ -6,7 +6,7 @@ part of '../rooms_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$roomsNotifierHash() => r'a986f235a676658adbca6ebd7f759c7a817709ab';
+String _$roomsNotifierHash() => r'f33773b988999f3a31dc4d185a194a78c0e33c4e';
 
 /// See also [RoomsNotifier].
 @ProviderFor(RoomsNotifier)

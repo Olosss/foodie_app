@@ -22,6 +22,7 @@ RoomMember _$RoomMemberFromJson(Map<String, dynamic> json) {
 mixin _$RoomMember {
   String get uid => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
+  bool get isCurrentUser => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $RoomMemberCopyWith<$Res> {
           RoomMember value, $Res Function(RoomMember) then) =
       _$RoomMemberCopyWithImpl<$Res, RoomMember>;
   @useResult
-  $Res call({String uid, String userName});
+  $Res call({String uid, String userName, bool isCurrentUser});
 }
 
 /// @nodoc
@@ -53,6 +54,7 @@ class _$RoomMemberCopyWithImpl<$Res, $Val extends RoomMember>
   $Res call({
     Object? uid = null,
     Object? userName = null,
+    Object? isCurrentUser = null,
   }) {
     return _then(_value.copyWith(
       uid: null == uid
@@ -63,6 +65,10 @@ class _$RoomMemberCopyWithImpl<$Res, $Val extends RoomMember>
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
+      isCurrentUser: null == isCurrentUser
+          ? _value.isCurrentUser
+          : isCurrentUser // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -75,7 +81,7 @@ abstract class _$$RoomMemberImplCopyWith<$Res>
       __$$RoomMemberImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String uid, String userName});
+  $Res call({String uid, String userName, bool isCurrentUser});
 }
 
 /// @nodoc
@@ -91,6 +97,7 @@ class __$$RoomMemberImplCopyWithImpl<$Res>
   $Res call({
     Object? uid = null,
     Object? userName = null,
+    Object? isCurrentUser = null,
   }) {
     return _then(_$RoomMemberImpl(
       uid: null == uid
@@ -101,14 +108,20 @@ class __$$RoomMemberImplCopyWithImpl<$Res>
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
+      isCurrentUser: null == isCurrentUser
+          ? _value.isCurrentUser
+          : isCurrentUser // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$RoomMemberImpl implements _RoomMember {
-  const _$RoomMemberImpl({required this.uid, required this.userName});
+class _$RoomMemberImpl extends _RoomMember {
+  const _$RoomMemberImpl(
+      {required this.uid, required this.userName, this.isCurrentUser = false})
+      : super._();
 
   factory _$RoomMemberImpl.fromJson(Map<String, dynamic> json) =>
       _$$RoomMemberImplFromJson(json);
@@ -117,10 +130,13 @@ class _$RoomMemberImpl implements _RoomMember {
   final String uid;
   @override
   final String userName;
+  @override
+  @JsonKey()
+  final bool isCurrentUser;
 
   @override
   String toString() {
-    return 'RoomMember(uid: $uid, userName: $userName)';
+    return 'RoomMember(uid: $uid, userName: $userName, isCurrentUser: $isCurrentUser)';
   }
 
   @override
@@ -130,12 +146,14 @@ class _$RoomMemberImpl implements _RoomMember {
             other is _$RoomMemberImpl &&
             (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.userName, userName) ||
-                other.userName == userName));
+                other.userName == userName) &&
+            (identical(other.isCurrentUser, isCurrentUser) ||
+                other.isCurrentUser == isCurrentUser));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, uid, userName);
+  int get hashCode => Object.hash(runtimeType, uid, userName, isCurrentUser);
 
   @JsonKey(ignore: true)
   @override
@@ -151,10 +169,12 @@ class _$RoomMemberImpl implements _RoomMember {
   }
 }
 
-abstract class _RoomMember implements RoomMember {
+abstract class _RoomMember extends RoomMember {
   const factory _RoomMember(
       {required final String uid,
-      required final String userName}) = _$RoomMemberImpl;
+      required final String userName,
+      final bool isCurrentUser}) = _$RoomMemberImpl;
+  const _RoomMember._() : super._();
 
   factory _RoomMember.fromJson(Map<String, dynamic> json) =
       _$RoomMemberImpl.fromJson;
@@ -163,6 +183,8 @@ abstract class _RoomMember implements RoomMember {
   String get uid;
   @override
   String get userName;
+  @override
+  bool get isCurrentUser;
   @override
   @JsonKey(ignore: true)
   _$$RoomMemberImplCopyWith<_$RoomMemberImpl> get copyWith =>

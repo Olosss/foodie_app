@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:foodie_app/feature/auth/page/sign_in_page.dart';
 import 'package:foodie_app/feature/auth/page/sign_up_page.dart';
+import 'package:foodie_app/feature/common/custom_transitions/slide_up_transition_page.dart';
+import 'package:foodie_app/feature/expenditure/page/add_expenditure_page.dart';
 import 'package:foodie_app/feature/launch/page/launch_page.dart';
 import 'package:foodie_app/feature/room/page/room_page.dart';
 import 'package:foodie_app/feature/room/page/rooms_page.dart';
@@ -43,6 +45,7 @@ class RoomRoute extends GoRouteData {
   const RoomRoute({
     required this.id,
   });
+
   final String id;
 
   @override
@@ -60,5 +63,23 @@ class LaunchRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const LaunchPage();
+  }
+}
+
+@TypedGoRoute<AddExpenditureRoute>(path: '/add-expenditure')
+class AddExpenditureRoute extends GoRouteData {
+  const AddExpenditureRoute({
+    required this.id,
+  });
+
+  final String id;
+
+  @override
+  SlideUpTransitionPage buildPage(BuildContext context, GoRouterState state) {
+    return SlideUpTransitionPage(
+      child: AddExpenditurePage(
+        roomId: id,
+      ),
+    );
   }
 }

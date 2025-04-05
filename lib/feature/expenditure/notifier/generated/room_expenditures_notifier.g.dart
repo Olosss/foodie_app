@@ -7,7 +7,7 @@ part of '../room_expenditures_notifier.dart';
 // **************************************************************************
 
 String _$roomExpendituresNotifierHash() =>
-    r'489964ba7afdbf48f3fba73f65a484a84942cd42';
+    r'40ac0bb8fd4ad730a331cd5c18cd0fd0548bb88b';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,10 +31,10 @@ class _SystemHash {
 }
 
 abstract class _$RoomExpendituresNotifier
-    extends BuildlessAutoDisposeAsyncNotifier<List<Expenditure>> {
+    extends BuildlessAutoDisposeNotifier<ExpendituresState> {
   late final String roomId;
 
-  FutureOr<List<Expenditure>> build({
+  ExpendituresState build({
     required String roomId,
   });
 }
@@ -44,8 +44,7 @@ abstract class _$RoomExpendituresNotifier
 const roomExpendituresNotifierProvider = RoomExpendituresNotifierFamily();
 
 /// See also [RoomExpendituresNotifier].
-class RoomExpendituresNotifierFamily
-    extends Family<AsyncValue<List<Expenditure>>> {
+class RoomExpendituresNotifierFamily extends Family<ExpendituresState> {
   /// See also [RoomExpendituresNotifier].
   const RoomExpendituresNotifierFamily();
 
@@ -83,9 +82,8 @@ class RoomExpendituresNotifierFamily
 }
 
 /// See also [RoomExpendituresNotifier].
-class RoomExpendituresNotifierProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<RoomExpendituresNotifier,
-        List<Expenditure>> {
+class RoomExpendituresNotifierProvider extends AutoDisposeNotifierProviderImpl<
+    RoomExpendituresNotifier, ExpendituresState> {
   /// See also [RoomExpendituresNotifier].
   RoomExpendituresNotifierProvider({
     required String roomId,
@@ -116,7 +114,7 @@ class RoomExpendituresNotifierProvider
   final String roomId;
 
   @override
-  FutureOr<List<Expenditure>> runNotifierBuild(
+  ExpendituresState runNotifierBuild(
     covariant RoomExpendituresNotifier notifier,
   ) {
     return notifier.build(
@@ -141,8 +139,8 @@ class RoomExpendituresNotifierProvider
   }
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<RoomExpendituresNotifier,
-      List<Expenditure>> createElement() {
+  AutoDisposeNotifierProviderElement<RoomExpendituresNotifier,
+      ExpendituresState> createElement() {
     return _RoomExpendituresNotifierProviderElement(this);
   }
 
@@ -161,14 +159,14 @@ class RoomExpendituresNotifierProvider
 }
 
 mixin RoomExpendituresNotifierRef
-    on AutoDisposeAsyncNotifierProviderRef<List<Expenditure>> {
+    on AutoDisposeNotifierProviderRef<ExpendituresState> {
   /// The parameter `roomId` of this provider.
   String get roomId;
 }
 
 class _RoomExpendituresNotifierProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<RoomExpendituresNotifier,
-        List<Expenditure>> with RoomExpendituresNotifierRef {
+    extends AutoDisposeNotifierProviderElement<RoomExpendituresNotifier,
+        ExpendituresState> with RoomExpendituresNotifierRef {
   _RoomExpendituresNotifierProviderElement(super.provider);
 
   @override
