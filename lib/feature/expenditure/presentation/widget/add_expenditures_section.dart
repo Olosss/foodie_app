@@ -326,7 +326,8 @@ class _AddExpendituresSectionState
                   hintText: '00,00',
                   inputFormatters: <TextInputFormatter>[
                     FilteringTextInputFormatter.allow(
-                        RegexUtils.maxTwoDecimalPlacesRegex),
+                      RegexUtils.maxTwoDecimalPlacesRegex,
+                    ),
                   ],
                   controller: _totalAmountController,
                   validator: _validateTotalAmount,
