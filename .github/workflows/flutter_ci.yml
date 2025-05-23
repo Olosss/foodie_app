@@ -14,10 +14,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Create .env file for CI
+        run: |
+          echo "API_KEY=ci_dummy_api_key" > .env
+          echo "ANOTHER_CONFIG=some_value" >> .env
+
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.1'  
+          flutter-version: '3.22.1'
 
       - name: Install dependencies
         run: flutter pub get
