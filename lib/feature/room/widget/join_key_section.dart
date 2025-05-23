@@ -79,7 +79,7 @@ class JoinKeySection extends ConsumerWidget {
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }

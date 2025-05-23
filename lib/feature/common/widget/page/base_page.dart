@@ -15,14 +15,14 @@ class BasePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppHeader(
+        title: appBarText,
+      ),
       body: SafeArea(
         bottom: false,
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              AppHeader(
-                title: appBarText,
-              ),
               Padding(
                 padding: Paddings.paddingMedium(),
                 child: child,

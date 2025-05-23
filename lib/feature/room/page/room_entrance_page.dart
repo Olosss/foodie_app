@@ -11,13 +11,13 @@ class RoomEntrancePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      appBar: const AppHeader(
+        title: 'Room Access',
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              const AppHeader(
-                title: 'Join Room',
-              ),
               Spacers.verticalSmall(),
               Padding(
                 padding: Paddings.paddingMedium(),
