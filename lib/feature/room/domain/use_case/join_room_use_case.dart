@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:foodie_app/feature/room/domain/entity/room.dart';
 import 'package:foodie_app/feature/room/domain/entity/room_member.dart';
 import 'package:foodie_app/feature/room/domain/exception/room_not_found_exception.dart';
@@ -29,8 +30,7 @@ class JoinRoomUseCase {
       throw UserHasAlreadyJoinedTheRoomException();
     }
 
-    ///TODO Add this from env variable
-    if (room.users.length >= 5) {
+    if (int.parse(dotenv.env['MAX_USERS_PER_ROOM']!) >= 5) {
       throw UsersInRoomCountLimitExceededException();
     }
 

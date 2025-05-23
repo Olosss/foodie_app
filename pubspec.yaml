@@ -47,6 +47,7 @@ dependencies:
   collection: 1.18.0
   intl: 0.18.0
   flutter_animate: 4.5.0
+  flutter_dotenv: 5.2.1
 
 dev_dependencies:
   flutter_test:
@@ -91,6 +92,7 @@ flutter:
   assets:
     - assets/images/
     - assets/rive/
+    - .env
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
