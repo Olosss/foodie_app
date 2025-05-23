@@ -1,4 +1,3 @@
-
 import 'package:foodie_app/feature/expenditure/domain/entity/expenditure.dart';
 import 'package:foodie_app/feature/expenditure/domain/repository/expenditure_repository_interface.dart';
 

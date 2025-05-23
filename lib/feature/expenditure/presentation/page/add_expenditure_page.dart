@@ -44,9 +44,9 @@ class AddExpenditurePage extends ConsumerWidget {
                   child: roomState == null
                       ? const Text('Sorry we could not get users in your room')
                       : AddExpendituresSection(
-                        users: roomState.users,
-                        roomId: roomId,
-                      ),
+                          users: roomState.users,
+                          roomId: roomId,
+                        ),
                 ),
               ),
             ),

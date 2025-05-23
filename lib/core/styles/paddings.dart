@@ -65,12 +65,12 @@ class Paddings {
       );
 
   static EdgeInsets paddingVerticalMediumHorizontalExtraSmall() => symmetric(
-    extraSmall,
-    medium,
-  );
+        extraSmall,
+        medium,
+      );
 
   static EdgeInsets paddingVerticalNanoHorizontalSmall() => symmetric(
-    small,
-    nanoSmall,
-  );
+        small,
+        nanoSmall,
+      );
 }

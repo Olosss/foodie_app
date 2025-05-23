@@ -15,7 +15,7 @@ class AnimatedAppHeader extends StatelessWidget implements PreferredSizeWidget {
   final bool animate;
   final bool pop;
 
-  void _onBackTap(BuildContext context){
+  void _onBackTap(BuildContext context) {
     context.pop();
   }
 

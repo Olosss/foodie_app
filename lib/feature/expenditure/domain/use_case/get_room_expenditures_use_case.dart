@@ -11,10 +11,12 @@ class GetRoomExpendituresUseCase {
   Future<List<Expenditure>> call({
     required String roomId,
   }) async {
-    final List<Expenditure> expenditure = await expenditureRepository.getRoomExpenditures(
+    final List<Expenditure> expenditure =
+        await expenditureRepository.getRoomExpenditures(
       roomId: roomId,
     );
-    expenditure.sort((Expenditure a, Expenditure b) => b.time.compareTo(a.time));
+    expenditure
+        .sort((Expenditure a, Expenditure b) => b.time.compareTo(a.time));
     return expenditure;
   }
 }

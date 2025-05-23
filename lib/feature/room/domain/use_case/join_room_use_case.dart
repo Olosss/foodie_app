@@ -20,7 +20,7 @@ class JoinRoomUseCase {
   }) async {
     final Room? room = await roomRepository.getRoomByJoinKey(roomKey: roomKey);
 
-    if(room == null){
+    if (room == null) {
       throw RoomNotFoundException();
     }
 

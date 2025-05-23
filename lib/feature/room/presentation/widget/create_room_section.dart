@@ -52,7 +52,7 @@ class _CreateRoomSectionState extends ConsumerState<CreateRoomSection> {
     super.initState();
 
     ref.listenManual(createRoomNotifierProvider, (_, CreateRoomState next) {
-      if(next is CreateRoomStateDone){
+      if (next is CreateRoomStateDone) {
         context.pop();
       }
     });

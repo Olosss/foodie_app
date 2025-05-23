@@ -46,7 +46,6 @@ class RoomExpendituresNotifier extends _$RoomExpendituresNotifier {
         expenditures: expenditures,
         debtMap: debtMap,
       );
-
     } catch (error) {
       state = ExpendituresState.error(
         error: error,

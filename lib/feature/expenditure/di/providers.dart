@@ -35,7 +35,7 @@ GetRoomExpendituresUseCase getRoomExpendituresUseCase(
 
 @riverpod
 CalculateDebtUseCase calculateDebtUseCase(
-    CalculateDebtUseCaseRef ref,
-    ) {
+  CalculateDebtUseCaseRef ref,
+) {
   return CalculateDebtUseCase();
 }

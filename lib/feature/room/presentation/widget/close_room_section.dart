@@ -43,16 +43,14 @@ class CloseRoomSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final ThemeData theme = Theme.of(context);
 
-    ref.listen(
-        closeRoomNotifierProvider,
-        (
-          CloseRoomState? prev,
-          CloseRoomState next,
-        ) {
-          if(prev is CloseRoomStateLoading && next is CloseRoomStateDone){
-            context.go(const RoomsRoute().location);
-          }
-        });
+    ref.listen(closeRoomNotifierProvider, (
+      CloseRoomState? prev,
+      CloseRoomState next,
+    ) {
+      if (prev is CloseRoomStateLoading && next is CloseRoomStateDone) {
+        context.go(const RoomsRoute().location);
+      }
+    });
 
     final CloseRoomState closeRoomState = ref.watch(closeRoomNotifierProvider);
 

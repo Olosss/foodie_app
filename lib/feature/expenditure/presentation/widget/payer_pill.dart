@@ -22,7 +22,9 @@ class PayerPill extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: isSelected ? null : theme.colorScheme.secondaryFixedDim,
-          gradient: isSelected ? theme.extension<AppGradients>()?.buttonGradient : null,
+          gradient: isSelected
+              ? theme.extension<AppGradients>()?.buttonGradient
+              : null,
           borderRadius: AppBorderRadius.borderRadiusSmall,
         ),
         child: Padding(

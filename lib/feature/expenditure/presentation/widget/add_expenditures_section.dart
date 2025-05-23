@@ -73,10 +73,11 @@ class _AddExpendituresSectionState
           ),
     };
 
-    ref.listenManual(addExpenditureNotifierProvider(
-      roomId: widget.roomId,
-    ), (_, AddExpenditureState next){
-      if(next is AddExpenditureStateDone){
+    ref.listenManual(
+        addExpenditureNotifierProvider(
+          roomId: widget.roomId,
+        ), (_, AddExpenditureState next) {
+      if (next is AddExpenditureStateDone) {
         context.pop();
       }
     });
@@ -324,7 +325,8 @@ class _AddExpendituresSectionState
                   label: 'Amount',
                   hintText: '00,00',
                   inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(RegexUtils.maxTwoDecimalPlacesRegex),
+                    FilteringTextInputFormatter.allow(
+                        RegexUtils.maxTwoDecimalPlacesRegex),
                   ],
                   controller: _totalAmountController,
                   validator: _validateTotalAmount,

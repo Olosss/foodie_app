@@ -21,7 +21,6 @@ class UserNotifier extends _$UserNotifier {
     _signOutUseCase = ref.watch(signOutUseCaseProvider);
 
     userStream = _getAuthStateStreamUseCase().listen((User? user) {
-
       if (user == null) {
         state = const UserState.notLoggedIn();
         return;

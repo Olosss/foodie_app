@@ -14,7 +14,7 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
   final bool pop;
   final bool safeArea;
 
-  void _onIconTap(BuildContext context){
+  void _onIconTap(BuildContext context) {
     context.pop();
   }
 

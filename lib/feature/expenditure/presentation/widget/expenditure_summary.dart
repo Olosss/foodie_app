@@ -15,8 +15,8 @@ class ExpenditureSummary extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
-    double totalDebt = debtMap.values.fold(0.0, (double sum, double value) => sum + value);
+    double totalDebt =
+        debtMap.values.fold(0.0, (double sum, double value) => sum + value);
 
     return Column(
       children: <Widget>[

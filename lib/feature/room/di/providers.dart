@@ -38,8 +38,8 @@ GetUserRoomsUseCase getUserRoomsUseCase(
 
 @riverpod
 JoinRoomUseCase joinRoomUseCase(
-    JoinRoomUseCaseRef ref,
-    ) {
+  JoinRoomUseCaseRef ref,
+) {
   return JoinRoomUseCase(
     roomRepository: ref.watch(roomRepositoryProvider),
   );
@@ -47,8 +47,8 @@ JoinRoomUseCase joinRoomUseCase(
 
 @riverpod
 CloseRoomUseCase closeRoomUseCase(
-    CloseRoomUseCaseRef ref,
-    ) {
+  CloseRoomUseCaseRef ref,
+) {
   return CloseRoomUseCase(
     roomRepository: ref.watch(roomRepositoryProvider),
   );

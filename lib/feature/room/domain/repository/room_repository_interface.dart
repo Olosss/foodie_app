@@ -1,4 +1,3 @@
-
 import 'package:foodie_app/feature/room/domain/entity/room.dart';
 
 abstract class RoomRepositoryInterface {
