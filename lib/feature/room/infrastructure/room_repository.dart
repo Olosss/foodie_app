@@ -111,8 +111,10 @@ class RoomRepository implements RoomRepositoryInterface {
     final QuerySnapshot<Map<String, dynamic>> data =
         await rooms.where('userIds', arrayContains: uid).get();
 
-    return data.docs.map(
-      roomMapper.fromSnapshot,
-    ).toList();
+    return data.docs
+        .map(
+          roomMapper.fromSnapshot,
+        )
+        .toList();
   }
 }
