@@ -7,7 +7,7 @@ part of '../providers.dart';
 // **************************************************************************
 
 String _$expenditureRepositoryHash() =>
-    r'b7926afc7c1f8a969a1eb0ea891372587337aada';
+    r'ab47d619f75f1a0181b63fb9fe99d28749a18290';
 
 /// See also [expenditureRepository].
 @ProviderFor(expenditureRepository)
@@ -76,5 +76,34 @@ final calculateDebtUseCaseProvider =
 );
 
 typedef CalculateDebtUseCaseRef = AutoDisposeProviderRef<CalculateDebtUseCase>;
+String _$costMapperHash() => r'1b818f0e74d118ef73a47bd00fdaaeb7758fb54b';
+
+/// See also [costMapper].
+@ProviderFor(costMapper)
+final costMapperProvider = Provider<CostMapper>.internal(
+  costMapper,
+  name: r'costMapperProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$costMapperHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef CostMapperRef = ProviderRef<CostMapper>;
+String _$expenditureMapperHash() => r'43973bba16c1fa00b77e043c92a628ce8dcf99ec';
+
+/// See also [expenditureMapper].
+@ProviderFor(expenditureMapper)
+final expenditureMapperProvider = Provider<ExpenditureMapper>.internal(
+  expenditureMapper,
+  name: r'expenditureMapperProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$expenditureMapperHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef ExpenditureMapperRef = ProviderRef<ExpenditureMapper>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

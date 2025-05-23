@@ -14,10 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Room _$RoomFromJson(Map<String, dynamic> json) {
-  return _Room.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Room {
   String get id => throw _privateConstructorUsedError;
@@ -26,7 +22,6 @@ mixin _$Room {
   List<RoomMember> get users => throw _privateConstructorUsedError;
   List<String> get userIds => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $RoomCopyWith<Room> get copyWith => throw _privateConstructorUsedError;
 }
@@ -145,7 +140,7 @@ class __$$RoomImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$RoomImpl implements _Room {
   const _$RoomImpl(
       {required this.id,
@@ -155,9 +150,6 @@ class _$RoomImpl implements _Room {
       required final List<String> userIds})
       : _users = users,
         _userIds = userIds;
-
-  factory _$RoomImpl.fromJson(Map<String, dynamic> json) =>
-      _$$RoomImplFromJson(json);
 
   @override
   final String id;
@@ -198,7 +190,6 @@ class _$RoomImpl implements _Room {
             const DeepCollectionEquality().equals(other._userIds, _userIds));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -213,13 +204,6 @@ class _$RoomImpl implements _Room {
   @pragma('vm:prefer-inline')
   _$$RoomImplCopyWith<_$RoomImpl> get copyWith =>
       __$$RoomImplCopyWithImpl<_$RoomImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$RoomImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _Room implements Room {
@@ -229,8 +213,6 @@ abstract class _Room implements Room {
       required final String joinKey,
       required final List<RoomMember> users,
       required final List<String> userIds}) = _$RoomImpl;
-
-  factory _Room.fromJson(Map<String, dynamic> json) = _$RoomImpl.fromJson;
 
   @override
   String get id;

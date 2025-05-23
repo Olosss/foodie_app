@@ -6,7 +6,7 @@ part of '../providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$roomRepositoryHash() => r'711226c47b8c92aa0f60d04ce97eca1a1a22d67a';
+String _$roomRepositoryHash() => r'87a23bd2d5f8b7046ed9e3e4a1a784cd9060f5e3';
 
 /// See also [roomRepository].
 @ProviderFor(roomRepository)
@@ -84,5 +84,34 @@ final closeRoomUseCaseProvider = AutoDisposeProvider<CloseRoomUseCase>.internal(
 );
 
 typedef CloseRoomUseCaseRef = AutoDisposeProviderRef<CloseRoomUseCase>;
+String _$roomMemberMapperHash() => r'3fbaf3ef32ef96e0695099fab708b066d48dcb3f';
+
+/// See also [roomMemberMapper].
+@ProviderFor(roomMemberMapper)
+final roomMemberMapperProvider = Provider<RoomMemberMapper>.internal(
+  roomMemberMapper,
+  name: r'roomMemberMapperProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$roomMemberMapperHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef RoomMemberMapperRef = ProviderRef<RoomMemberMapper>;
+String _$roomMapperHash() => r'dd73b1c79dc67e62a258174fb4df3ba3813b53e2';
+
+/// See also [roomMapper].
+@ProviderFor(roomMapper)
+final roomMapperProvider = Provider<RoomMapper>.internal(
+  roomMapper,
+  name: r'roomMapperProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$roomMapperHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef RoomMapperRef = ProviderRef<RoomMapper>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

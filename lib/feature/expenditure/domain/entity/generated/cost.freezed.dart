@@ -14,16 +14,11 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Cost _$CostFromJson(Map<String, dynamic> json) {
-  return _Cost.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Cost {
   String get userUid => throw _privateConstructorUsedError;
   double get value => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CostCopyWith<Cost> get copyWith => throw _privateConstructorUsedError;
 }
@@ -102,12 +97,9 @@ class __$$CostImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$CostImpl implements _Cost {
   const _$CostImpl({required this.userUid, required this.value});
-
-  factory _$CostImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CostImplFromJson(json);
 
   @override
   final String userUid;
@@ -128,7 +120,6 @@ class _$CostImpl implements _Cost {
             (identical(other.value, value) || other.value == value));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, userUid, value);
 
@@ -137,21 +128,12 @@ class _$CostImpl implements _Cost {
   @pragma('vm:prefer-inline')
   _$$CostImplCopyWith<_$CostImpl> get copyWith =>
       __$$CostImplCopyWithImpl<_$CostImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$CostImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _Cost implements Cost {
   const factory _Cost(
       {required final String userUid,
       required final double value}) = _$CostImpl;
-
-  factory _Cost.fromJson(Map<String, dynamic> json) = _$CostImpl.fromJson;
 
   @override
   String get userUid;

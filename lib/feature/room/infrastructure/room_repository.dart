@@ -2,12 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:foodie_app/feature/room/domain/entity/room.dart';
 import 'package:foodie_app/feature/room/domain/entity/room_member.dart';
 import 'package:foodie_app/feature/room/domain/repository/room_repository_interface.dart';
+import 'package:foodie_app/feature/room/infrastructure/mapper/room_mapper.dart';
 import 'package:uuid/uuid.dart';
 
 class RoomRepository implements RoomRepositoryInterface {
-  RoomRepository({required this.firestore});
+  RoomRepository({
+    required this.firestore,
+    required this.roomMapper,
+  });
 
   final FirebaseFirestore firestore;
+  final RoomMapper roomMapper;
 
   @override
   Future<void> createRoom({
@@ -74,7 +79,7 @@ class RoomRepository implements RoomRepositoryInterface {
     ///TODO Add toJson method
 
     await rooms.doc(dto.id).set(
-          dto.toJson(),
+          roomMapper.toJson(room),
         );
   }
 
@@ -93,7 +98,7 @@ class RoomRepository implements RoomRepositoryInterface {
       return null;
     }
 
-    return Room.fromSnapshot(snapshot.docs.first);
+    return roomMapper.fromSnapshot(snapshot.docs.first);
   }
 
   @override
@@ -107,13 +112,7 @@ class RoomRepository implements RoomRepositoryInterface {
         await rooms.where('userIds', arrayContains: uid).get();
 
     return data.docs.map(
-      (
-        QueryDocumentSnapshot<Map<String, dynamic>> snapshot,
-      ) {
-        return Room.fromSnapshot(
-          snapshot,
-        );
-      },
+      roomMapper.fromSnapshot,
     ).toList();
   }
 }

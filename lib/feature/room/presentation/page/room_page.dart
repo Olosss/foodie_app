@@ -36,7 +36,6 @@ class _RoomPageState extends State<RoomPage>
     });
   }
 
-
   void onAddExpenditureTap(BuildContext context) {
     context.push(
       AddExpenditureRoute(id: widget.roomId).location,

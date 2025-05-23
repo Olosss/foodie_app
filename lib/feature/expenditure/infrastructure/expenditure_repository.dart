@@ -1,13 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:foodie_app/feature/expenditure/domain/entity/expenditure.dart';
 import 'package:foodie_app/feature/expenditure/domain/repository/expenditure_repository_interface.dart';
+import 'package:foodie_app/feature/expenditure/infrastructure/mapper/expenditure_mapper.dart';
 
 class ExpenditureRepository implements ExpenditureRepositoryInterface {
   ExpenditureRepository({
     required this.firestore,
+    required this.expenditureMapper,
   });
 
   final FirebaseFirestore firestore;
+  final ExpenditureMapper expenditureMapper;
 
   @override
   Future<void> addExpenditure({
@@ -17,7 +20,11 @@ class ExpenditureRepository implements ExpenditureRepositoryInterface {
     final CollectionReference<Object?> expenditureCollection =
         firestore.collection('rooms').doc(roomId).collection('expenditures');
 
-    return expenditureCollection.add(expenditure.toJson());
+    return expenditureCollection.add(
+      expenditureMapper.toJson(
+        expenditure,
+      ),
+    );
   }
 
   @override
@@ -32,7 +39,7 @@ class ExpenditureRepository implements ExpenditureRepositoryInterface {
               querySnapshot.docs
                   .map(
                     (QueryDocumentSnapshot<Map<String, dynamic>> snapshot) =>
-                        Expenditure.fromJson(
+                        expenditureMapper.fromJson(
                       snapshot.data(),
                     ),
                   )

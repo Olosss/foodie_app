@@ -3,6 +3,8 @@ import 'package:foodie_app/feature/room/domain/use_case/close_room_use_case.dart
 import 'package:foodie_app/feature/room/domain/use_case/create_room_use_case.dart';
 import 'package:foodie_app/feature/room/domain/use_case/get_user_rooms_use_case.dart';
 import 'package:foodie_app/feature/room/domain/use_case/join_room_use_case.dart';
+import 'package:foodie_app/feature/room/infrastructure/mapper/room_mapper.dart';
+import 'package:foodie_app/feature/room/infrastructure/mapper/room_member_mapper.dart';
 import 'package:foodie_app/feature/room/infrastructure/room_repository.dart';
 import 'package:foodie_app/feature/user/di/providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -15,6 +17,7 @@ RoomRepositoryInterface roomRepository(
 ) {
   return RoomRepository(
     firestore: ref.watch(firebaseFirestoreProvider),
+    roomMapper: ref.watch(roomMapperProvider),
   );
 }
 
@@ -51,5 +54,23 @@ CloseRoomUseCase closeRoomUseCase(
 ) {
   return CloseRoomUseCase(
     roomRepository: ref.watch(roomRepositoryProvider),
+  );
+}
+
+@Riverpod(keepAlive: true)
+RoomMemberMapper roomMemberMapper(
+  RoomMemberMapperRef ref,
+) {
+  return RoomMemberMapper();
+}
+
+@Riverpod(keepAlive: true)
+RoomMapper roomMapper(
+  RoomMapperRef ref,
+) {
+  return RoomMapper(
+    roomMemberMapper: ref.watch(
+      roomMemberMapperProvider,
+    ),
   );
 }

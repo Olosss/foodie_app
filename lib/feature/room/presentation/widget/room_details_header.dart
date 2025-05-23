@@ -9,6 +9,7 @@ import 'package:foodie_app/feature/auth/presentation/notifier/state/user_state.d
 import 'package:foodie_app/feature/auth/presentation/notifier/user_notifier.dart';
 import 'package:foodie_app/feature/expenditure/presentation/widget/paid_by_me_star.dart';
 import 'package:foodie_app/feature/room/domain/entity/room.dart';
+import 'package:foodie_app/feature/room/domain/extension/room_extension.dart';
 import 'package:foodie_app/feature/room/presentation/notifier/rooms_notifier.dart';
 import 'package:go_router/go_router.dart';
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foodie_app/feature/room/domain/entity/room.dart';
+import 'package:foodie_app/feature/room/domain/extension/room_extension.dart';
 import 'package:foodie_app/feature/room/presentation/notifier/rooms_notifier.dart';
 
 class UsersSummaryList extends ConsumerWidget {

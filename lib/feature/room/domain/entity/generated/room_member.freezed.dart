@@ -14,17 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-RoomMember _$RoomMemberFromJson(Map<String, dynamic> json) {
-  return _RoomMember.fromJson(json);
-}
-
 /// @nodoc
 mixin _$RoomMember {
   String get uid => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
   bool get isCurrentUser => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $RoomMemberCopyWith<RoomMember> get copyWith =>
       throw _privateConstructorUsedError;
@@ -117,14 +112,11 @@ class __$$RoomMemberImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$RoomMemberImpl extends _RoomMember {
   const _$RoomMemberImpl(
       {required this.uid, required this.userName, this.isCurrentUser = false})
       : super._();
-
-  factory _$RoomMemberImpl.fromJson(Map<String, dynamic> json) =>
-      _$$RoomMemberImplFromJson(json);
 
   @override
   final String uid;
@@ -151,7 +143,6 @@ class _$RoomMemberImpl extends _RoomMember {
                 other.isCurrentUser == isCurrentUser));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, uid, userName, isCurrentUser);
 
@@ -160,13 +151,6 @@ class _$RoomMemberImpl extends _RoomMember {
   @pragma('vm:prefer-inline')
   _$$RoomMemberImplCopyWith<_$RoomMemberImpl> get copyWith =>
       __$$RoomMemberImplCopyWithImpl<_$RoomMemberImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$RoomMemberImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _RoomMember extends RoomMember {
@@ -175,9 +159,6 @@ abstract class _RoomMember extends RoomMember {
       required final String userName,
       final bool isCurrentUser}) = _$RoomMemberImpl;
   const _RoomMember._() : super._();
-
-  factory _RoomMember.fromJson(Map<String, dynamic> json) =
-      _$RoomMemberImpl.fromJson;
 
   @override
   String get uid;

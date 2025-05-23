@@ -5,6 +5,7 @@ import 'package:foodie_app/core/utils/utils.dart';
 import 'package:foodie_app/feature/expenditure/domain/entity/cost.dart';
 import 'package:foodie_app/feature/expenditure/presentation/widget/paid_by_me_star.dart';
 import 'package:foodie_app/feature/room/domain/entity/room.dart';
+import 'package:foodie_app/feature/room/domain/extension/room_extension.dart';
 import 'package:foodie_app/feature/room/presentation/notifier/rooms_notifier.dart';
 
 class ExpenditureUserRow extends ConsumerWidget {
