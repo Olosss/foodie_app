@@ -11,6 +11,17 @@ class EmailInput extends StatelessWidget {
   final bool formatEmailRequirementConditions;
   final TextEditingController? controller;
 
+  String? _validateEmail(String? email) {
+    if (email == null || email.isEmpty) {
+      return 'The email cannot be empty.';
+    }
+    if (!EmailValidator.validate(email)) {
+      return 'Invalid email format.';
+    }
+
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomInput(
@@ -21,16 +32,5 @@ class EmailInput extends StatelessWidget {
       validator: _validateEmail,
       keyboardType: TextInputType.emailAddress,
     );
-  }
-
-  String? _validateEmail(String? email) {
-    if (email == null || email.isEmpty) {
-      return 'The email cannot be empty.';
-    }
-    if (!EmailValidator.validate(email)) {
-      return 'Invalid email format.';
-    }
-
-    return null;
   }
 }

@@ -19,6 +19,9 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
+  Size get preferredSize => const Size.fromHeight(76);
+
+  @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
 
@@ -62,7 +65,4 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
       ),
     );
   }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(76);
 }

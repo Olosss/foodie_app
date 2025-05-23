@@ -13,6 +13,13 @@ class RoomsHeader extends ConsumerWidget implements PreferredSizeWidget {
     context.push(const RoomEntranceRoute().location);
   }
 
+  void _onLogoutTap(WidgetRef ref) {
+    ref.read(userNotifierProvider.notifier).signOut();
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(76);
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final ThemeData theme = Theme.of(context);
@@ -47,11 +54,4 @@ class RoomsHeader extends ConsumerWidget implements PreferredSizeWidget {
       ),
     );
   }
-
-  void _onLogoutTap(WidgetRef ref) {
-    ref.read(userNotifierProvider.notifier).signOut();
-  }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(76);
 }

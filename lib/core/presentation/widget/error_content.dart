@@ -22,6 +22,11 @@ class ErrorContent extends StatelessWidget {
   /// A custom error message to be displayed. This parameter is optional.
   final String? message;
 
+  String? _mapErrorToMessage(Object? error) {
+    ///TODO Add explicit error checking by type
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
@@ -31,10 +36,5 @@ class ErrorContent extends StatelessWidget {
         style: theme.inputDecorationTheme.errorStyle,
       ),
     );
-  }
-
-  String? _mapErrorToMessage(Object? error) {
-    ///TODO Add explicit error checking by type
-    return null;
   }
 }

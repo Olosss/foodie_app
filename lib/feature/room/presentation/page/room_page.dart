@@ -36,6 +36,13 @@ class _RoomPageState extends State<RoomPage>
     });
   }
 
+
+  void onAddExpenditureTap(BuildContext context) {
+    context.push(
+      AddExpenditureRoute(id: widget.roomId).location,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,12 +79,6 @@ class _RoomPageState extends State<RoomPage>
           ),
         ],
       ),
-    );
-  }
-
-  void onAddExpenditureTap(BuildContext context) {
-    context.push(
-      AddExpenditureRoute(id: widget.roomId).location,
     );
   }
 }
