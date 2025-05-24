@@ -8,19 +8,19 @@ const String tUserUid3 = 'user_charlie_789';
 const String tRoomId1 = 'room_kitchen_party_abc';
 const String tRoomId2 = 'room_living_room_xyz';
 
-const Cost tCostUser1Only_10 = Cost(userUid: tUserUid1, value: 10.0);
-const Cost tCostUser2Only_25 = Cost(userUid: tUserUid2, value: 25.50);
-const Cost tCostUser3Only_5 = Cost(userUid: tUserUid3, value: 5.0);
+const Cost tCostUser1_10 = Cost(userUid: tUserUid1, value: 10.0);
+const Cost tCostUser2_25_5 = Cost(userUid: tUserUid2, value: 25.5);
+const Cost tCostUser3_5 = Cost(userUid: tUserUid3, value: 5.0);
 
-final List<Cost> tCostSharedUser1_15User2_15 = <Cost>[
-  tCostUser1Only_10,
-  tCostUser2Only_25,
+final List<Cost> tCostUser1AndUser2 = <Cost>[
+  tCostUser1_10,
+  tCostUser2_25_5,
 ];
 
-final List<Cost> tCostComplexUser1_5User2_10User3_20 = <Cost>[
-  tCostUser1Only_10,
-  tCostUser2Only_25,
-  tCostUser3Only_5,
+final List<Cost> tCostUser1User2User3 = <Cost>[
+  tCostUser1_10,
+  tCostUser2_25_5,
+  tCostUser3_5,
 ];
 
 final Expenditure tExpenditure1Pizza = Expenditure(
@@ -33,7 +33,7 @@ final Expenditure tExpenditure1Pizza = Expenditure(
     19,
     30,
   ),
-  cost: tCostSharedUser1_15User2_15,
+  cost: tCostUser1AndUser2,
 );
 
 final Expenditure tExpenditure2Coffee = Expenditure(
@@ -45,7 +45,7 @@ final Expenditure tExpenditure2Coffee = Expenditure(
     21,
     9,
   ),
-  cost: tCostComplexUser1_5User2_10User3_20,
+  cost: tCostUser1User2User3,
 );
 
 final List<Expenditure> tExpendituresList = <Expenditure>[

@@ -11,26 +11,36 @@ void main() {
     useCase = CalculateDebtUseCase();
   });
 
-  test('should return empty debt map when expenditures list is empty', () {
-    final Map<String, double> result = useCase(<Expenditure>[], tUserUid1);
-    expect(result, <String, double>{});
-  });
+  void main() {
+    late CalculateDebtUseCase useCase;
 
-  test('should return empty debt map when user only pays for themselves', () {
-    final Map<String, double> result = useCase(tExpendituresList, tUserUid1);
-    expect(result, <String, double>{
-      tUserUid2: 15.5,
+    setUp(() {
+      useCase = CalculateDebtUseCase();
     });
-  });
 
-  test('should return positive debt when user pays for others', () {
-    final Map<String, double> result = useCase(tExpendituresList, tUserUid2);
-
-    expect(result.length, 2);
-
-    expect(result, <String, double>{
-      tUserUid1: -15.5,
-      tUserUid3: 5.0,
+    test('should return empty debt map when expenditures list is empty', () {
+      final Map<String, double> result = useCase(<Expenditure>[], tUserUid1);
+      expect(result, <String, double>{});
     });
-  });
+
+    test(
+      'should return debt only for user2 when user1 pays for user2 and has no interaction with user3',
+      () {
+        final Map<String, double> result =
+            useCase(tExpendituresList, tUserUid1);
+        expect(result, <String, double>{
+          tUserUid2: 15.5,
+        });
+      },
+    );
+
+    test('should return negative debts when others pay for the user', () {
+      final Map<String, double> result = useCase(tExpendituresList, tUserUid2);
+      expect(result.length, 2);
+      expect(result, <String, double>{
+        tUserUid1: -15.5,
+        tUserUid3: 5.0,
+      });
+    });
+  }
 }
